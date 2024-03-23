@@ -1,0 +1,57 @@
+header {
+    .site-navbar {
+        @apply container mx-auto px-3 flex items-center justify-between h-16;
+
+        .logo-container {
+            @apply flex items-center text-primary text-lg font-semibold;
+
+            .logo {}
+        }
+
+        .menu {
+            .menu-item {
+                @apply text-navbarInactive px-3 py-2 rounded-md text-sm font-bold;
+
+                .inner-menu {
+                    @apply dropdown dropdown-bottom text-navbarInactive px-3 py-2 rounded-md text-sm font-bold;
+
+                    .inner-menu-list {
+                        @apply z-[1] border-2 bg-white;
+
+                        &-item {
+                            @apply text-navbarInactive px-3 py-2 rounded-md text-sm font-bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .menu li .active {
+        background-color: transparent !important;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background-color: #000;
+        }
+
+        @apply text-black;
+    }
+
+
+    .menu li a,
+    .menu li div {
+
+        &:hover,
+        &:focus {
+            @apply text-black bg-transparent;
+        }
+    }
+
+}
