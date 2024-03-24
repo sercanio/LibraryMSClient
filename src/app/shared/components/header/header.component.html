@@ -1,59 +1,59 @@
 <nav class="site-navbar">
     <a class="logo-container" href="#">
-        <img src="assets/images/logo.png" alt="Logo" class="logo" width="120px" height="auto">
+        <img src="assets/images/logo.png" i18n-alt alt="Logo" class="logo" width="120px" height="auto">
     </a>
     <ul class="menu menu-horizontal invisible md:visible">
         <li class="menu-item">
-            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" i18n>Home</a>
         </li>
         <li class="menu-item">
-            <a routerLink="/about" routerLinkActive="active">About</a>
+            <a routerLink="/about" routerLinkActive="active" i18n>About</a>
         </li>
         <li class="menu-item">
             <div class="dropdown dropdown-bottom dropdown-hover">
-                <div tabindex="0" role="button" class="">Hover</div>
+                <div tabindex="0" role="button" class="" i18n>Hover</div>
                 <ul tabindex="0" class="dropdown-content menu menu-vertical">
                     <li class="menu-item">
-                        <a routerLink="/services" routerLinkActive="active">Services</a>
+                        <a routerLink="/services" routerLinkActive="active" i18n>Services</a>
                     </li>
                     <li class="menu-item">
-                        <a routerLink="/services/web-development" routerLinkActive="active">Web Development</a>
+                        <a routerLink="/services/web-development" routerLinkActive="active" i18n>Web Development</a>
                     </li>
                     <li class="menu-item">
-                        <a routerLink="/services/mobile-development" routerLinkActive="active">Mobile
+                        <a routerLink="/services/mobile-development" routerLinkActive="active" i18n>Mobile
                             Development</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="menu-item">
-            <a routerLink="/contact" routerLinkActive="active">Contact</a>
+            <a routerLink="/contact" routerLinkActive="active" i18n>Contact</a>
         </li>
     </ul>
     <div *ngIf="isMenuOpen" class="md:invisible absolute bg-primary top-0 left-0 w-full h-screen z-0">
         <ul class="menu menu-vertical mobile-menu">
             <li class="menu-item">
                 <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                    (click)="closeMenu()">Home</a>
+                    (click)="closeMenu()" i18n>Home</a>
             </li>
             <li class="menu-item">
-                <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
+                <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()" i18n>About</a>
             </li>
             <li class="menu-item">
                 <details class="collapse collapse-arrow menu-item collapse-menu">
-                    <summary class="collapse-title">Click to open/close</summary>
+                    <summary class="collapse-title" i18n>Click to open/close</summary>
                     <div class="collapse-content">
                         <ul tabindex="0" class="menu menu-vertical">
                             <li class="menu-item">
-                                <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Services</a>
+                                <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()" i18n>Services</a>
                             </li>
                             <li class="menu-item">
                                 <a routerLink="/services/web-development" routerLinkActive="active"
-                                    (click)="closeMenu()">Web Development</a>
+                                    (click)="closeMenu()" i18n>Web Development</a>
                             </li>
                             <li class="menu-item">
                                 <a routerLink="/services/mobile-development" routerLinkActive="active"
-                                    (click)="closeMenu()">Mobile Development</a>
+                                    (click)="closeMenu()" i18n>Mobile Development</a>
                             </li>
                         </ul>
                     </div>
