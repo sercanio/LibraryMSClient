@@ -1,34 +1,34 @@
 <header>
     <nav class="site-navbar">
         <a class="logo-container" href="#">
-            <img src="/assets/images/logo.png" alt="Logo" class="logo" width="120px" height="auto">
+            <img src="/assets/images/logo.png" alt="Logo" i18-alt class="logo" width="120px" height="auto">
         </a>
         <ul class="menu menu-horizontal invisible md:visible">
             <li class="menu-item">
-                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" i18n>Home</a>
             </li>
             <li class="menu-item">
-                <a routerLink="/about" routerLinkActive="active">About</a>
+                <a routerLink="/about" routerLinkActive="active" i18n>About</a>
             </li>
             <li class="menu-item">
                 <div class="inner-menu dropdown-hover">
-                    <div tabindex="0" role="button" class="">Hover</div>
+                    <div tabindex="0" role="button" class="" i18n>Hover</div>
                     <ul tabindex="0" class="inner-menu-list menu menu-vertical dropdown-content">
                         <li class="inner-menu-list-item" class="inner-menu-list-item">
-                            <a routerLink="/services" routerLinkActive="active">Services</a>
+                            <a routerLink="/services" routerLinkActive="active" i18n>Services</a>
                         </li>
                         <li class="inner-menu-list-item" class="inner-menu-list-item">
-                            <a routerLink="/services/web-development" routerLinkActive="active">Web Development</a>
+                            <a routerLink="/services/web-development" routerLinkActive="active" i18n>Web Development</a>
                         </li>
                         <li class="inner-menu-list-item" class="inner-menu-list-item">
-                            <a routerLink="/services/mobile-development" routerLinkActive="active">Mobile
+                            <a routerLink="/services/mobile-development" routerLinkActive="active" i18n>Mobile
                                 Development</a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="menu-item">
-                <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                <a routerLink="/contact" routerLinkActive="active" i18n>Contact</a>
             </li>
         </ul>
         <div *ngIf="isMenuOpen" class="md:invisible absolute bg-primary top-0 left-0 w-full h-screen z-0">
