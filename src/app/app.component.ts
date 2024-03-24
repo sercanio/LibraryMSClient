@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 
 @Component({
@@ -7,8 +7,11 @@ import { HeaderComponent } from './shared/components/header/header.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'LibraryMSClient';
+  title = 'Tobeto Public Library';
+  metaDescription = '';
+
+  constructor() {}
 }
