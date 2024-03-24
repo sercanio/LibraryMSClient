@@ -71,6 +71,14 @@
                 }
             }
         }
+
+        .social-icons {
+            @apply flex flex-row items-center justify-center;
+
+            &>* {
+                @apply w-7 h-7;
+            }
+        }
     }
 
     .mobile-menu {
@@ -79,10 +87,7 @@
         .menu-item {
             .active {
                 &::after {
-                    bottom: .35rem;
-                    left: 1rem;
-                    transform: translateX(.7rem);
-                    width: 90%;
+                    @apply hidden;
                 }
             }
         }
