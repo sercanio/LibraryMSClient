@@ -11,7 +11,7 @@
         @apply p-4;
 
         .menu-item {
-            @apply text-navbarInactive p-4 rounded-md text-sm font-bold;
+            @apply text-navbarInactive rounded-md text-sm font-bold;
 
             .active {
                 background-color: transparent !important;
