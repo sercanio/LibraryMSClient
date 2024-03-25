@@ -3,13 +3,13 @@
 }
 
 .hero-section {
-  @apply flex flex-col lg:flex-row items-center justify-center mx-auto p-4 my-8 border-2 h-[770px];
+  @apply flex flex-col lg:flex-row items-center justify-center mx-auto p-4 my-8 border-2 h-[770px] max-w-[1300px];
 
   .carousel-container {
-    @apply flex-[3];
+    @apply h-auto w-full lg:h-full lg:w-full ;
   }
 
   .sidebar {
-    @apply flex-[1] p-4 h-full bg-secondary;
+    @apply bg-secondary p-4 h-auto w-full lg:h-full lg:w-[400px];
   }
 }
