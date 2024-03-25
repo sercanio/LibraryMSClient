@@ -27,16 +27,25 @@ module.exports = {
       },
       animation: {
         fade: 'fadeIn .25s ease-in-out',
-      },
-      keyframes: theme => ({
-        fadeIn: {
-          '0%': { opacity: theme('opacity.90') },
-          '100%': { opacity: theme('opacity.100') },
-        },
-      }),
+        growLine: 'growLine 0.25s ease-in-out forwards'
+      }
     },
+    keyframes: theme => ({
+      fadeIn: {
+        '0%': { opacity: theme('opacity.90') },
+        '100%': { opacity: theme('opacity.100') },
+      },
+      growLine: {
+        '0%': {
+          width: 0
+        },
+        '100% ': {
+          width: '70%'
+        }
+      }
+    }),
   },
-  plugins: [require("daisyui"), require("tw-elements/plugin.cjs")],
+  plugins: [require("daisyui")],
   daisyUi: {
     themes: [
       "light", "dark"

@@ -6,12 +6,33 @@
     :root {
         font-size: 18px;
     }
+
 }
 
 @layer components {
 
+    .btn-primary {
+        @apply bg-primary-button border-primary outline-primary rounded-none font-medium opacity-90;
+
+        &:hover,
+        &:focus {
+            @apply relative bg-primary-button border-primary outline-primary rounded-none font-medium opacity-100;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0.75rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 70%;
+                height: 1px;
+                background-color: currentColor;
+                @apply animate-growLine;
+
+
+            }
+        }
+    }
 }
 
-@layer utilities {
-
-}
+@layer utilities {}
