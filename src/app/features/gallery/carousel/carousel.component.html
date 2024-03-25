@@ -1,0 +1,14 @@
+<div class="carousel-container" *ngIf="images && images.length > 0">
+    <img class="carousel-image" *ngFor="let image of images; let i = index" [src]="image.src" [alt]="image.alt"
+        [ngClass]="{'image-active':currentImageIndex === i}">
+    <div *ngIf="indicators" class="carousel-indicator-container">
+        <span *ngFor="let indicator of images; let i=index" class="carousel-indicator"
+            [ngClass]="{'active':currentImageIndex===i}" (click)="selectImage(i)"></span>
+    </div>
+    <div *ngIf="controls" class="btn btn-carousel btn-prev" (click)="previousImage()">
+        <ng-icon name="iconoirNavArrowLeft"></ng-icon>
+    </div>
+    <div *ngIf="controls" class="btn btn-carousel btn-next" (click)="nextImage()">
+        <ng-icon name="iconoirNavArrowRight"></ng-icon>
+    </div>
+</div>

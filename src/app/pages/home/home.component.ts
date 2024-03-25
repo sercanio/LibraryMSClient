@@ -5,12 +5,13 @@ import {
   Inject,
   LOCALE_ID,
 } from '@angular/core';
-import { PageService } from '../../services/page/page.service';
+import { PageService } from '../../core/services/page/page.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { CarouselComponent } from '../../features/gallery/carousel/carousel.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CarouselComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,6 +19,24 @@ import { Title, Meta } from '@angular/platform-browser';
 export class HomeComponent {
   title = 'Tobeto Public Library';
   pageService!: PageService;
+  images = [
+    {
+      src: 'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      alt: 'nature1',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      alt: 'nature2',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1640844444545-66e19eb6f549?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
+      alt: 'person1',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      alt: 'person2',
+    },
+  ];
   constructor(
     @Inject(LOCALE_ID) private locale: string,
     private titleService: Title,
