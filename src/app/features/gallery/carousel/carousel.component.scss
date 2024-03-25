@@ -1,12 +1,12 @@
 .carousel-container {
-    @apply relative flex items-center justify-center;
+    @apply relative flex items-center justify-center h-full;
 
     .carousel-image {
         @apply hidden animate-fade;
     }
 
     .image-active {
-        @apply block w-full h-[400px];
+        @apply block w-full h-full;
     }
 
     .carousel-indicator-container {
