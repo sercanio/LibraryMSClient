@@ -4,19 +4,23 @@ import {
   Component,
   Inject,
   LOCALE_ID,
+  OnInit,
 } from '@angular/core';
 import { PageService } from '../../core/services/page/page.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { CarouselComponent } from '../../features/gallery/carousel/carousel.component';
+import { CarouselComponent } from '../../core/components/carousel/carousel.component';
+import { Announcement } from '../../models/Announcement';
+import { BackendService } from '../../core/services/backend/backend.service';
 
 @Component({
   standalone: true,
   imports: [CommonModule, CarouselComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [BackendService],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   title = 'Tobeto Public Library';
   pageService!: PageService;
   images = [
@@ -37,8 +41,10 @@ export class HomeComponent {
       alt: 'person2',
     },
   ];
+  announcements: Announcement[] = [];
   constructor(
     @Inject(LOCALE_ID) private locale: string,
+    @Inject(BackendService) private backendService: BackendService,
     private titleService: Title,
     private metaService: Meta
   ) {
@@ -48,5 +54,18 @@ export class HomeComponent {
       this.metaService
     );
     this.pageService.setPage();
+  }
+
+  ngOnInit() {
+    this.fetchAnnouncements();
+  }
+
+  fetchAnnouncements() {
+    this.backendService
+      .getAll<Announcement>('announcement')
+      .subscribe((announcements: Announcement[]) => {
+        this.announcements.push(...announcements);
+      });
+    return this.announcements;
   }
 }
