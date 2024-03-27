@@ -3,9 +3,13 @@
     <app-carousel [images]="images" [autoPlay]="true"></app-carousel>
   </div>
   <div class="sidebar">
-    <h1 class="text-4xl text-black font-bold">Duyurular</h1>
-    <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua.</p>
-    <a href="#" class="btn btn-primary">Shop Now</a>
+    <h2 class="text-xl text-black font-bold" >Duyurular & Etkinlikler</h2>
+    <br>
+    <div *ngFor="let announcement of announcements">
+      <span>{{announcement.tag}}</span>
+      <h3 class="text-base text-primary font-bold inline-block">{{announcement.title}}</h3>
+      <!-- <p class="text-base">{{announcement.content}}</p> -->
+      <a href="#" class="btn btn-link">Read more...</a>
+    </div>
   </div>
 </section>

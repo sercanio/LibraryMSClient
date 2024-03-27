@@ -11,10 +11,11 @@ import { Title, Meta } from '@angular/platform-browser';
 import { CarouselComponent } from '../../core/components/carousel/carousel.component';
 import { Announcement } from '../../models/Announcement';
 import { BackendService } from '../../core/services/backend/backend.service';
-
+import { PaginationPipe } from '../../core/pipes/pagination/pagination.pipe';
+import { Collection } from '../../core/models/Response/Collection';
 @Component({
   standalone: true,
-  imports: [CommonModule, CarouselComponent],
+  imports: [CommonModule, CarouselComponent, PaginationPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,15 +58,30 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchAnnouncements();
+    console.log(this.fetchAnnouncements());
+    console.log(
+      this.fetchAnnouncement('E014EFC4-0973-4FC1-80BB-464B4D791173')
+    );
   }
 
   fetchAnnouncements() {
     this.backendService
-      .getAll<Announcement>('announcement')
-      .subscribe((announcements: Announcement[]) => {
-        this.announcements.push(...announcements);
+      .getAll<Announcement>('Announcements?PageIndex=0&PageSize=10')
+      .subscribe((announcements: Collection<Announcement>) => {
+        if (Array.isArray(announcements.items)) {
+          this.announcements.push(...announcements.items);
+        } else {
+          console.error('items is not an array:', announcements.items);
+        }
       });
     return this.announcements;
+  }
+
+  fetchAnnouncement(id: string) {
+    this.backendService
+      .getSingle<Announcement>('Announcements', id)
+      .subscribe((announcement: Announcement) => {
+        console.log(announcement);
+      });
   }
 }
