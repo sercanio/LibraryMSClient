@@ -5,10 +5,10 @@ import {
   Inject,
   LOCALE_ID,
 } from '@angular/core';
-import { PageService } from '../../core/services/page/page.service';
+import { PageService } from '~core/services/page/page.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { CarouselComponent } from '../../core/components/carousel/carousel.component';
-import { AnnouncementContainerComponent } from '../../features/announcement/components/announcement-container/announcement-container.component';
+import { CarouselComponent } from '~core/components/carousel/carousel.component';
+import { AnnouncementContainerComponent } from '~features/announcement/components/announcement-container/announcement-container.component';
 @Component({
   standalone: true,
   imports: [CommonModule, CarouselComponent, AnnouncementContainerComponent],
@@ -18,7 +18,7 @@ import { AnnouncementContainerComponent } from '../../features/announcement/comp
 })
 export class HomeComponent{
   pageService!: PageService;
-  images = [
+  carouselImages = [
     {
       src: 'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
       alt: 'nature1',
@@ -48,5 +48,4 @@ export class HomeComponent{
     );
     this.pageService.setPage();
   }
-
 }
