@@ -1,15 +1,4 @@
 <section class="container hero-section">
-  <div class="carousel-container">
-    <app-carousel [images]="images" [autoPlay]="true"></app-carousel>
-  </div>
-  <div class="sidebar">
-    <h2 class="text-xl text-black font-bold" >Duyurular & Etkinlikler</h2>
-    <br>
-    <div *ngFor="let announcement of announcements">
-      <span>{{announcement.tag}}</span>
-      <h3 class="text-base text-primary font-bold inline-block">{{announcement.title}}</h3>
-      <!-- <p class="text-base">{{announcement.content}}</p> -->
-      <a href="#" class="btn btn-link">Read more...</a>
-    </div>
-  </div>
+  <app-carousel class="carousel-container" [images]="images" [autoPlay]="true"></app-carousel>
+  <app-announcement-container class="announcement-container"></app-announcement-container>
 </section>

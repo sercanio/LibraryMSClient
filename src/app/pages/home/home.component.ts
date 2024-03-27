@@ -4,25 +4,19 @@ import {
   Component,
   Inject,
   LOCALE_ID,
-  OnInit,
 } from '@angular/core';
 import { PageService } from '../../core/services/page/page.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { CarouselComponent } from '../../core/components/carousel/carousel.component';
-import { Announcement } from '../../models/Announcement';
-import { BackendService } from '../../core/services/backend/backend.service';
-import { PaginationPipe } from '../../core/pipes/pagination/pagination.pipe';
-import { Collection } from '../../core/models/Response/Collection';
+import { AnnouncementContainerComponent } from '../../features/announcement/components/announcement-container/announcement-container.component';
 @Component({
   standalone: true,
-  imports: [CommonModule, CarouselComponent, PaginationPipe],
+  imports: [CommonModule, CarouselComponent, AnnouncementContainerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [BackendService],
 })
-export class HomeComponent implements OnInit {
-  title = 'Tobeto Public Library';
+export class HomeComponent{
   pageService!: PageService;
   images = [
     {
@@ -42,10 +36,8 @@ export class HomeComponent implements OnInit {
       alt: 'person2',
     },
   ];
-  announcements: Announcement[] = [];
   constructor(
     @Inject(LOCALE_ID) private locale: string,
-    @Inject(BackendService) private backendService: BackendService,
     private titleService: Title,
     private metaService: Meta
   ) {
@@ -57,31 +49,4 @@ export class HomeComponent implements OnInit {
     this.pageService.setPage();
   }
 
-  ngOnInit() {
-    console.log(this.fetchAnnouncements());
-    console.log(
-      this.fetchAnnouncement('E014EFC4-0973-4FC1-80BB-464B4D791173')
-    );
-  }
-
-  fetchAnnouncements() {
-    this.backendService
-      .getAll<Announcement>('Announcements?PageIndex=0&PageSize=10')
-      .subscribe((announcements: Collection<Announcement>) => {
-        if (Array.isArray(announcements.items)) {
-          this.announcements.push(...announcements.items);
-        } else {
-          console.error('items is not an array:', announcements.items);
-        }
-      });
-    return this.announcements;
-  }
-
-  fetchAnnouncement(id: string) {
-    this.backendService
-      .getSingle<Announcement>('Announcements', id)
-      .subscribe((announcement: Announcement) => {
-        console.log(announcement);
-      });
-  }
 }
