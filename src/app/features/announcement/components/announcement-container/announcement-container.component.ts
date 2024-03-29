@@ -1,13 +1,13 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   Inject,
   OnInit,
 } from '@angular/core';
 import { Announcement } from '~models/Announcement';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AnnouncementService } from '~features/announcement/services/announcement.service';
+import { Collection } from '~app/core/models/Response/Collection';
 
 @Component({
   selector: 'app-announcement-container',
@@ -15,44 +15,52 @@ import { AnnouncementService } from '~features/announcement/services/announcemen
   imports: [CommonModule],
   templateUrl: './announcement-container.component.html',
   styleUrl: './announcement-container.component.scss',
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnnouncementContainerComponent implements OnInit {
   constructor(
     @Inject(AnnouncementService)
-    private announcementService: AnnouncementService,
-    private cdr: ChangeDetectorRef
+    private announcementService: AnnouncementService
   ) {}
-  announcements: Announcement[] = [];
-  pageIndex: number = 0; // Default page index
-  size: number = 4; // Default page size
-  isLastPage: boolean = false;
+  
+    announcementsObject!: Collection<Announcement>;
+    announcements!: Announcement[];
+
+  announcementsListConfig = {
+    initialIndex: 0,
+    itemsPerPage: 4,
+    contentLimit: 50, // Characters
+  };
+
+  pageIndex: number = this.announcementsListConfig.initialIndex;
+  size: number = this.announcementsListConfig.itemsPerPage;
+  contentLimit: number = this.announcementsListConfig.contentLimit;
+  currentPage: number = this.announcementsListConfig.initialIndex;
 
   ngOnInit() {
     this.loadAnnouncements(this.pageIndex);
+    this.onNextPage();
   }
-
   loadAnnouncements(pageIndex: number) {
-    this.announcementService
-      .getAll(pageIndex, this.size)
-      .subscribe((announcements) => {
-        this.announcements = [...announcements];
-        this.isLastPage = announcements.length < this.size;
-        this.cdr.detectChanges(); // Trigger change detection after updating announcements
-      });
-  }
-
-  onPreviousPage() {
-    if (this.pageIndex > 0) {
-      this.loadAnnouncements(this.pageIndex);
-      this.pageIndex--;
-    }
+    this.announcementsObject = this.announcementService.getAll(
+      pageIndex,
+      this.size
+    );
+    this.announcements = this.announcementsObject.items;
+    this.currentPage = this.announcementsObject.index;
   }
 
   onNextPage() {
-    if (!this.isLastPage) {
-      this.loadAnnouncements(this.pageIndex);
+    if (this.announcementsObject.hasNext) {
       this.pageIndex++;
+      this.loadAnnouncements(this.pageIndex);
+    }
+  }
+
+  onPreviousPage() {
+    if (this.announcementsObject.hasPrevious) {
+      this.pageIndex--;
+      this.loadAnnouncements(this.pageIndex);
     }
   }
 }
