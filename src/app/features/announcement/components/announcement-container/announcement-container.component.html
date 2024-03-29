@@ -1,12 +1,19 @@
 <h2 class="text-xl text-black font-bold" i18n>Duyurular & Etkinlikler</h2>
 <br>
+
 <div *ngFor="let announcement of announcements">
     <div [ngSwitch]="announcement.tag">
-        <div *ngSwitchCase="0" class="tag bg-primary text-white" i18n>Duyuru</div>
+        <div *ngSwitchCase="0" class="tag bg-secondary text-white" i18n>Duyuru</div>
         <div *ngSwitchCase="1" class="tag bg-secondary text-white" i18n>Etkinlik</div>
-        <div *ngSwitchCase="2" class="tag bg-tertiary text-white" i18n>Haber</div>
-        <div *ngSwitchDefault class="tag bg-primary text-white" i18n>Duyuru</div>
+        <div *ngSwitchCase="2" class="tag bg-secondary text-white" i18n>Haber</div>
+        <div *ngSwitchDefault class="tag bg-secondary text-white" i18n>Duyuru</div>
     </div>
     <h3 class="text-base text-primary font-bold inline-block">{{announcement.title}}</h3>
     <a href="#" class="btn btn-link" i18n>Read more...</a>
 </div>
+<div class="join">
+    <button id="previous" class="join-item btn" (click)="onPreviousPage()">«</button>
+    <button class="join-item btn">{{pageIndex + 1}}</button>
+    <button id="next" class="join-item btn" (click)="onNextPage()">»</button>
+</div>
+<!-- TODO: Implement pagination feature -->
