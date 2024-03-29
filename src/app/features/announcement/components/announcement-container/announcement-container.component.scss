@@ -1,0 +1,45 @@
+.announcement-container-title {
+    @apply inline-block text-xl mb-4 text-black font-bold;
+}
+
+.announcement-list-container {
+    @apply flex flex-row gap-1 items-center justify-start;
+
+    .announcement-tag-container {
+        @apply inline-block;
+
+        .announcement-tag {
+            @apply relative top-[2px] text-primary;
+        }
+    }
+
+    .announcement-title {
+        @apply relative text-base text-black mx-1 font-bold inline-block;
+
+        &::after {
+            content: "";
+            position: absolute;
+            height: 0.15rem;
+            width: 1.5rem;
+            position: absolute;
+            z-index: 0;
+            bottom: -.8rem;
+            left: -1.5rem;
+            background-color: peru;
+        }
+    }
+
+}
+
+.announcement-seperator {
+    @apply w-11/12 my-3 border border-gray-200;
+
+}
+
+.announcement-summary {
+    @apply inline-block ml-1 text-sm text-tertiary;
+}
+
+.join {
+    @apply absolute bottom-2 left-1/2 -translate-x-1/2 mx-auto;
+}

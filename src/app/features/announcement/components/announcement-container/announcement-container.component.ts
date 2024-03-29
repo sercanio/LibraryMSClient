@@ -1,30 +1,32 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnInit,
-} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Announcement } from '~models/Announcement';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AnnouncementService } from '~features/announcement/services/announcement.service';
 import { Collection } from '~app/core/models/Response/Collection';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import {
+  matAnnouncement,
+  matEvent,
+  matNewspaper,
+  matArrowRightAlt
+} from '@ng-icons/material-icons/baseline';
 
 @Component({
   selector: 'app-announcement-container',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgIconComponent],
   templateUrl: './announcement-container.component.html',
   styleUrl: './announcement-container.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  viewProviders: [provideIcons({ matAnnouncement, matEvent, matNewspaper,matArrowRightAlt })],
 })
 export class AnnouncementContainerComponent implements OnInit {
   constructor(
     @Inject(AnnouncementService)
     private announcementService: AnnouncementService
   ) {}
-  
-    announcementsObject!: Collection<Announcement>;
-    announcements!: Announcement[];
+
+  announcementsObject!: Collection<Announcement>;
+  announcements!: Announcement[];
 
   announcementsListConfig = {
     initialIndex: 0,
@@ -36,6 +38,8 @@ export class AnnouncementContainerComponent implements OnInit {
   size: number = this.announcementsListConfig.itemsPerPage;
   contentLimit: number = this.announcementsListConfig.contentLimit;
   currentPage: number = this.announcementsListConfig.initialIndex;
+  isLastPage: boolean = false;
+  isFirstPage: boolean = false;
 
   ngOnInit() {
     this.loadAnnouncements(this.pageIndex);
@@ -48,17 +52,19 @@ export class AnnouncementContainerComponent implements OnInit {
     );
     this.announcements = this.announcementsObject.items;
     this.currentPage = this.announcementsObject.index;
+    this.isLastPage = !this.announcementsObject.hasNext;
+    this.isFirstPage = !this.announcementsObject.hasPrevious;
   }
 
   onNextPage() {
-    if (this.announcementsObject.hasNext) {
+    if (!this.isLastPage) {
       this.pageIndex++;
       this.loadAnnouncements(this.pageIndex);
     }
   }
 
   onPreviousPage() {
-    if (this.announcementsObject.hasPrevious) {
+    if (!this.isFirstPage) {
       this.pageIndex--;
       this.loadAnnouncements(this.pageIndex);
     }

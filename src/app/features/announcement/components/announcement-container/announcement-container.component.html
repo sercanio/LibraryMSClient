@@ -1,19 +1,35 @@
-<h2 class="text-xl text-black font-bold" i18n>Duyurular & Etkinlikler</h2>
+<!-- <h2 class="announcement-container-title" i18n>Duyurular & Etkinlikler</h2> -->
 <br>
 <div *ngFor="let announcement of announcements">
-    <div [ngSwitch]="announcement.tag">
-        <div *ngSwitchCase="0" class="tag bg-secondary text-white" i18n>Duyuru</div>
-        <div *ngSwitchCase="1" class="tag bg-secondary text-white" i18n>Etkinlik</div>
-        <div *ngSwitchCase="2" class="tag bg-secondary text-white" i18n>Haber</div>
-        <div *ngSwitchDefault class="tag bg-secondary text-white" i18n>Duyuru</div>
+    <div class="announcement-list-container">
+
+        <div [ngSwitch]="announcement.tag" class="announcement-tag-container">
+            <div *ngSwitchCase="0" class="announcement-tag" i18n>
+                <ng-icon name="matAnnouncement"></ng-icon>
+            </div>
+            <div *ngSwitchCase="1" class="announcement-tag" i18n>
+                <ng-icon name="matNewspaper"></ng-icon>
+            </div>
+            <div *ngSwitchCase="2" class="announcement-tag" i18n>
+                <ng-icon name="matEvent"></ng-icon>
+            </div>
+            <div *ngSwitchDefault class="announcement-tag" i18n>
+                <ng-icon name="matAnnouncement"></ng-icon>
+            </div>
+        </div>
+        <h3 class="announcement-title">{{announcement.title}}</h3>
     </div>
-    <h3 class="text-base text-primary font-bold inline-block">{{announcement.title}}</h3>
-    <p>{{announcement.content.slice(0, contentLimit)}}</p>
-    <a href="#" class="btn btn-link" i18n>Read more...</a>
+    <hr class="announcement-seperator">
+    <p class="announcement-summary">{{announcement.content.slice(0, contentLimit)}}...</p>
+    <a href="#" class="btn btn-link" i18n>Devamını oku <ng-icon class="relative top-[3px]"
+            name="matArrowRightAlt"></ng-icon></a>
+
 </div>
 <div class="join">
-    <button id="previous" class="join-item btn" (click)="onPreviousPage()">«</button>
-    <button class="join-item btn">{{currentPage + 1}}</button>
-    <button id="next" class="join-item btn" (click)="onNextPage()">»</button>
+    <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isFirstPage}"
+        (click)="
+        onPreviousPage()">«</button>
+    <button class="join-item btn btn-primary btn-pagination">{{currentPage + 1}}</button>
+    <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isLastPage}"
+        (click)="onNextPage()">»</button>
 </div>
-<!-- TODO: Implement pagination feature -->

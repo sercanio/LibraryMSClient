@@ -8,19 +8,28 @@ module.exports = {
       colors: {
         primary: '#F3701D',
         secondary: '#E23826',
-        tertiary: '#0000FF',
+        tertiary: '#655146',
         navbarInactive: '#999999',
       },
       backgroundColor: {
         primary: '#F2F0EE',
         secondary: '#1B1B1B',
         tertiary: '##EAE7E4',
-        "primary-button": '#F3701D',
+        "primary-button": '#E23826',
+        "secondary-button": '#F3701D',
+        "disabled-button": '#D3701D',
       },
       borderColor: {
-        primary: '#F3701D',
-        secondary: '#E23826',
+        primary: '#E23826',
+        secondary: '#F3701D',
         tertiary: '#0000FF',
+        disabled: '#D3701D'
+      },
+      outlineColor: {
+        primary: '#E23826',
+        secondary: '#F3701D',
+        tertiary: '#0000FF',
+        disabled: '#D3701D'
       },
       fontFamily: {
         sans: ['Arial', 'Helvetica', 'sans-serif', 'system-ui', 'BlinkMacSystemFont', '-apple-system'],

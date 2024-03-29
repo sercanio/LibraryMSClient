@@ -10,6 +10,6 @@
   }
 
   .announcement-container {
-    @apply bg-primary p-4 h-auto w-full lg:h-full lg:w-[500px];
+    @apply relative bg-primary px-4 pb-4 h-auto w-full lg:h-full lg:w-[500px];
   }
 }

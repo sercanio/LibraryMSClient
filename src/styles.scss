@@ -6,7 +6,6 @@
     :root {
         font-size: 18px;
     }
-
 }
 
 @layer components {
@@ -28,9 +27,40 @@
                 height: 1px;
                 background-color: currentColor;
                 @apply animate-growLine;
-
-
             }
+        }
+    }
+
+    .btn-pagination {
+        
+        &>* {
+            @apply animate-none;
+        }
+
+        &:hover,
+        &:focus {
+            &::after {
+                @apply animate-none;
+                content: none;
+            }
+        }
+    }
+
+    .btn-pagination-disabled {
+        @apply cursor-default opacity-75;
+
+        &:hover,
+        &:focus {
+            @apply opacity-85;
+
+        }
+    }
+
+    .btn-link {
+        @apply inline-block text-primary mx-1 p-0 my-0 h-fit no-underline;
+
+        &::hover {
+            @apply underline;
         }
     }
 }
