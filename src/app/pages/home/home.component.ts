@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   Inject,
   LOCALE_ID,
@@ -14,7 +13,6 @@ import { AnnouncementContainerComponent } from '~features/announcement/component
   imports: [CommonModule, CarouselComponent, AnnouncementContainerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent{
   pageService!: PageService;
