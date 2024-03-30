@@ -3,16 +3,25 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-    :root {
-        font-size: 18px;
+
+    @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('src/assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
     }
 
     @font-face {
         font-family: 'Roboto Slab';
         font-style: normal;
-        // font-weight: 400;
         font-display: swap;
         src: url('src/assets/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    }
+
+    :root {
+        font-size: 16px;
+        @apply font-body text-base;
     }
 }
 

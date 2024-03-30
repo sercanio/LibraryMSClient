@@ -14,7 +14,7 @@
     }
 
     .announcement-title {
-        @apply relative text-base text-black mx-1 inline-block font-display font-semibold;
+        @apply relative text-base text-black mx-1 inline-block font-title font-semibold;
 
         &::after {
             content: "";

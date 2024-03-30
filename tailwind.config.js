@@ -33,7 +33,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Arial', 'Helvetica', 'sans-serif', 'system-ui', 'BlinkMacSystemFont', '-apple-system'],
-        display : ["'Roboto Slab'", 'sans-serif']
+        title: ["'Roboto Slab'", 'sans-serif'],
+        body: ["'Roboto'", 'sans-serif'],
       },
       animation: {
         fade: 'fadeIn .25s ease-in-out',
