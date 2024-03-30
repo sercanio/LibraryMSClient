@@ -2,12 +2,94 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="1320211775875322651" datatype="html">
+        <source><x id="START_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;ng-icon name=&quot;matAnnouncement&quot;&gt;"/><x id="CLOSE_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;/ng-icon&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/announcement/components/announcement-container/announcement-container.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/announcement/components/announcement-container/announcement-container.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/announcement/components/announcement-container/announcement-container.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/announcement/components/announcement-container/announcement-container.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6699520959361559278" datatype="html">
+        <source>Devamını oku <x id="START_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;ng-icon class=&quot;relative top-[3px]&quot;
+            name=&quot;matArrowRightAlt&quot;&gt;"/><x id="CLOSE_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;/ng-icon&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/announcement/components/announcement-container/announcement-container.component.html</context>
+          <context context-type="linenumber">24,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3361824788435752530" datatype="html">
+        <source><x id="START_TAG__SVG_SVG" ctype="x-_svg_svg" equiv-text="&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 24 24&quot; class=&quot;hidden md:inline-block w-4 h-4 stroke-current&quot;&gt;"/><x id="START_TAG__SVG_PATH" ctype="x-_svg_path" equiv-text="&lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot;
+                        d=&quot;M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z&quot;&gt;"/><x id="CLOSE_TAG__SVG_PATH" ctype="x-_svg_path" equiv-text="&lt;/path&gt;"/><x id="CLOSE_TAG__SVG_SVG" ctype="x-_svg_svg" equiv-text="&lt;/svg&gt;"/> Duyuru, Haber ve Etkinlikler </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">13,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/announcements/announcements.component.html</context>
+          <context context-type="linenumber">13,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4550958265168690830" datatype="html">
+        <source>Logo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2821179408673282599" datatype="html">
         <source>Home</source>
         <target>Anasayfa</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">8,9</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1726363342938046830" datatype="html">
@@ -15,47 +97,70 @@
         <target>Hakkımızda</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">11,12</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="5154323566009352705" datatype="html">
-        <source>Hover</source>
-        <target>Üzerine Gel</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">45,46</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7143579180750436311" datatype="html">
-        <source>Services</source>
-        <target>Hizmetler</target>
+      <trans-unit id="3817498941817715969" datatype="html">
+        <source>Pages</source>
+        <target>Sayfalar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6003844488952028818" datatype="html">
+        <source>Announcements</source>
+        <target>Duyurular</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8664045374910420643" datatype="html">
         <source>Web Development</source>
-        <target>Web Geliştirme</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">21,22</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3622219714924175108" datatype="html">
         <source>Mobile Development</source>
-        <target>Mobil Geliştirme</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
+          <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7922989125096435449" datatype="html">
         <source>Contact</source>
-        <target>İletişim</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4528529937328991783" datatype="html">
+        <source>Click to open/close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7143579180750436311" datatype="html">
+        <source>Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
     </body>
