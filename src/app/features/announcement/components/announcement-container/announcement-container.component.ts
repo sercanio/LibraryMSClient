@@ -8,16 +8,19 @@ import {
   matAnnouncement,
   matEvent,
   matNewspaper,
-  matArrowRightAlt
+  matArrowRightAlt,
 } from '@ng-icons/material-icons/baseline';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-announcement-container',
   standalone: true,
-  imports: [CommonModule, NgIconComponent],
+  imports: [CommonModule, NgIconComponent, RouterModule],
   templateUrl: './announcement-container.component.html',
   styleUrl: './announcement-container.component.scss',
-  viewProviders: [provideIcons({ matAnnouncement, matEvent, matNewspaper,matArrowRightAlt })],
+  viewProviders: [
+    provideIcons({ matAnnouncement, matEvent, matNewspaper, matArrowRightAlt }),
+  ],
 })
 export class AnnouncementContainerComponent implements OnInit {
   constructor(
@@ -45,15 +48,21 @@ export class AnnouncementContainerComponent implements OnInit {
     this.loadAnnouncements(this.pageIndex);
     this.onNextPage();
   }
+
   loadAnnouncements(pageIndex: number) {
-    this.announcementsObject = this.announcementService.getAll(
-      pageIndex,
-      this.size
-    );
-    this.announcements = this.announcementsObject.items;
-    this.currentPage = this.announcementsObject.index;
-    this.isLastPage = !this.announcementsObject.hasNext;
-    this.isFirstPage = !this.announcementsObject.hasPrevious;
+    this.announcementService
+      .getAll(this.pageIndex, this.size)
+      .subscribe((response: Collection<Announcement>) => {
+        if (response && response.items) {
+          this.announcementsObject = response;
+          this.announcements = response.items;
+          this.currentPage = response.index;
+          this.isLastPage = !response.hasNext;
+          this.isFirstPage = !response.hasPrevious;
+        } else {
+          this.announcements = [];
+        }
+      });
   }
 
   onNextPage() {

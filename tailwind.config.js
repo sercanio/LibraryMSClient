@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#F3701D',
-        secondary: '#E23826',
+        primary: '#E23826',
+        secondary: '#F3701D',
         tertiary: '#655146',
         navbarInactive: '#999999',
       },
@@ -33,6 +33,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Arial', 'Helvetica', 'sans-serif', 'system-ui', 'BlinkMacSystemFont', '-apple-system'],
+        display : ["'Roboto Slab'", 'sans-serif']
       },
       animation: {
         fade: 'fadeIn .25s ease-in-out',

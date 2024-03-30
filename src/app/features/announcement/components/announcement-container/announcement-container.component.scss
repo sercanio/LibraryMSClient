@@ -9,12 +9,12 @@
         @apply inline-block;
 
         .announcement-tag {
-            @apply relative top-[2px] text-primary;
+            @apply relative top-[4px] text-primary;
         }
     }
 
     .announcement-title {
-        @apply relative text-base text-black mx-1 font-bold inline-block;
+        @apply relative text-base text-black mx-1 inline-block font-display font-semibold;
 
         &::after {
             content: "";

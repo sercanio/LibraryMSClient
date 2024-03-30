@@ -1,5 +1,5 @@
 .site-navbar {
-    @apply w-full lg:container mx-auto p-4 my-4 flex items-center justify-between h-16;
+    @apply w-full lg:container mx-auto p-4 my-4 flex items-center justify-between h-16 font-display;
 
     .logo-container {
         @apply flex items-center text-primary text-lg font-semibold;

@@ -21,7 +21,7 @@
     </div>
     <hr class="announcement-seperator">
     <p class="announcement-summary">{{announcement.content.slice(0, contentLimit)}}...</p>
-    <a href="#" class="btn btn-link" i18n>Devamını oku <ng-icon class="relative top-[3px]"
+    <a [routerLink]="['/announcements', announcement.id]" class="btn btn-link" i18n>Devamını oku <ng-icon class="relative top-[3px]"
             name="matArrowRightAlt"></ng-icon></a>
 
 </div>
