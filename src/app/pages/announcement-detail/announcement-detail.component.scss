@@ -1,0 +1,16 @@
+.announcement-detail-container {
+    @apply container mx-auto p-4 max-w-4xl;
+
+    .announcement-detail-header {
+
+        .announcement-tag-container {
+            @apply relative top-[4px];
+        }
+    }
+}
+
+.breadcrumbs {
+    .breadcrumb-tag-container {
+        @apply relative top-[3px];
+    }
+}

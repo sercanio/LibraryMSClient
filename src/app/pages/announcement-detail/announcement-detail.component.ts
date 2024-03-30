@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AnnouncementService } from '~app/features/announcement/services/announcement.service';
 import { Announcement } from '~app/models/Announcement';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-announcement-detail',
   templateUrl: './announcement-detail.component.html',
   styleUrls: ['./announcement-detail.component.scss'],
-  imports: [CommonModule, NgIconComponent],
+  imports: [CommonModule, NgIconComponent, RouterModule],
   viewProviders: [
     provideIcons({ matAnnouncement, matEvent, matNewspaper, matArrowRightAlt }),
   ],
@@ -44,10 +44,12 @@ export class AnnouncementDetailComponent implements OnInit {
     this.announcementService
       .getById(this.announcementId)
       .subscribe((response: Announcement) => {
-        this.announcement = response;
-        this.announcementTitle = response.title;
-        this.announcementContent = response.content;
-        this.announcementTag = response.tag;
+        if (response) {
+          this.announcement = response;
+          this.announcementTitle = response.title;
+          this.announcementContent = response.content;
+          this.announcementTag = response.tag;
+        }
       });
   }
 }
