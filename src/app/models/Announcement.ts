@@ -3,4 +3,6 @@ export interface Announcement {
     title: string;
     content: string;
     tag: number;
+    createdDate: Date;
+    updatedDate: Date;
 }

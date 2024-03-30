@@ -1,16 +1,13 @@
-.announcement-detail-container {
-    @apply container mx-auto p-4 max-w-4xl;
 
-    .announcement-detail-header {
+.announcement-detail-header {
 
-        .announcement-tag-container {
-            @apply relative top-[4px];
-        }
+    .announcement-detail-title {
+        @apply text-tertiary text-xl md:text-3xl font-title font-bold;
+    }
+
+    .announcement-detail-date {
+        @apply text-tertiary text-xs md:text-base mt-4 mb-8;
     }
 }
 
-.breadcrumbs {
-    .breadcrumb-tag-container {
-        @apply relative top-[3px];
-    }
-}
+.announcement-detail-content {}

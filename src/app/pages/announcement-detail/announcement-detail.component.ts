@@ -27,6 +27,7 @@ export class AnnouncementDetailComponent implements OnInit {
   announcementTitle!: string;
   announcementContent!: string;
   announcementTag!: number;
+  announcementDate!: Date;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,6 +50,7 @@ export class AnnouncementDetailComponent implements OnInit {
           this.announcementTitle = response.title;
           this.announcementContent = response.content;
           this.announcementTag = response.tag;
+          this.announcementDate = response.createdDate;
         }
       });
   }

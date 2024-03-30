@@ -28,12 +28,10 @@
             background-color: peru;
         }
     }
-
 }
 
 .announcement-seperator {
     @apply w-11/12 my-3 border border-gray-200;
-
 }
 
 .announcement-summary {
@@ -41,5 +39,5 @@
 }
 
 .join {
-    @apply absolute bottom-2 left-1/2 -translate-x-1/2 mx-auto;
+    @apply absolute bottom-2 left-1/2 -translate-x-1/2;
 }

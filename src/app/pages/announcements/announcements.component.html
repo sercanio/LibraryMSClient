@@ -1,8 +1,9 @@
-<div class="text-xs md:text-sm breadcrumbs text-tertiary">
+<div class="breadcrumbs">
     <ul>
         <li>
             <a [routerLink]="['/']" class="btn btn-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="hidden md:inline-block w-4 h-4 stroke-current">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block w-4 h-4 stroke-current">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                 </svg>&nbsp;Anasayfa
@@ -10,7 +11,8 @@
         </li>
         <li>
             <a [routerLink]="['/announcements']" i18n class="btn btn-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="hidden md:inline-block w-4 h-4 stroke-current">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block w-4 h-4 stroke-current">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                 </svg>&nbsp;Duyuru, Haber ve Etkinlikler
@@ -18,7 +20,6 @@
         </li>
     </ul>
 </div>
-<div class="container mx-auto p-4 max-w-4xl">
+<div class="section-container">
     <app-announcement-container></app-announcement-container>
-
 </div>

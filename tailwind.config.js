@@ -22,7 +22,7 @@ module.exports = {
       borderColor: {
         primary: '#E23826',
         secondary: '#F3701D',
-        tertiary: '#0000FF',
+        tertiary: '#091012',
         disabled: '#D3701D'
       },
       outlineColor: {

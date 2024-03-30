@@ -1,8 +1,9 @@
-<div class="text-xs md:text-sm breadcrumbs text-tertiary">
+<div class="breadcrumbs">
     <ul>
         <li>
             <a [routerLink]="['/']" class="btn btn-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="hidden md:inline-block  w-4 h-4 stroke-current">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block  w-4 h-4 stroke-current">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                 </svg>&nbsp;Anasayfa
@@ -10,7 +11,8 @@
         </li>
         <li>
             <a [routerLink]="['/announcements']" i18n class="btn btn-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="hidden md:inline-block w-4 h-4 stroke-current">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block w-4 h-4 stroke-current">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                 </svg>&nbsp;Duyuru, Haber ve Etkinlikler
@@ -36,28 +38,11 @@
         </li>
     </ul>
 </div>
-<div class="announcement-detail-container">
+<div class="section-container">
     <div class="announcement-detail-header">
-        <div class="announcement-tag-container">
-            <div [ngSwitch]="announcementTag" class="announcement-tag">
-                <div *ngSwitchCase="0" class="announcement-tag" i18n>
-                    <ng-icon name="matAnnouncement"></ng-icon>
-                </div>
-                <div *ngSwitchCase="1" class="announcement-tag" i18n>
-                    <ng-icon name="matNewspaper"></ng-icon>
-                </div>
-                <div *ngSwitchCase="2" class="announcement-tag" i18n>
-                    <ng-icon name="matEvent"></ng-icon>
-                </div>
-                <div *ngSwitchDefault class="announcement-tag" i18n>
-                    <ng-icon name="matAnnouncement"></ng-icon>
-                </div>
-            </div>
-            <h3 class="announcement-detail-title">{{announcementTitle}}</h3>
-        </div>
+        <h3 class="announcement-detail-title prose">{{announcementTitle}}</h3>
         <div class="announcement-detail-date">
-            <!-- <ng-icon name="matCalendar"></ng-icon> -->
-            <!-- <span>{{announcement.date | date: 'dd/MM/yyyy'}}</span> -->
+            <span>{{announcementDate | date: 'dd/MM/yyyy'}}</span>
         </div>
     </div>
     <div class="announcement-detail-content">
