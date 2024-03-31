@@ -1,0 +1,36 @@
+.footer-container {
+    @apply w-full bg-secondary;
+
+    .footer {
+        @apply section-container grid-rows-2 p-10 text-neutral-content;
+
+        .footer-title {
+            @apply relative min-w-fit text-lg font-bold text-primary font-title;
+
+            &:hover,
+            &:focus {
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: currentColor;
+
+                    @keyframes growLine {
+                        0% {
+                            width: 0;
+                        }
+
+                        100% {
+                            width: 100%;
+                        }
+                    }
+
+                    @apply animate-growLine duration-75;
+                }
+            }
+        }
+    }
+}

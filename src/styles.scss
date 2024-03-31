@@ -93,6 +93,11 @@
         }
     }
 
+    
+    .footer {
+        @apply grid-rows-2 p-10 text-neutral-content;
+    }
+
 }
 
 @layer utilities {}
