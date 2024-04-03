@@ -63,8 +63,8 @@ module.exports = {
     ],
     darkTheme: "dark",
     base: true,
-    utils: true,
+    utils: false,
     logs: true,
-    styled: true,
+    styled: false,
   }
 }

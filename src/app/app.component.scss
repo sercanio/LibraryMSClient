@@ -1,0 +1,12 @@
+:host {
+    @apply page;
+
+    .header-container,
+    .footer-container {
+        @apply w-full;
+    }
+
+    .footer-container {
+        @apply bg-secondary mb-0;
+    }
+}

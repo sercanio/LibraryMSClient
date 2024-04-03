@@ -1,16 +1,21 @@
-.announcement-detail-container {
-    @apply section-container bg-primary [&>*]:max-w-6xl [&>*]:mx-auto pt-6 pb-16;
+:host {
+    @apply page;
 
-    .announcement-detail-header {
+    .announcement-detail-container {
+        @apply relative bg-primary w-full h-full;
 
-        .announcement-detail-title {
-            @apply text-tertiary text-xl md:text-3xl font-title font-bold;
+        .announcement-detail-header {
+
+            .announcement-detail-title {
+                @apply text-tertiary text-xl md:text-3xl font-title font-bold;
+            }
+
+            .announcement-detail-date {
+                @apply text-tertiary text-xs md:text-base mt-4 mb-8;
+            }
         }
 
-        .announcement-detail-date {
-            @apply text-tertiary text-xs md:text-base mt-4 mb-8;
-        }
+        .announcement-detail-content {}
+
     }
-
-    .announcement-detail-content {}
 }
