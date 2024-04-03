@@ -1,5 +1,5 @@
 .site-navbar {
-    @apply w-full lg:container mx-auto p-4 my-4 flex items-center justify-between h-16 font-title;
+    @apply w-full mx-auto p-4 my-4 flex items-center justify-between h-16 font-title;
 
     .logo-container {
         @apply flex items-center text-primary text-lg font-semibold;
@@ -72,6 +72,7 @@
                     @apply text-black bg-transparent;
                 }
             }
+
         }
 
         .social-icons {
@@ -84,12 +85,20 @@
     }
 
     .mobile-menu {
-        @apply absolute z-[5] md:invisible bg-primary top-0 left-0 w-full h-screen;
+        @apply absolute z-[5] md:invisible bg-primary top-0 left-0 w-full h-screen pt-12;
 
         .menu-item {
             .active {
                 &::after {
                     @apply hidden;
+                }
+            }
+
+            summary {
+                @apply relative;
+
+                &::after {
+                    @apply absolute top-1/2 -translate-y-1/4 right-3;
                 }
             }
         }

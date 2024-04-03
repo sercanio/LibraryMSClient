@@ -28,11 +28,11 @@
 @layer components {
 
     .btn-primary {
-        @apply bg-primary-button border-primary outline-primary rounded-none font-medium opacity-90;
+        @apply bg-primary-button border-primary outline-primary text-white rounded-none font-medium opacity-90;
 
         &:hover,
         &:focus {
-            @apply relative bg-primary-button border-primary outline-primary rounded-none font-medium opacity-100;
+            @apply relative bg-primary-button border-primary outline-primary text-white rounded-none font-medium opacity-100;
 
             &::after {
                 content: '';
@@ -81,6 +81,28 @@
         }
     }
 
+    .menu {
+        .login-button {
+            @apply btn-primary text-white rounded-none font-medium opacity-90 px-1 py-0.5;
+
+            a {
+                @apply relative;
+
+                &:hover,
+                &:focus {
+                    @apply relative bg-transparent border-primary outline-primary text-white rounded-none font-medium opacity-100;
+                }
+
+            }
+
+            &::after {
+                content: none !important;
+            }
+        }
+    }
+
+    .signup-button {}
+
     .breadcrumbs {
         @apply w-full text-xs md:text-sm bg-primary text-tertiary;
 
@@ -89,13 +111,6 @@
         }
     }
 
-    .footer {
-        @apply grid-rows-2 p-10 text-neutral-content;
-    }
-
-}
-
-@layer utilities {
     .page {
         @apply relative flex flex-col items-center justify-start w-full;
     }
@@ -103,4 +118,12 @@
     .section-container {
         @apply lg:container my-4 p-6;
     }
+
+    .footer {
+        @apply grid-rows-2 p-10 text-neutral-content;
+    }
+
 }
+
+
+@layer utilities {}

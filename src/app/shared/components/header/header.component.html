@@ -29,12 +29,17 @@
         <li class="menu-item">
             <a routerLink="/contact" routerLinkActive="active" i18n>Contact</a>
         </li>
+        <li class="menu-item signup-button">
+            <a routerLink="/signup" i18n>Sign Up</a>
+        </li>
+        <li class="login-button">
+            <a routerLink="/login" i18n>Log In</a>
+        </li>
         <li class="menu-item social-icons">
             <ng-icon name="featherFacebook"></ng-icon>
             <ng-icon name="bootstrapTwitterX"></ng-icon>
         </li>
     </ul>
-
     <div *ngIf="isMenuOpen" class="mobile-menu">
         <ul class="menu menu-vertical">
             <li class="menu-item">
@@ -46,12 +51,12 @@
             </li>
             <li class="menu-item">
                 <details class="collapse collapse-arrow menu-item collapse-menu">
-                    <summary class="collapse-title" i18n>Click to open/close</summary>
+                    <summary class="collapse-title" i18n>Sayfalar</summary>
                     <div class="collapse-content">
                         <ul tabindex="0" class="menu menu-vertical">
                             <li class="menu-item">
                                 <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()"
-                                    i18n>Services</a>
+                                    i18n>Duyurular</a>
                             </li>
                             <li class="menu-item">
                                 <a routerLink="/services/web-development" routerLinkActive="active"
@@ -67,6 +72,12 @@
             </li>
             <li class="menu-item">
                 <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+            </li>
+            <li class="menu-item signup-button">
+                <a routerLink="/signup" (click)="closeMenu()" i18n>Sign Up</a>
+            </li>
+            <li class="login-button">
+                <a routerLink="/login" (click)="closeMenu()" i18n>Log In</a>
             </li>
         </ul>
     </div>
