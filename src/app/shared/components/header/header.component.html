@@ -29,11 +29,14 @@
         <li class="menu-item">
             <a routerLink="/contact" routerLinkActive="active" i18n>Contact</a>
         </li>
-        <li class="menu-item signup-button">
+        <li class="menu-item signup-button" *ngIf="!userEmail">
             <a routerLink="/signup" i18n>Sign Up</a>
         </li>
-        <li class="login-button">
+        <li class="login-button" *ngIf="!userEmail">
             <a routerLink="/login" i18n>Log In</a>
+        </li>
+        <li class="menu-item" *ngIf="userEmail">
+            {{userEmail}}
         </li>
         <li class="menu-item social-icons">
             <ng-icon name="featherFacebook"></ng-icon>
