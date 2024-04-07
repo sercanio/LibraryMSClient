@@ -46,7 +46,6 @@ export class AnnouncementContainerComponent implements OnInit {
 
   ngOnInit() {
     this.loadAnnouncements(this.pageIndex);
-    // this.onNextPage();
   }
 
   loadAnnouncements(pageIndex: number) {

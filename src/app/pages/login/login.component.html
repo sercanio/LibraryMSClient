@@ -1,12 +1,12 @@
-<h1 class="heading">Login</h1>
+<h1 class="heading" i18n>Login</h1>
 <form class="login-form" (submit)="login($event)">
     <div class="form-group">
-        <label for="username">Email</label>
-        <input type="text" id="username" name="username" [(ngModel)]="email" placeholder="Enter your email">
+        <label for="username" i18n>E-mail</label>
+        <input type="text" id="email" name="email" [(ngModel)]="email" placeholder="E-mail">
     </div>
     <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Enter your password">
+        <label for="password" i18n>Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Password">
     </div>
     <button type="submit">Login</button>
 </form>

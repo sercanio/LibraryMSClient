@@ -35,8 +35,18 @@
         <li class="login-button" *ngIf="!userEmail">
             <a routerLink="/login" i18n>Log In</a>
         </li>
-        <li class="menu-item" *ngIf="userEmail">
-            {{userEmail}}
+        <li class="menu-item" *ngIf="isAuthenticated">
+            <div class="dropdown dropdown-bottom dropdown-hover">
+                <div tabindex="0" role="button" class="" i18n>{{userEmail}}</div>
+                <ul tabindex="0" class="dropdown-content menu menu-vertical">
+                    <li class="menu-item">
+                        <a routerLink="/profile" routerLinkActive="active" i18n>Profile</a>
+                    </li>
+                    <li class="menu-item">
+                        <a routerLink="/logout" routerLinkActive="active" i18n>Logout</a>
+                    </li>
+                </ul>
+            </div>
         </li>
         <li class="menu-item social-icons">
             <ng-icon name="featherFacebook"></ng-icon>
