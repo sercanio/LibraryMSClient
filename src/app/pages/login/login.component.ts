@@ -16,9 +16,11 @@ export class LoginComponent {
   password: string = '';
 
   constructor(private authService: AuthService, private router: Router) {
-    if (this.authService.authenticated) {
-      this.router.navigateByUrl('/');
-    }
+    this.authService.userSubject.subscribe((user) => {
+      if (!!user) {
+        this.router.navigateByUrl('/');
+      }
+    });
   }
 
   login(event: Event) {

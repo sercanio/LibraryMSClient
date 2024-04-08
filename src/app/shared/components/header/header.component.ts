@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
@@ -14,24 +14,21 @@ import { AuthService } from '~app/core/services/auth/auth.service';
   styleUrl: './header.component.scss',
   viewProviders: [provideIcons({ featherFacebook, bootstrapTwitterX })],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   isMenuOpen: boolean = false;
-  user: any;
   userEmail: string = '';
-  @Input() isAuthenticated: boolean = false;
+  authenticated: boolean = false;
+
   constructor(
     private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId))
-      this.user = this.authService.getUserFromAuth().subscribe((user: any) => {
-        this.user = user;
-        this.userEmail = user.email;
-        this.isAuthenticated = true;
-      });
+  ) {
+    this.authService.userSubject.subscribe((user) => {
+      this.userEmail = user?.email || user?.name || '';
+      this.authenticated = !!user;
+    });
   }
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -42,6 +39,6 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.authService.logout();
-    this.isAuthenticated = false;
+    this.authenticated = false;
   }
 }
