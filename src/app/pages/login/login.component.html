@@ -1,12 +1,35 @@
 <h1 class="heading" i18n>Login</h1>
-<form class="login-form" (submit)="login($event)">
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
     <div class="form-group">
         <label for="username" i18n>E-mail</label>
-        <input type="text" id="email" name="email" [(ngModel)]="email" placeholder="E-mail">
+        <input type="text" id="email" name="email" formControlName="email" placeholder="E-mail" required email="true" i18n>
+        <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="login-alert">
+            <div *ngIf="email!.errors?.['required']" i18n>Email is required.</div>
+            <div *ngIf="email!.errors?.['email']" i18n>This is not a valid email.</div>
+        </div>
     </div>
     <div class="form-group">
         <label for="password" i18n>Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Password">
+        <div class="password-group">
+            <input [type]="isPasswordVisible" id="password" name="password" formControlName="password"
+                placeholder="Password" required minlength="8">
+            <div class="password-toggle" (click)="togglePasswordVisibility()">
+                <span *ngIf="isPasswordVisible === 'password'" title="Show Password">
+                    <ng-icon name="radixEyeClosed" size="1.25rem" />
+                </span>
+                <span *ngIf="isPasswordVisible === 'text'" title="Hide Password">
+                    <ng-icon name="radixEyeOpen" size="1.25rem" />
+                </span>
+            </div>
+        </div>
+        <div *ngIf="password!.invalid && (password!.dirty || password!.touched)" class="login-alert">
+            <div *ngIf="password!.errors?.['required']" i18n>Password is required.</div>
+            <div *ngIf="password!.errors?.['minlength']" i18n>Password must be at least 8 characters
+                long.</div>
+        </div>
     </div>
-    <button type="submit">Login</button>
+    <button [disabled]="!loginForm.valid" type="submit" i18n>Login</button>
+    <div class="signup-link" i18n>
+        Don't have an account? <a routerLink="/signup">Signup</a>
+    </div>
 </form>

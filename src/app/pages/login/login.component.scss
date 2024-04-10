@@ -11,18 +11,34 @@
     }
 
     .login-form {
-        @apply w-80;
+        @apply w-[310px] sm:w-[400px];
 
-        input {
-            @apply w-full p-2.5 mb-2.5 font-body;
+        .form-group {
+            @apply mt-4 mb-6 w-full;
 
-            &:focus {
-                @apply border-secondary outline-secondary;
+            input {
+                @apply w-full p-2.5 mb-2.5 font-body;
+
+                &:focus {
+                    @apply border-secondary outline-secondary;
+                }
             }
-        }
 
-        label {
-            @apply font-title;
+            label {
+                @apply font-title;
+            }
+
+            .password-group {
+                @apply relative;
+
+                input {
+                    @apply w-full;
+                }
+
+                .password-toggle {
+                    @apply absolute top-[50%] -translate-y-1/2 right-4 cursor-pointer;
+                }
+            }
         }
 
         button {
@@ -33,9 +49,12 @@
             background-color: #0056b3;
         }
 
-        .error-message {
-            color: red;
-            margin-bottom: 10px;
+        .signup-link {
+            @apply mt-4 text-neutral;
+
+            a {
+                @apply btn btn-link text-secondary text-base;
+            }
         }
     }
 }

@@ -17,6 +17,10 @@ export class AuthService {
     });
   }
 
+  private revokeToken() {
+    return this.backendService.get<any>('Auth/RevokeToken');
+  }
+
   private storeCookies(response: any) {
     document.cookie = `accessToken=${response.accessToken.token}`;
     document.cookie = `expirationDate=${response.accessToken.expirationDate}`;
@@ -25,8 +29,6 @@ export class AuthService {
   private deleteCookies() {
     document.cookie =
       'accessToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie =
-      'refreshToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie =
       'expirationDate =; expires = Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
@@ -38,12 +40,25 @@ export class AuthService {
     return '';
   }
 
-  private getAccessToken(): Observable<string | null> {
+  public getAccessToken(): Observable<string | null> {
     return from(
       new Promise<string | null>(async (resolve) => {
         if (typeof document !== 'undefined') {
           const accessToken = await this.getCookie('accessToken');
           resolve(accessToken);
+        } else {
+          resolve(null);
+        }
+      })
+    );
+  }
+
+  public getRefreshToken(): Observable<string | null> {
+    return from(
+      new Promise<string | null>(async (resolve) => {
+        if (typeof document !== 'undefined') {
+          const refreshToken = await this.getCookie('refreshToken');
+          resolve(refreshToken);
         } else {
           resolve(null);
         }
@@ -71,9 +86,18 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.userSubject.next(null);
-    this.deleteCookies();
-    this.router.navigateByUrl('/');
+    this.getAccessToken().subscribe((accessToken) => {
+      if (accessToken) {
+        // this.revokeToken().subscribe(() => {
+        console.log('Token revoked successfully');
+        this.deleteCookies();
+        this.userSubject.next(null);
+        this.router.navigateByUrl('/login');
+        // });
+      } else {
+        console.error('Access token not found');
+      }
+    });
   }
 
   public refreshAccesstoken() {
@@ -97,5 +121,11 @@ export class AuthService {
         return this.backendService.get<any>('Users/GetFromAuth');
       })
     );
+  }
+
+  public verifyEmail() {
+    this.backendService.get<any>('Auth/EnableEmailAuthenticator').subscribe((response) => {
+      console.log('Eresponse');
+    });
   }
 }

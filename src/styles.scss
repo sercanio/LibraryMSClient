@@ -119,6 +119,10 @@
         @apply lg:container my-4 p-6;
     }
 
+    .login-alert {
+        @apply block p-1 m-1 bg-transparent border-none rounded-none text-error text-sm animate-fade transition-all;
+    }
+
     .footer {
         @apply grid-rows-2 p-10 text-neutral-content;
     }

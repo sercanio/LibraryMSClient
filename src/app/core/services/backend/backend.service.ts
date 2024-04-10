@@ -13,18 +13,18 @@ export class BackendService {
   constructor(private httpClient: HttpClient) {}
 
   get<T>(resource: string): Observable<T> {
-    return this.httpClient.get<T>(`${this.baseUrl}/${resource}`, { withCredentials: true });
+    return this.httpClient.get<T>(`${this.baseUrl}/${resource}`);
   }
 
   getAll<T>(resource: string): Observable<Collection<T>> {
-    return this.httpClient.get<Collection<T>>(`${this.baseUrl}/${resource}`, { withCredentials: true });
+    return this.httpClient.get<Collection<T>>(`${this.baseUrl}/${resource}`);
   }
 
   getSingle<T>(resource: string, id: string): Observable<T> {
-    return this.httpClient.get<T>(`${this.baseUrl}/${resource}/${id}`, { withCredentials: true });
+    return this.httpClient.get<T>(`${this.baseUrl}/${resource}/${id}`);
   }
 
   post<T, U>(resource: string, data: T): Observable<U> {
-    return this.httpClient.post<U>(`${this.baseUrl}/${resource}`, data, { withCredentials: true });
+    return this.httpClient.post<U>(`${this.baseUrl}/${resource}`, data);
   }
 }

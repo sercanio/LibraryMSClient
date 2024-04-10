@@ -1,21 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '~app/core/services/auth/auth.service';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { radixEyeClosed, radixEyeOpen } from '@ng-icons/radix-icons';
 
 @Component({
-  selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgIconComponent, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  viewProviders: [provideIcons({ radixEyeClosed, radixEyeOpen })],
 })
 export class LoginComponent {
-  email: string = '';
-  password: string = '';
+  loginForm = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
-  constructor(private authService: AuthService, private router: Router) {
+  passwordVisibility = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
     this.authService.userSubject.subscribe((user) => {
       if (!!user) {
         this.router.navigateByUrl('/');
@@ -23,8 +33,33 @@ export class LoginComponent {
     });
   }
 
-  login(event: Event) {
-    event.preventDefault();
-    this.authService.login(this.email, this.password);
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisibility = !this.passwordVisibility;
+  }
+
+  get isPasswordVisible() {
+    return this.passwordVisibility ? 'text' : 'password';
+  }
+
+  onSubmit(event: Event) {
+    // event.preventDefault();
+    console.log(this.loginForm.value);
+
+    this.authService.login(
+      this.loginForm.value.email!,
+      this.loginForm.value.password!
+    );
+  }
+
+  resetForm() {
+    this.loginForm.reset();
   }
 }
