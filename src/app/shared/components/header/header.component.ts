@@ -41,4 +41,8 @@ export class HeaderComponent {
     this.authService.logout();
     this.authenticated = false;
   }
+
+  emailVerify() {
+    this.authService.verifyEmail();
+  }
 }
