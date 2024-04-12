@@ -1,0 +1,11 @@
+.spinner-container {
+    @apply flex flex-col items-center gap-4 justify-center py-8 p-16;
+
+    .spinner {
+        @apply loading loading-spinner loading-md text-secondary;
+    }
+
+    .loading-text {
+        @apply font-body text-base;
+    }
+}

@@ -12,6 +12,7 @@ import {
   switchMap,
 } from 'rxjs';
 import { Router } from '@angular/router';
+import { SignupLoaderService } from '../loading/signup-loading/signup-loading.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,11 @@ import { Router } from '@angular/router';
 export class AuthService {
   public userSubject = new BehaviorSubject<any>(null);
 
-  constructor(private backendService: BackendService, private router: Router) {
+  constructor(
+    private backendService: BackendService,
+    private router: Router,
+    private signUpLoaderService: SignupLoaderService
+  ) {
     this.getUserFromAuth().subscribe((user) => {
       this.userSubject.next(user);
     });
@@ -94,16 +99,18 @@ export class AuthService {
   }
 
   public register(formData: any): void {
-    this.backendService
-      .post<any, any>('Members', formData)
-      .subscribe((response: any) => {
-        if (response) {
-          console.log('Registered successfully');
-          return of(true);
-        }
-        console.error('Registration failed');
-        return of(false);
-      });
+    this.signUpLoaderService.signupLoading = true;
+    this.backendService.post<any, any>('Members', formData).subscribe({
+      next: (response) => {
+        console.log('response', response);
+        this.signUpLoaderService.signupLoading = false;
+        this.router.navigateByUrl('/login');
+      },
+      error: (error) => {
+        console.log('error', error);
+        this.signUpLoaderService.signupLoading = false;
+      },
+    });
   }
 
   public logout(): void {

@@ -11,11 +11,18 @@ import {
 import { RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixEyeClosed, radixEyeOpen } from '@ng-icons/radix-icons';
+import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { AuthService } from '~app/core/services/auth/auth.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgIconComponent, RouterModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgIconComponent,
+    RouterModule,
+    SpinnerComponent,
+  ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   viewProviders: [provideIcons({ radixEyeClosed, radixEyeOpen })],
