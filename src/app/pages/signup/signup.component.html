@@ -63,6 +63,8 @@
     </div>
     <button [disabled]="!signupForm.valid" type="submit">Sign Up</button>
     <app-spinner></app-spinner>
+    <div *ngIf="this.httpErrorService.httpError?.error" class="login-alert">An error occured: {{ this.httpErrorService.httpError?.error?.detail }}
+    </div>
     <div class="login-link">
         Already have an account? <a routerLink="/login" i18n>Login</a>
     </div>

@@ -13,6 +13,7 @@ import {
 } from 'rxjs';
 import { Router } from '@angular/router';
 import { SignupLoaderService } from '../loading/signup-loading/signup-loading.service';
+import { HttpErrorService } from '../http-error/http-error.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,8 @@ export class AuthService {
   constructor(
     private backendService: BackendService,
     private router: Router,
-    private signUpLoaderService: SignupLoaderService
+    private signUpLoaderService: SignupLoaderService,
+    private httpErrorService: HttpErrorService
   ) {
     this.getUserFromAuth().subscribe((user) => {
       this.userSubject.next(user);
@@ -101,13 +103,14 @@ export class AuthService {
   public register(formData: any): void {
     this.signUpLoaderService.signupLoading = true;
     this.backendService.post<any, any>('Members', formData).subscribe({
-      next: (response) => {
-        console.log('response', response);
+      next: () => {
+        this.httpErrorService.httpError = null;
         this.signUpLoaderService.signupLoading = false;
         this.router.navigateByUrl('/login');
       },
       error: (error) => {
         console.log('error', error);
+        this.httpErrorService.httpError = error;
         this.signUpLoaderService.signupLoading = false;
       },
     });

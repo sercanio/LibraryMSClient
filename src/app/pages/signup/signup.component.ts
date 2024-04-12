@@ -13,6 +13,7 @@ import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixEyeClosed, radixEyeOpen } from '@ng-icons/radix-icons';
 import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { AuthService } from '~app/core/services/auth/auth.service';
+import { HttpErrorService } from '~app/core/services/http-error/http-error.service';
 
 @Component({
   standalone: true,
@@ -41,7 +42,8 @@ export class SignupComponent {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public httpErrorService : HttpErrorService
   ) {}
 
   get firstName() {
