@@ -2,7 +2,15 @@ import { Injectable } from '@angular/core';
 import { BackendService } from '../backend/backend.service';
 import { LoginResponse } from '~app/models/LoginResponse';
 import { LoginRequest } from '~app/models/LoginRequest';
-import { BehaviorSubject, Observable, from, of, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  from,
+  map,
+  of,
+  switchMap,
+} from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -85,6 +93,19 @@ export class AuthService {
       });
   }
 
+  public register(formData: any): void {
+    this.backendService
+      .post<any, any>('Members', formData)
+      .subscribe((response: any) => {
+        if (response) {
+          console.log('Registered successfully');
+          return of(true);
+        }
+        console.error('Registration failed');
+        return of(false);
+      });
+  }
+
   public logout(): void {
     this.getAccessToken().subscribe((accessToken) => {
       if (accessToken) {
@@ -124,8 +145,10 @@ export class AuthService {
   }
 
   public verifyEmail() {
-    this.backendService.get<any>('Auth/EnableEmailAuthenticator').subscribe((response) => {
-      console.log('Eresponse');
-    });
+    this.backendService
+      .get<any>('Auth/EnableEmailAuthenticator')
+      .subscribe((response) => {
+        console.log('Eresponse');
+      });
   }
 }

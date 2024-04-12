@@ -11,6 +11,7 @@ import {
 import { RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixEyeClosed, radixEyeOpen } from '@ng-icons/radix-icons';
+import { AuthService } from '~app/core/services/auth/auth.service';
 
 @Component({
   standalone: true,
@@ -20,22 +21,21 @@ import { radixEyeClosed, radixEyeOpen } from '@ng-icons/radix-icons';
   viewProviders: [provideIcons({ radixEyeClosed, radixEyeOpen })],
 })
 export class SignupComponent {
-  signupForm: any = this.formBuilder.group(
-    {
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      phoneNumber: [
-        '',
-        [Validators.required, Validators.pattern('^\\+[0-9]*$')],
-      ],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    },
-  );
+  signupForm: any = this.formBuilder.group({
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
+    phoneNumber: ['', [Validators.required, Validators.pattern('^\\+[0-9]*$')]],
+    dateOfBirth: ['', [Validators.required, this.ageValidator(7)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
   passwordVisibility: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder
+  ) {}
 
   get firstName() {
     return this.signupForm.get('firstName');
@@ -53,16 +53,28 @@ export class SignupComponent {
     return this.signupForm.get('email');
   }
 
+  get dateOfBirth() {
+    return this.signupForm.get('dateOfBirth');
+  }
+
   get password() {
     return this.signupForm.get('password');
   }
 
-  get passwordMatch() {
-    return this.signupForm.get('passwordMatch');
-  }
-
   get isPasswordVisible() {
     return this.passwordVisibility ? 'text' : 'password';
+  }
+
+  ageValidator(minAge: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const currentDate = new Date();
+      const birthDate = new Date(control.value);
+      const age = currentDate.getFullYear() - birthDate.getFullYear();
+      if (age < minAge) {
+        return { ageTooYoung: true };
+      }
+      return null;
+    };
   }
 
   togglePasswordVisibility() {
@@ -70,7 +82,7 @@ export class SignupComponent {
   }
 
   onSubmit(event: Event) {
-    event.preventDefault();
     console.log(this.signupForm.value);
+    this.authService.register({ subscribe: true, ...this.signupForm.value });
   }
 }

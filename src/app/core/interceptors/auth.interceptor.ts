@@ -42,7 +42,7 @@ export const authInterceptor: HttpInterceptorFn = (
   return next(req).pipe(
     catchError((error) => {
       if (error.status === 500) {
-        authService.refreshAccesstoken();
+        // authService.refreshAccesstoken();
       }
       return throwError(() => error);
     })
