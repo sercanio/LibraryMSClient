@@ -39,12 +39,15 @@ export class SignupComponent {
   });
 
   passwordVisibility: boolean = false;
+  loadingText!: string;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    public httpErrorService : HttpErrorService
-  ) {}
+    public httpErrorService: HttpErrorService
+  ) {
+    this.loadingText = 'Signing up...';
+  }
 
   get firstName() {
     return this.signupForm.get('firstName');

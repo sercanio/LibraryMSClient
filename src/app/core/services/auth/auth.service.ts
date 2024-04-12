@@ -12,8 +12,9 @@ import {
   switchMap,
 } from 'rxjs';
 import { Router } from '@angular/router';
-import { SignupLoaderService } from '../loading/signup-loading/signup-loading.service';
+import { SignupLoaderService } from '../loading/signup-loader/signup-loader.service';
 import { HttpErrorService } from '../http-error/http-error.service';
+import { LoginLoaderService } from '../loading/login-loader/login-loader.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,7 @@ export class AuthService {
     private backendService: BackendService,
     private router: Router,
     private signUpLoaderService: SignupLoaderService,
+    private logInLoaderService: LoginLoaderService,
     private httpErrorService: HttpErrorService
   ) {
     this.getUserFromAuth().subscribe((user) => {
@@ -82,21 +84,32 @@ export class AuthService {
   }
 
   public login(email: string, password: string): void {
+    this.logInLoaderService.logInLoading = true;
     this.backendService
       .post<LoginRequest, LoginResponse>('Auth/Login', {
         email,
         password,
       })
-      .subscribe((response: any) => {
-        if (response.accessToken) {
+      .subscribe({
+        next: (response) => {
           this.storeCookies(response);
-          this.getUserFromAuth().subscribe((user) => {
-            this.userSubject.next(user);
+          this.httpErrorService.httpError = null;
+          this.logInLoaderService.logInLoading = false;
+          this.getUserFromAuth().subscribe({
+            next: (user) => {
+              this.userSubject.next(user);
+            },
+            error: (error) => {
+              console.error('Error', error);
+            },
           });
           this.router.navigateByUrl('/');
-        } else {
-          console.error('Login failed');
-        }
+        },
+        error: (error) => {
+          console.error('Error', error);
+          this.httpErrorService.httpError = error;
+          this.logInLoaderService.logInLoading = false;
+        },
       });
   }
 
@@ -109,7 +122,6 @@ export class AuthService {
         this.router.navigateByUrl('/login');
       },
       error: (error) => {
-        console.log('error', error);
         this.httpErrorService.httpError = error;
         this.signUpLoaderService.signupLoading = false;
       },

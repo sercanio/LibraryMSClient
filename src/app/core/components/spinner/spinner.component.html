@@ -1,4 +1,6 @@
-<div *ngIf="this.loader.signupLoading" class="spinner-container">
+<div *ngIf="loader.isLoading('login') || loader.isLoading('signup')" class="spinner-container">
     <span class="spinner"></span>
-    <p class="loading-text" i18n>Signing Up...</p>
+    <p class="loading-text" i18n>
+        {{ this.loadingText }}
+    </p>
 </div>

@@ -5,10 +5,18 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '~app/core/services/auth/auth.service';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { radixEyeClosed, radixEyeOpen } from '@ng-icons/radix-icons';
+import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
+import { HttpErrorService } from '~app/core/services/http-error/http-error.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgIconComponent, RouterModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgIconComponent,
+    RouterModule,
+    SpinnerComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   viewProviders: [provideIcons({ radixEyeClosed, radixEyeOpen })],
@@ -20,17 +28,20 @@ export class LoginComponent {
   });
 
   passwordVisibility = false;
+  loadingText!: string;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public httpErrorService: HttpErrorService
   ) {
     this.authService.userSubject.subscribe((user) => {
       if (!!user) {
         this.router.navigateByUrl('/');
       }
     });
+    this.loadingText = 'Logging in...';
   }
 
   get email() {

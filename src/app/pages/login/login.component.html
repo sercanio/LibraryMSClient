@@ -2,7 +2,8 @@
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
     <div class="form-group">
         <label for="username" i18n>E-mail</label>
-        <input type="text" id="email" name="email" formControlName="email" placeholder="E-mail" required email="true" i18n>
+        <input type="text" id="email" name="email" formControlName="email" placeholder="E-mail" required email="true"
+            i18n>
         <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="login-alert">
             <div *ngIf="email!.errors?.['required']" i18n>Email is required.</div>
             <div *ngIf="email!.errors?.['email']" i18n>This is not a valid email.</div>
@@ -29,6 +30,10 @@
         </div>
     </div>
     <button [disabled]="!loginForm.valid" type="submit" i18n>Login</button>
+    <app-spinner [loadingText]="loadingText"></app-spinner>
+    <div *ngIf="this.httpErrorService.httpError?.error" class="login-alert">An error occured: {{
+        this.httpErrorService.httpError?.error?.detail }}
+    </div>
     <div class="signup-link" i18n>
         Don't have an account? <a routerLink="/signup">Signup</a>
     </div>

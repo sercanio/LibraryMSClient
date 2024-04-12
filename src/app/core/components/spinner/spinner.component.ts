@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
-import { SignupLoaderService } from '~app/core/services/loading/signup-loading/signup-loading.service';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { LoaderService } from '~app/core/services/loading/loader.service';
 
 @Component({
   selector: 'app-spinner',
@@ -11,7 +11,6 @@ import { SignupLoaderService } from '~app/core/services/loading/signup-loading/s
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SpinnerComponent {
-  isLoading: boolean = false;
-  constructor(public loader: SignupLoaderService) {
-  }
+  @Input() loadingText!: string;
+  constructor(public loader: LoaderService) {}
 }
