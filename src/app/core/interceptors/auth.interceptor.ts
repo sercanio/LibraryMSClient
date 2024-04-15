@@ -14,8 +14,6 @@ export const authInterceptor: HttpInterceptorFn = (
       withCredentials: true,
     });
 
-    const now = new Date().getTime();
-
     function getAccessToken() {
       return document.cookie
         .split('; ')
@@ -23,37 +21,9 @@ export const authInterceptor: HttpInterceptorFn = (
         ?.split('=')[1];
     }
 
-    function getAccessTokenExpirationDate() {
-      return document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('expirationDate'))
-        ?.split('=')[1];
-    }
-
-    let accessToken = getAccessToken();
-    let expirationDate = getAccessTokenExpirationDate();
-
-    //   if (accessToken && expirationDate) {
-    //     const expirationDateInTime = new Date(expirationDate).getTime();
-    //     if (now > expirationDateInTime) {
-    //       console.log('AccessToken expired, refreshing...');
-    //       authService.refreshAccesstoken();
-    //       accessToken = getAccessToken();
-    //       expirationDate = getAccessTokenExpirationDate();
-    //     } else {
-    //       console.log('AccessToken not expired');
-    //     }
-    //     req = req.clone({
-    //       setHeaders: {
-    //         Authorization: `Bearer ${accessToken}`,
-    //       },
-    //       withCredentials: true,
-    //     });
-    //   }
-
     req = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
       withCredentials: true,
     });
@@ -66,6 +36,6 @@ export const authInterceptor: HttpInterceptorFn = (
         authService.refreshAccesstoken();
       }
       return throwError(() => error);
-    })
+    }),
   );
 };

@@ -5,9 +5,7 @@ import { LoginRequest } from '~app/models/LoginRequest';
 import {
   BehaviorSubject,
   Observable,
-  catchError,
   from,
-  map,
   of,
   switchMap,
 } from 'rxjs';
@@ -35,19 +33,16 @@ export class AuthService {
   }
 
   private revokeToken() {
-    return this.backendService.get<any>('Auth/RevokeToken');
+    return this.backendService.put<any, any>('Auth/RevokeToken', null);
   }
 
-  private storeCookies(response: any) {
-    document.cookie = `accessToken=${response.accessToken.token}`;
-    document.cookie = `expirationDate=${response.accessToken.expirationDate}`;
+  private storeCookies(token: string) {
+    document.cookie = `accessToken=${token}`;
   }
 
   private deleteCookies() {
     document.cookie =
       'accessToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie =
-      'expirationDate =; expires = Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
   private async getCookie(name: string): Promise<string> {
@@ -70,19 +65,6 @@ export class AuthService {
     );
   }
 
-  public getRefreshToken(): Observable<string | null> {
-    return from(
-      new Promise<string | null>(async (resolve) => {
-        if (typeof document !== 'undefined') {
-          const refreshToken = await this.getCookie('refreshToken');
-          resolve(refreshToken);
-        } else {
-          resolve(null);
-        }
-      })
-    );
-  }
-
   public login(email: string, password: string): void {
     this.logInLoaderService.logInLoading = true;
     this.backendService
@@ -92,7 +74,7 @@ export class AuthService {
       })
       .subscribe({
         next: (response) => {
-          this.storeCookies(response);
+          this.storeCookies(response.accessToken.token);
           this.httpErrorService.httpError = null;
           this.logInLoaderService.logInLoading = false;
           this.getUserFromAuth().subscribe({
@@ -131,12 +113,12 @@ export class AuthService {
   public logout(): void {
     this.getAccessToken().subscribe((accessToken) => {
       if (accessToken) {
-        // this.revokeToken().subscribe(() => {
-        console.log('Token revoked successfully');
-        this.deleteCookies();
-        this.userSubject.next(null);
-        this.router.navigateByUrl('/login');
-        // });
+        this.revokeToken().subscribe(() => {
+          console.log('Token revoked successfully');
+          this.deleteCookies();
+          this.userSubject.next(null);
+          this.router.navigateByUrl('/');
+        });
       } else {
         console.error('Access token not found');
       }
@@ -148,9 +130,9 @@ export class AuthService {
       .get<any>('Auth/RefreshToken')
       .subscribe((response: any) => {
         if (response) {
-          console.log('refreshed token with response' + response);
-          document.cookie = `accessToken=${response.token}`;
-          document.cookie = `expirationDate=${response.expirationDate}`;
+          console.log('refreshed token with response' + response.token);
+          this.storeCookies(response.token);
+          this.refreshUserSubject();
         }
       });
   }
@@ -166,11 +148,18 @@ export class AuthService {
     );
   }
 
+  private refreshUserSubject() {
+    this.getUserFromAuth().subscribe({
+      next: (user) => {
+        this.userSubject.next(user);
+      },
+      error: (error) => {
+        console.error('Error', error);
+      },
+    });
+  }
+
+  // TODO: Implement email verification
   public verifyEmail() {
-    this.backendService
-      .get<any>('Auth/EnableEmailAuthenticator')
-      .subscribe((response) => {
-        console.log('Eresponse');
-      });
   }
 }

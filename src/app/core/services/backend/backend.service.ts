@@ -27,4 +27,8 @@ export class BackendService {
   post<T, U>(resource: string, data: T): Observable<U> {
     return this.httpClient.post<U>(`${this.baseUrl}/${resource}`, data);
   }
+
+  put<T, U>(resource: string, data: T): Observable<U> {
+    return this.httpClient.put<U>(`${this.baseUrl}/${resource}`, data);
+  }
 }
