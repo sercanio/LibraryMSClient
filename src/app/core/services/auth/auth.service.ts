@@ -128,8 +128,8 @@ export class AuthService {
   public refreshAccesstoken() {
     this.backendService.get<any>('Auth/RefreshToken').subscribe({
       next: (response) => {
-        if (response.accessToken) {
-          this.storeCookies(response.accessToken.token);
+        if (response.token) {
+          this.storeCookies(response.token);
           this.refreshuserSubject();
         }
       },
@@ -143,7 +143,6 @@ export class AuthService {
     return this.getUserFromAuth().pipe(
       switchMap((user) => {
         if (user) {
-          this.userSubject.next(user);
           return this.backendService.get<any>(`Members/${user.memberId}`);
         }
         return of(null);
