@@ -127,6 +127,15 @@
         @apply grid-rows-2 p-10 text-neutral-content;
     }
 
+    .link {}
+
+    .link-primary {
+        @apply text-primary;
+
+        &:hover {
+            @apply text-secondary;
+        }
+    }
 }
 
 

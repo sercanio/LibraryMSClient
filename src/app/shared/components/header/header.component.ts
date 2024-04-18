@@ -24,7 +24,7 @@ export class HeaderComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.authService.userSubject.subscribe((user) => {
-      this.userEmail = user?.email || user?.name || '';
+      this.userEmail = user?.firstName || user?.email || '';
       this.authenticated = !!user;
     });
   }

@@ -36,8 +36,8 @@
             <a routerLink="/login" i18n>Log In</a>
         </li>
         <li class="menu-item" *ngIf="authenticated">
-            <div class="dropdown dropdown-bottom dropdown-hover">
-                <div tabindex="0" role="button" class="" i18n>{{userEmail}}</div>
+            <div class="dropdown dropdown-bottom dropdown-hover ">
+                <div tabindex="0" role="button" class="link link-primary" i18n>{{userEmail}}</div>
                 <ul tabindex="0" class="dropdown-content menu menu-vertical">
                     <li class="menu-item">
                         <a routerLink="/profile" routerLinkActive="active" i18n>Profile</a>
@@ -86,10 +86,24 @@
             <li class="menu-item">
                 <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
             </li>
-            <li class="menu-item signup-button">
+            <li class="menu-item" *ngIf="authenticated">
+                <details class="collapse collapse-arrow menu-item collapse-menu">
+                    <summary tabindex="0" role="button" class="collapse-title link link-primary" i18n>{{userEmail}}
+                    </summary>
+                    <ul tabindex="0" class="menu menu-vertical">
+                        <li class="menu-item">
+                            <a routerLink="/profile" routerLinkActive="active" i18n>Profile</a>
+                        </li>
+                        <li class="menu-item">
+                            <a routerLink="/logout" routerLinkActive="active" (click)="logOut()" i18n>Logout</a>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+            <li class="menu-item signup-button" *ngIf="!authenticated">
                 <a routerLink="/signup" (click)="closeMenu()" i18n>Sign Up</a>
             </li>
-            <li class="login-button">
+            <li class="login-button" *ngIf="!authenticated">
                 <a routerLink="/login" (click)="closeMenu()" i18n>Log In</a>
             </li>
         </ul>

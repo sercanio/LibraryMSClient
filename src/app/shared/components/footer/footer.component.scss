@@ -2,7 +2,7 @@
     @apply grid-rows-2 p-10 text-neutral-content mx-auto;
 
     .footer-title {
-        @apply relative min-w-fit text-lg font-bold text-primary font-title;
+        @apply relative min-w-fit text-lg font-bold text-primary font-title -z-10;
 
         &:hover,
         &:focus {
