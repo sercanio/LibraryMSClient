@@ -2,13 +2,7 @@ import { Injectable } from '@angular/core';
 import { BackendService } from '../backend/backend.service';
 import { LoginResponse } from '~app/models/LoginResponse';
 import { LoginRequest } from '~app/models/LoginRequest';
-import {
-  BehaviorSubject,
-  Observable,
-  from,
-  of,
-  switchMap,
-} from 'rxjs';
+import { BehaviorSubject, Observable, from, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { SignupLoaderService } from '../loading/signup-loader/signup-loader.service';
 import { HttpErrorService } from '../http-error/http-error.service';
@@ -27,8 +21,8 @@ export class AuthService {
     private logInLoaderService: LoginLoaderService,
     private httpErrorService: HttpErrorService
   ) {
-    this.getUserFromAuth().subscribe((user) => {
-      this.userSubject.next(user);
+    this.getMemberFromAuth().subscribe((member) => {
+      this.userSubject.next(member);
     });
   }
 
@@ -74,18 +68,24 @@ export class AuthService {
       })
       .subscribe({
         next: (response) => {
-          this.storeCookies(response.accessToken.token);
-          this.httpErrorService.httpError = null;
-          this.logInLoaderService.logInLoading = false;
-          this.getUserFromAuth().subscribe({
-            next: (user) => {
-              this.userSubject.next(user);
-            },
-            error: (error) => {
-              console.error('Error', error);
-            },
-          });
-          this.router.navigateByUrl('/');
+          if (response.accessToken) {
+            this.storeCookies(response.accessToken.token);
+            this.httpErrorService.httpError = null;
+            this.logInLoaderService.logInLoading = false;
+            this.getMemberFromAuth().subscribe({
+              next: (member) => {
+                console.log('Member', member);
+                this.userSubject.next(member);
+                this.userSubject.value;
+              },
+            });
+            this.router.navigateByUrl('/');
+          }
+          if (response.requiredAuthenticatorType) {
+            console.log(
+              'Authenticator required : ' + response.requiredAuthenticatorType
+            );
+          }
         },
         error: (error) => {
           console.error('Error', error);
@@ -126,15 +126,29 @@ export class AuthService {
   }
 
   public refreshAccesstoken() {
-    this.backendService
-      .get<any>('Auth/RefreshToken')
-      .subscribe((response: any) => {
-        if (response) {
-          console.log('refreshed token with response' + response.token);
-          this.storeCookies(response.token);
-          this.refreshUserSubject();
+    this.backendService.get<any>('Auth/RefreshToken').subscribe({
+      next: (response) => {
+        if (response.accessToken) {
+          this.storeCookies(response.accessToken.token);
+          this.refreshuserSubject();
         }
-      });
+      },
+      error: (error) => {
+        console.error('Error', error);
+      },
+    });
+  }
+
+  private getMemberFromAuth(): Observable<any> {
+    return this.getUserFromAuth().pipe(
+      switchMap((user) => {
+        if (user) {
+          this.userSubject.next(user);
+          return this.backendService.get<any>(`Members/${user.memberId}`);
+        }
+        return of(null);
+      })
+    );
   }
 
   public getUserFromAuth(): Observable<any> {
@@ -148,18 +162,25 @@ export class AuthService {
     );
   }
 
-  private refreshUserSubject() {
-    this.getUserFromAuth().subscribe({
-      next: (user) => {
-        this.userSubject.next(user);
-      },
-      error: (error) => {
-        console.error('Error', error);
+  private refreshuserSubject() {
+    this.getMemberFromAuth().subscribe({
+      next: (member) => {
+        this.userSubject.next(member);
       },
     });
   }
 
   // TODO: Implement email verification
-  public verifyEmail() {
+  public verifyEmail() {}
+
+  public enableEmailAuthenticator() {
+    this.backendService.get<any>('Auth/EnableEmailAuthenticator').subscribe({
+      next: () => {
+        console.log('Email authenticator enabled');
+      },
+      error: (error) => {
+        console.error('Error', error);
+      },
+    });
   }
 }
