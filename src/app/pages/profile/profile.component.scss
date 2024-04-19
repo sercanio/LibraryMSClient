@@ -4,25 +4,33 @@
 
 .profile-section {
 
-    @apply section-container bg-primary;
+    @apply bg-primary py-8 px-4;
 
     .title {
         @apply font-title text-center text-primary text-2xl;
-
     }
 
     .heading {
         @apply font-title text-primary text-2xl mb-4;
     }
 
-    .email,
-    .phone,
-    .theme,
-    .language {
-        @apply flex justify-start items-center gap-3;
-    }
+    .profile {
+        @apply flex flex-col gap-4 items-center justify-start w-[310px] sm:w-[400px] mx-auto;
 
-    .btn {
-        @apply mt-8;
+        form {
+            @apply w-full flex flex-col items-center justify-start;
+
+
+            .email,
+            .phone,
+            .theme,
+            .language {
+                @apply flex justify-start items-center gap-3;
+            }
+
+            .btn {
+                @apply mt-8;
+            }
+        }
     }
 }

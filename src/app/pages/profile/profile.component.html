@@ -22,34 +22,35 @@
 </section>
 
 <section class="profile-section">
-    <h1 class="title" i18n>Profile</h1>
-    <h2 class="heading">{{firstName }} {{lastName}}</h2>
-    <p class="email" i18n> <ng-icon name="iconoirMail"></ng-icon> {{email}}</p>
-    <p class="phone" i18n> <ng-icon name="iconoirPhone"></ng-icon> {{phone}}</p>
-    <br>
-    <h2 class="heading" i18n>Settings</h2>
-    <!-- <p class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon> Theme : {{memberSettings.uiTheme}} </p> -->
-    <form [formGroup]="profileForm" (ngSubmit)="saveProfile($event)">
-        <label class="form-control w-full max-w-xs mb-8">
-            <div class="label">
-                <span class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon>Theme</span>
+    <div class="profile">
+        <h2 class="heading">{{firstName }} {{lastName}}</h2>
+        <p class="email" i18n> <ng-icon name="iconoirMail"></ng-icon> {{email}}</p>
+        <p class="phone" i18n> <ng-icon name="iconoirPhone"></ng-icon> {{phone}}</p>
+        <br>
+        <h2 class="heading" i18n>Settings</h2>
+        <!-- <p class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon> Theme : {{memberSettings.uiTheme}} </p> -->
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile($event)">
+            <label class="form-control w-full max-w-xs mb-8">
+                <div class="label">
+                    <span class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon>Theme</span>
+                </div>
+                <select class="select select-bordered" id="theme" name="theme" formControlName="theme">
+                    <option [selected]='memberSettings.uiTheme === "light"' value="light">Light</option>
+                    <option [selected]='memberSettings.uiTheme === "dark"' value="dark">Dark</option>
+                </select>
+            </label>
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="theme" i18n> <ng-icon name="iconoirLanguage"></ng-icon>Language</span>
+                </div>
+                <select class="select select-bordered" id="language" name="language" formControlName="language">
+                    <option [selected]='memberSettings.language === "en"' value="en">English</option>
+                    <option [selected]='memberSettings.language === "tr"' value="tr">Turkish</option>
+                </select>
+            </label>
+            <div class="flex justify-between">
+                <button type="submit" class="btn btn-primary" i18n>Save Changes</button>
             </div>
-            <select class="select select-bordered" id="theme" name="theme" formControlName="theme">
-                <option [selected]='memberSettings.uiTheme === "light"' value="light">Light</option>
-                <option [selected]='memberSettings.uiTheme === "dark"' value="dark">Dark</option>
-            </select>
-        </label>
-        <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <span class="theme" i18n> <ng-icon name="iconoirLanguage"></ng-icon>Language</span>
-            </div>
-            <select class="select select-bordered" id="language" name="language" formControlName="language">
-                <option [selected]='memberSettings.language === "en"' value="en">English</option>
-                <option [selected]='memberSettings.language === "tr"' value="tr">Turkish</option>
-            </select>
-        </label>
-        <div class="flex justify-between">
-            <button type="submit" class="btn btn-primary" i18n>Save Changes</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </section>
