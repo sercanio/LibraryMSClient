@@ -1,0 +1,28 @@
+:host {
+    @apply section-container;
+}
+
+.profile-section {
+
+    @apply section-container bg-primary;
+
+    .title {
+        @apply font-title text-center text-primary text-2xl;
+
+    }
+
+    .heading {
+        @apply font-title text-primary text-2xl mb-4;
+    }
+
+    .email,
+    .phone,
+    .theme,
+    .language {
+        @apply flex justify-start items-center gap-3;
+    }
+
+    .btn {
+        @apply mt-8;
+    }
+}

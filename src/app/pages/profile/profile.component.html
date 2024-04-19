@@ -1,0 +1,55 @@
+<section class="section-container breadcrumbs">
+    <ul>
+        <li>
+            <a [routerLink]="['/']" class="btn btn-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block w-4 h-4 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>&nbsp;Home
+            </a>
+        </li>
+        <li>
+            <div class="btn btn-link flex items-center justify-center" i18n>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block w-4 h-4 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>&nbsp;My Profile
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section class="profile-section">
+    <h1 class="title" i18n>Profile</h1>
+    <h2 class="heading">{{firstName }} {{lastName}}</h2>
+    <p class="email" i18n> <ng-icon name="iconoirMail"></ng-icon> {{email}}</p>
+    <p class="phone" i18n> <ng-icon name="iconoirPhone"></ng-icon> {{phone}}</p>
+    <br>
+    <h2 class="heading" i18n>Settings</h2>
+    <!-- <p class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon> Theme : {{userSettings.uiTheme}} </p> -->
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile($event)">
+        <label class="form-control w-full max-w-xs mb-8">
+            <div class="label">
+                <span class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon>Theme</span>
+            </div>
+            <select class="select select-bordered" id="theme" name="theme" formControlName="theme">
+                <option [selected]='userSettings.uiTheme === "light"' value="light">Light</option>
+                <option [selected]='userSettings.uiTheme === "dark"' value="dark">Dark</option>
+            </select>
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="theme" i18n> <ng-icon name="iconoirLanguage"></ng-icon>Language</span>
+            </div>
+            <select class="select select-bordered" id="language" name="language" formControlName="language">
+                <option [selected]='userSettings.language === "en"' value="en">English</option>
+                <option [selected]='userSettings.language === "tr"' value="tr">Turkish</option>
+            </select>
+        </label>
+        <div class="flex justify-between">
+            <button type="submit" class="btn btn-primary" i18n>Save Changes</button>
+        </div>
+    </form>
+</section>
