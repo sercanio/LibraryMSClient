@@ -92,10 +92,11 @@
                     </summary>
                     <ul tabindex="0" class="menu menu-vertical">
                         <li class="menu-item">
-                            <a routerLink="/profile" routerLinkActive="active" i18n>Profile</a>
+                            <a routerLink="/profile" routerLinkActive="active" (click)="closeMenu()" i18n>Profile</a>
                         </li>
                         <li class="menu-item">
-                            <a routerLink="/logout" routerLinkActive="active" (click)="logOut()" i18n>Logout</a>
+                            <a routerLink="/logout" routerLinkActive="active" (click)="logOut()" (click)="closeMenu()"
+                                i18n>Logout</a>
                         </li>
                     </ul>
                 </details>
