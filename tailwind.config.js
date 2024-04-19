@@ -14,7 +14,7 @@ module.exports = {
       backgroundColor: {
         primary: '#F2F0EE',
         secondary: '#1B1B1B',
-        tertiary: '##EAE7E4',
+        tertiary: '#EEE7E4',
         "primary-button": '#E23826',
         "secondary-button": '#F3701D',
         "disabled-button": '#D3701D',

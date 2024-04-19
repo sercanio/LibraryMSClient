@@ -1,0 +1,7 @@
+:host {
+    @apply w-full flex flex-col justify-start items-center section-container;
+}
+
+.searchbox {
+    @apply input input-primary w-full max-w-xs;
+}

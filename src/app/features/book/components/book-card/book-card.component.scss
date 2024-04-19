@@ -1,0 +1,21 @@
+.card {
+    @apply rounded-none;
+}
+
+.card-side {
+    @apply my-4 shadow-sm;
+
+    figure {
+        img {
+            @apply w-full h-full max-w-56 max-h-56 object-fill;
+        }
+    }
+
+    .card-body {
+        @apply relative bg-primary;
+
+        .card-top {
+            @apply absolute top-0 left-0 w-full h-6 bg-tertiary;
+        }
+    }
+}

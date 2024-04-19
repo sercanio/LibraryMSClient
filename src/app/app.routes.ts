@@ -7,6 +7,7 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { LibraryComponent } from './pages/library/library/library.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'library', component: LibraryComponent}
 ];

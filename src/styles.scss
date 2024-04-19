@@ -136,6 +136,28 @@
             @apply text-secondary;
         }
     }
+
+    .input-primary {
+        @apply border-secondary rounded-none;
+    }
+
+    .input-primary:focus,
+    .input-primary:focus-within {
+        @apply border-primary outline-none;
+    }
+
+    .input-primary:focus,
+    .input-primary:focus-within {
+        @apply border-primary outline-none;
+    }
+
+    .select-primary {
+        @apply border-secondary outline-none rounded-none;
+    }
+
+    .select-primary:focus {
+        @apply border-primary outline-none;
+    }
 }
 
 

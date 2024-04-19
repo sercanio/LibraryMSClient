@@ -34,7 +34,7 @@
                 <div class="label">
                     <span class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon>Theme</span>
                 </div>
-                <select class="select select-bordered" id="theme" name="theme" formControlName="theme">
+                <select class="select select-primary" id="theme" name="theme" formControlName="theme">
                     <option [selected]='memberSettings.uiTheme === "light"' value="light">Light</option>
                     <option [selected]='memberSettings.uiTheme === "dark"' value="dark">Dark</option>
                 </select>
@@ -43,7 +43,7 @@
                 <div class="label">
                     <span class="theme" i18n> <ng-icon name="iconoirLanguage"></ng-icon>Language</span>
                 </div>
-                <select class="select select-bordered" id="language" name="language" formControlName="language">
+                <select class="select select-primary" id="language" name="language" formControlName="language">
                     <option [selected]='memberSettings.language === "en"' value="en">English</option>
                     <option [selected]='memberSettings.language === "tr"' value="tr">Turkish</option>
                 </select>
