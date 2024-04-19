@@ -12,6 +12,7 @@ import {
 import { FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MemberService } from '~app/shared/services/member/member.service';
+import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
 
 @Component({
   standalone: true,
@@ -33,8 +34,8 @@ export class ProfileComponent {
     language: '',
   });
 
-  public user: any;
-  public userSettings: any = {};
+  public member: any;
+  public memberSettings: any = {};
   public firstName: string = '';
   public lastName: string = '';
   public email: string = '';
@@ -45,17 +46,17 @@ export class ProfileComponent {
     private memberService: MemberService,
     private formBuilder: FormBuilder
   ) {
-    this.authService.userSubject.subscribe((user) => {
-      if (user) {
-        this.user = user;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.email = user.email;
-        this.phone = user.phoneNumber;
-        this.userSettings = { ...user.memberSetting };
+    this.authService.userSubject.subscribe((member: MemberResponse) => {
+      if (member) {
+        this.member = member;
+        this.firstName = member.firstName;
+        this.lastName = member.lastName;
+        this.email = member.email;
+        this.phone = member.phoneNumber;
+        this.memberSettings = { ...member.memberSetting };
         this.profileForm.patchValue({
-          theme: this.userSettings.uiTheme,
-          language: this.userSettings.language,
+          theme: this.memberSettings.uiTheme,
+          language: this.memberSettings.language,
         });
       }
     });

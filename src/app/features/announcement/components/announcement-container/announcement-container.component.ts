@@ -48,7 +48,7 @@ export class AnnouncementContainerComponent implements OnInit {
     this.loadAnnouncements(this.pageIndex);
   }
 
-  loadAnnouncements(pageIndex: number) {
+  loadAnnouncements(pageIndex: number): void {
     this.announcementService
       .getAll(this.pageIndex, this.size)
       .subscribe((response: Collection<Announcement>) => {
@@ -64,14 +64,14 @@ export class AnnouncementContainerComponent implements OnInit {
       });
   }
 
-  onNextPage() {
+  onNextPage(): void {
     if (!this.isLastPage) {
       this.pageIndex++;
       this.loadAnnouncements(this.pageIndex);
     }
   }
 
-  onPreviousPage() {
+  onPreviousPage(): void {
     if (!this.isFirstPage) {
       this.pageIndex--;
       this.loadAnnouncements(this.pageIndex);

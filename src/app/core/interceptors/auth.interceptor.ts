@@ -14,7 +14,7 @@ export const authInterceptor: HttpInterceptorFn = (
       withCredentials: true,
     });
 
-    function getAccessToken() {
+    function getAccessToken(): string | undefined {
       return document.cookie
         .split('; ')
         .find((row) => row.startsWith('accessToken'))
@@ -36,6 +36,6 @@ export const authInterceptor: HttpInterceptorFn = (
         authService.refreshAccesstoken();
       }
       return throwError(() => error);
-    }),
+    })
   );
 };

@@ -19,7 +19,7 @@ export class PageService {
     this.setPage();
   }
 
-  setPage() {
+  setPage(): void {
     console.log('Locale:', this.locale);
 
     if (this.locale === 'tr-TR') {

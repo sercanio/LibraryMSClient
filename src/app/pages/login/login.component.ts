@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '~app/core/services/auth/auth.service';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
@@ -44,33 +49,30 @@ export class LoginComponent {
     this.loadingText = 'Logging in...';
   }
 
-  get email() {
+  get email(): AbstractControl<string | null> | null {
     return this.loginForm.get('email');
   }
 
-  get password() {
+  get password(): AbstractControl<string | null> | null {
     return this.loginForm.get('password');
   }
 
-  togglePasswordVisibility() {
+  togglePasswordVisibility(): void {
     this.passwordVisibility = !this.passwordVisibility;
   }
 
-  get isPasswordVisible() {
+  get isPasswordVisible(): string {
     return this.passwordVisibility ? 'text' : 'password';
   }
 
-  onSubmit(event: Event) {
-    // event.preventDefault();
-    console.log(this.loginForm.value);
-
+  onSubmit(event: Event): void {
     this.authService.login(
       this.loginForm.value.email!,
       this.loginForm.value.password!
     );
   }
 
-  resetForm() {
+  resetForm():void {
     this.loginForm.reset();
   }
 }

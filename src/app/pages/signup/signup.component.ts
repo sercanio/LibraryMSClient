@@ -49,31 +49,31 @@ export class SignupComponent {
     this.loadingText = 'Signing up...';
   }
 
-  get firstName() {
+  get firstName(): AbstractControl<string | null> | null {
     return this.signupForm.get('firstName');
   }
 
-  get lastName() {
+  get lastName(): AbstractControl<string | null> | null {
     return this.signupForm.get('lastName');
   }
 
-  get phoneNumber() {
+  get phoneNumber(): AbstractControl<string | null> | null {
     return this.signupForm.get('phoneNumber');
   }
 
-  get email() {
+  get email(): AbstractControl<string | null> | null {
     return this.signupForm.get('email');
   }
 
-  get dateOfBirth() {
+  get dateOfBirth(): AbstractControl<string | null> | null {
     return this.signupForm.get('dateOfBirth');
   }
 
-  get password() {
+  get password(): AbstractControl<string | null> | null {
     return this.signupForm.get('password');
   }
 
-  get isPasswordVisible() {
+  get isPasswordVisible(): string {
     return this.passwordVisibility ? 'text' : 'password';
   }
 
@@ -89,7 +89,7 @@ export class SignupComponent {
     };
   }
 
-  togglePasswordVisibility() {
+  togglePasswordVisibility() : void {
     this.passwordVisibility = !this.passwordVisibility;
   }
 

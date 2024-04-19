@@ -29,15 +29,15 @@ export class HeaderComponent {
     });
   }
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  closeMenu() {
+  closeMenu(): void {
     this.isMenuOpen = false;
   }
 
-  logOut() {
+  logOut(): void {
     this.authService.logout();
     this.authenticated = false;
   }

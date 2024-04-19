@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from '../backend/backend.service';
-import { LoginResponse } from '~app/models/LoginResponse';
-import { LoginRequest } from '~app/models/LoginRequest';
+import { LoginResponse } from '~app/models/HttpResponse/LoginResponse';
+import { LoginRequest } from '~app/models/HttpRequest/LoginRequest';
 import { BehaviorSubject, Observable, from, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { SignupLoaderService } from '../loading/signup-loader/signup-loader.service';
 import { HttpErrorService } from '../http-error/http-error.service';
 import { LoginLoaderService } from '../loading/login-loader/login-loader.service';
+import { RevokeTokenResponse } from '~app/models/HttpResponse/RevokeTokenResponse';
+import { SignupRequest } from '~app/models/HttpRequest/SignupRequest';
+import { SignupResponse } from '~app/models/HttpResponse/SignupResponse';
+import { RefreshTokenResponse } from '~app/models/HttpResponse/RefreshTokenResponse';
+import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
+import { UserResponse } from '~app/models/HttpResponse/UserResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -26,20 +32,23 @@ export class AuthService {
     });
   }
 
-  private revokeToken() {    
-    return this.backendService.put<any, any>('Auth/RevokeToken', null);
+  private revokeToken(): Observable<RevokeTokenResponse> {
+    return this.backendService.put<null, RevokeTokenResponse>(
+      'Auth/RevokeToken',
+      null
+    );
   }
 
-  private storeCookies(token: string) {
+  private storeAccessToken(token: string): void {
     document.cookie = `accessToken=${token}`;
   }
 
-  private deleteCookies() {
+  private deleteAccessToken(): void {
     document.cookie =
       'accessToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
-  private async getCookie(name: string): Promise<string> {
+  private async getToken(name: string): Promise<string> {
     const value = `; ${await document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop()?.split(';').shift() || '';
@@ -50,7 +59,7 @@ export class AuthService {
     return from(
       new Promise<string | null>(async (resolve) => {
         if (typeof document !== 'undefined') {
-          const accessToken = await this.getCookie('accessToken');
+          const accessToken = await this.getToken('accessToken');
           resolve(accessToken);
         } else {
           resolve(null);
@@ -69,12 +78,11 @@ export class AuthService {
       .subscribe({
         next: (response) => {
           if (response.accessToken) {
-            this.storeCookies(response.accessToken.token);
+            this.storeAccessToken(response.accessToken.token);
             this.httpErrorService.httpError = null;
             this.logInLoaderService.logInLoading = false;
             this.getMemberFromAuth().subscribe({
               next: (member) => {
-                console.log('Member', member);
                 this.userSubject.next(member);
                 this.userSubject.value;
               },
@@ -95,21 +103,21 @@ export class AuthService {
       });
   }
 
-  public register(formData: any): void {
-    console.log('Form data', formData);
-    
+  public register(formData: SignupRequest): void {
     this.signUpLoaderService.signupLoading = true;
-    this.backendService.post<any, any>('Members', formData).subscribe({
-      next: () => {
-        this.httpErrorService.httpError = null;
-        this.signUpLoaderService.signupLoading = false;
-        this.router.navigateByUrl('/login');
-      },
-      error: (error) => {
-        this.httpErrorService.httpError = error;
-        this.signUpLoaderService.signupLoading = false;
-      },
-    });
+    this.backendService
+      .post<SignupRequest, SignupResponse>('Members', formData)
+      .subscribe({
+        next: () => {
+          this.httpErrorService.httpError = null;
+          this.signUpLoaderService.signupLoading = false;
+          this.router.navigateByUrl('/login');
+        },
+        error: (error) => {
+          this.httpErrorService.httpError = error;
+          this.signUpLoaderService.signupLoading = false;
+        },
+      });
   }
 
   public logout(): void {
@@ -117,7 +125,7 @@ export class AuthService {
       if (accessToken) {
         this.revokeToken().subscribe(() => {
           console.log('Token revoked successfully');
-          this.deleteCookies();
+          this.deleteAccessToken();
           this.userSubject.next(null);
           this.router.navigateByUrl('/');
         });
@@ -127,63 +135,48 @@ export class AuthService {
     });
   }
 
-  public refreshAccesstoken() {
-    this.backendService.get<any>('Auth/RefreshToken').subscribe({
-      next: (response) => {
+  public refreshAccesstoken(): void {
+    this.backendService
+      .get<RefreshTokenResponse>('Auth/RefreshToken')
+      .subscribe((response) => {
         if (response.token) {
-          this.storeCookies(response.token);
+          this.storeAccessToken(response.token);
           this.revokeToken().subscribe(() => {
             console.log('Token revoked successfully');
           });
           this.refreshuserSubject();
         }
-      },
-      error: (error) => {
-        console.error('Error', error);
-      },
-    });
+      });
   }
 
-  private getMemberFromAuth(): Observable<any> {
+  private getMemberFromAuth(): Observable<MemberResponse | null> {
     return this.getUserFromAuth().pipe(
       switchMap((user) => {
         if (user) {
-          return this.backendService.get<any>(`Members/${user.memberId}`);
+          return this.backendService.get<MemberResponse>(
+            `Members/${user.memberId}`
+          );
         }
         return of(null);
       })
     );
   }
 
-  public getUserFromAuth(): Observable<any> {
+  public getUserFromAuth(): Observable<UserResponse | null> {
     return this.getAccessToken().pipe(
       switchMap((accessToken) => {
         if (!accessToken) {
           return of(null);
         }
-        return this.backendService.get<any>('Users/GetFromAuth');
+        return this.backendService.get<UserResponse>('Users/GetFromAuth');
       })
     );
   }
 
-  private refreshuserSubject() {
+  private refreshuserSubject(): void {
     this.getMemberFromAuth().subscribe({
       next: (member) => {
         this.userSubject.next(member);
-      },
-    });
-  }
-
-  // TODO: Implement email verification
-  public verifyEmail() {}
-
-  public enableEmailAuthenticator() {
-    this.backendService.get<any>('Auth/EnableEmailAuthenticator').subscribe({
-      next: () => {
-        console.log('Email authenticator enabled');
-      },
-      error: (error) => {
-        console.error('Error', error);
       },
     });
   }
