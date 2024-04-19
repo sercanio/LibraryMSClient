@@ -26,7 +26,7 @@ export class AuthService {
     });
   }
 
-  private revokeToken() {
+  private revokeToken() {    
     return this.backendService.put<any, any>('Auth/RevokeToken', null);
   }
 
@@ -96,6 +96,8 @@ export class AuthService {
   }
 
   public register(formData: any): void {
+    console.log('Form data', formData);
+    
     this.signUpLoaderService.signupLoading = true;
     this.backendService.post<any, any>('Members', formData).subscribe({
       next: () => {
@@ -130,6 +132,9 @@ export class AuthService {
       next: (response) => {
         if (response.token) {
           this.storeCookies(response.token);
+          this.revokeToken().subscribe(() => {
+            console.log('Token revoked successfully');
+          });
           this.refreshuserSubject();
         }
       },
