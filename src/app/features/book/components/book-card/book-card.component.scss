@@ -1,5 +1,5 @@
 .card {
-    @apply rounded-none;
+    @apply max-w-3xl mx-auto;
 }
 
 .card-side {
@@ -12,10 +12,73 @@
     }
 
     .card-body {
-        @apply relative bg-primary;
+        @apply relative rounded-md bg-primary px-4 pb-4 pt-8;
+
+        .card-line {
+            @apply absolute rounded-t-md top-0 left-0 w-full h-1 bg-secondary-button;
+        }
 
         .card-top {
-            @apply absolute top-0 left-0 w-full h-6 bg-tertiary;
+            @apply absolute top-1 left-0 w-full h-6 px-4 bg-tertiary flex flex-row items-center justify-end gap-3;
+
+            .share,
+            .favorite {
+                @apply cursor-pointer;
+            }
+        }
+
+        .card-title {
+            @apply flex flex-row items-center justify-start gap-2;
+
+            h2 {
+                @apply font-title text-2xl text-primary font-bold;
+            }
+
+            span {
+                @apply badge badge-md badge-secondary text-sm;
+            }
+        }
+
+        .category {
+            @apply text-tertiary;
+        }
+
+        .isbn {
+            @apply flex flex-row justify-start items-center gap-2;
+
+            .copy {
+                @apply cursor-pointer;
+            }
+        }
+
+        .card-actions {
+            .btn {
+                @apply text-sm px-1 py-0 rounded-none min-h-10 h-10;
+            }
+
+            .btn-primary {
+
+                &:hover,
+                &:focus {
+                    @apply relative bg-primary-button border-primary outline-primary text-white rounded-none font-medium opacity-100;
+
+                    &::after {
+                        content: none
+                    }
+                }
+            }
+
+            .btn-secondary {
+
+                &:hover,
+                &:focus {
+                    @apply relative bg-secondary-button border-secondary outline-secondary text-white rounded-none font-medium opacity-100;
+
+                    &::after {
+                        content: none
+                    }
+                }
+            }
         }
     }
 }

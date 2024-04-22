@@ -48,6 +48,28 @@
         }
     }
 
+    .btn-secondary {
+        @apply bg-secondary-button border-secondary outline-secondary text-white rounded-none font-medium opacity-90;
+
+        &:hover,
+        &:focus {
+            @apply relative bg-secondary-button border-secondary outline-secondary text-white rounded-none font-medium opacity-100;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0.75rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 70%;
+                height: 1px;
+                background-color: currentColor;
+                @apply animate-growLine;
+            }
+        }
+    }
+
+
     .btn-pagination {
 
         &>* {
@@ -157,6 +179,18 @@
 
     .select-primary:focus {
         @apply border-primary outline-none;
+    }
+
+    .badge {
+        @apply rounded-none;
+    }
+
+    .badge-primary {
+        @apply bg-primary-button border-primary outline-none text-white font-normal;
+    }
+
+    .badge-secondary {
+        @apply bg-secondary-button border-secondary outline-none text-white font-normal;
     }
 }
 

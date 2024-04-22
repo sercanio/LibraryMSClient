@@ -139,13 +139,8 @@ export class AuthService {
     this.backendService
       .get<RefreshTokenResponse>('Auth/RefreshToken')
       .subscribe((response) => {
-        if (response.token) {
-          this.storeAccessToken(response.token);
-          this.revokeToken().subscribe(() => {
-            console.log('Token revoked successfully');
-          });
-          this.refreshuserSubject();
-        }
+        this.storeAccessToken(response.token);
+        this.refreshuserSubject();
       });
   }
 

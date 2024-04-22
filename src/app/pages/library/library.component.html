@@ -18,8 +18,7 @@
     </label>
 </form>
 <div class="overflow-x-auto w-full">
-    <app-book-card></app-book-card>
-    <app-book-card></app-book-card>
-    <app-book-card></app-book-card>
-    <app-book-card></app-book-card>
+    <div *ngFor="let book of bookListItems">
+        <app-book-card [book]="book"></app-book-card>
+    </div>
 </div>

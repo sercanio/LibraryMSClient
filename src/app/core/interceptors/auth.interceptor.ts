@@ -1,4 +1,4 @@
-import { HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpInterceptorFn, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { catchError, throwError } from 'rxjs';
@@ -31,7 +31,7 @@ export const authInterceptor: HttpInterceptorFn = (
 
   return next(req).pipe(
     catchError((error) => {
-      if (error.status === 500) {
+      if (error.status === HttpStatusCode.Unauthorized) {
         console.log('Unauthorized, refreshing token...');
         authService.refreshAccesstoken();
       }

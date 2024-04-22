@@ -1,12 +1,27 @@
 <div class="card card-side bg-base-100 shadow-xl">
-    <figure><img src="https://cdn.biletiva.com/event/G7121/poster-700x1000.jpg" alt="Book"
-             /></figure>
     <div class="card-body">
-        <div class="card-top">Hacivar ve Karagoz</div>
-        <h2 class="card-title">New movie is released!</h2>
-        <p>Click the button to watch on Jetflix app.</p>
+        <div class="card-line"></div>
+        <div class="card-top">
+            <ng-icon class="share" name="iconoirShareAndroid" i18n-title title="Share"></ng-icon>
+            <ng-icon class="favorite" name="iconoirFavouriteBook" i18n-title title="Add Favorite"></ng-icon>
+        </div>
+        <div class="card-title">
+            <h2>{{book.bookTitle}}</h2>
+            <span>{{book.releaseDate}}</span>
+        </div>
+        <div>
+            <span *ngFor="let author of book.authors; let last = last">{{ author.firstName }} {{ author.lastName }}{{
+                !last ? ', ' : '' }}</span>
+        </div>
+        <div class="category">{{ book.categoryName }}</div>
+        <div class="isbn">
+            <span class="isbn" title="ISBN">{{ book.isbnCode }}</span>
+            <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
+                (click)="copyText(book.isbnCode)"></ng-icon>
+        </div>
         <div class="card-actions justify-end">
-            <button class="btn btn-primary">Reserve</button>
+            <button class="btn btn-primary" (click)="reserve(book.id)" i18n>Reserve</button>
+            <button class="btn btn-secondary" i18n>Details</button>
         </div>
     </div>
 </div>
