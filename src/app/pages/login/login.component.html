@@ -30,7 +30,9 @@
         </div>
     </div>
     <button [disabled]="!loginForm.valid" type="submit" i18n>Login</button>
-    <app-spinner [loadingText]="loadingText"></app-spinner>
+    <!-- <app-spinner [loadingText]="loadingText"></app-spinner> -->
+    <app-spinner [spinnerTypes]="['login']" loadingText="Logging In"></app-spinner>
+
     <div *ngIf="this.httpErrorService.httpError?.error" class="login-alert">An error occured: {{
         this.httpErrorService.httpError?.error?.detail }}
     </div>

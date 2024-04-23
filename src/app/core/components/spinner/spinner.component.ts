@@ -8,9 +8,15 @@ import { LoaderService } from '~app/core/services/loading/loader.service';
   imports: [CommonModule],
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  // encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SpinnerComponent {
+  @Input() spinnerTypes: string[] = [];
   @Input() loadingText!: string;
+
   constructor(public loader: LoaderService) {}
+
+  shouldShowSpinner(): boolean {
+    return this.spinnerTypes.some((type) => this.loader.isLoading(type));
+  }
 }

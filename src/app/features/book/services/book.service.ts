@@ -26,6 +26,6 @@ export class BookService {
       memberId: memberId,
       nearestAvailableDate : new Date(),
       requestDate : new Date()
-    });
+    })
   }
 }

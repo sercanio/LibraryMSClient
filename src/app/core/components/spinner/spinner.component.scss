@@ -1,8 +1,8 @@
 .spinner-container {
-    @apply flex flex-col items-center gap-4 justify-center py-8 p-16;
+    @apply flex flex-col items-center gap-4 justify-center;
 
     .spinner {
-        @apply loading loading-spinner loading-md text-secondary;
+        @apply loading loading-spinner loading-md text-inherit;
     }
 
     .loading-text {

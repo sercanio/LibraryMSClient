@@ -54,9 +54,19 @@
         .card-actions {
             .btn {
                 @apply text-sm px-1 py-0 rounded-none min-h-10 h-10;
+
+                .reserve-spinner {
+                    @apply text-white;
+
+                    .spinner {
+                        @apply pl-2;
+
+                    }
+                }
             }
 
             .btn-primary {
+                @apply flex justify-center items-center min-w-16 pr-2;
 
                 &:hover,
                 &:focus {

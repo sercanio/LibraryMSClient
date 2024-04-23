@@ -20,7 +20,10 @@
                 (click)="copyText(book.isbnCode)"></ng-icon>
         </div>
         <div class="card-actions justify-end">
-            <button class="btn btn-primary" (click)="reserve(book.id)" i18n>Reserve</button>
+            <button class="btn btn-primary" (click)="reserve(book.id)" i18n><app-spinner class="reserve-spinner"
+                    [spinnerTypes]="['book']" loadingText=""></app-spinner><span
+                    *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
+            </button>
             <button class="btn btn-secondary" i18n>Details</button>
         </div>
     </div>
