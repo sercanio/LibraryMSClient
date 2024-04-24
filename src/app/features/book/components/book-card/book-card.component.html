@@ -3,7 +3,6 @@
         <div class="card-line"></div>
         <div class="card-top">
             <ng-icon class="share" name="iconoirShareAndroid" i18n-title title="Share"></ng-icon>
-            <ng-icon class="favorite" name="iconoirFavouriteBook" i18n-title title="Add Favorite"></ng-icon>
         </div>
         <div class="card-title">
             <h2>{{book.bookTitle}}</h2>
@@ -25,11 +24,11 @@
         <div class="card-actions">
             <button *ngIf="checkIfBookFavorited(book.id)" class="" (click)="unfavorite(book.id)" i18n>
                 <ng-icon *ngIf="(book.status | bookStatus) !== 'Reserved'" class="favorite" size="1.85rem"
-                    name="iconoirHeart" i18n-title title="Add Favorite"></ng-icon>
+                    name="iconoirHeart" i18n-title title="Add To Favorites"></ng-icon>
             </button>
             <button *ngIf="!checkIfBookFavorited(book.id)" class="" (click)="favorite(book.id)" i18n>
                 <ng-icon *ngIf="(book.status | bookStatus) !== 'Reserved'" class="favorite" size="1.85rem"
-                    name="ionHeartOutline" i18n-title title="Add Favorite"></ng-icon>
+                    name="ionHeartOutline" i18n-title title="Remove From Favorites"></ng-icon>
             </button>
             <button *ngIf="book.status === 3" class="btn btn-primary" (click)="reserve(book.id)" i18n><app-spinner
                     class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
