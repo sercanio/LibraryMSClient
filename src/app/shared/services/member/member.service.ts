@@ -17,8 +17,15 @@ export class MemberService {
     return this.authService.userSubject.value.memberSetting.id;
   }
 
-  updateMemberSettings(settings: any) : Observable<MemberSetting> {
-    settings = { ...settings, id: this.getMemberSettingsId() };    
-    return this.backendService.put<MemberSetting, MemberSetting>('MemberSettings', settings);
+  getMemberSettings(): MemberSetting {
+    return this.authService.userSubject.value.memberSetting;
+  }
+
+  updateMemberSettings(settings: any): Observable<MemberSetting> {
+    settings = { ...settings, id: this.getMemberSettingsId() };
+    return this.backendService.put<MemberSetting, MemberSetting>(
+      'MemberSettings',
+      settings
+    );
   }
 }

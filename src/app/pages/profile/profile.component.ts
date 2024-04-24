@@ -13,6 +13,7 @@ import { FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MemberService } from '~app/shared/services/member/member.service';
 import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
+import { PageService } from '~app/core/services/page/page.service';
 
 @Component({
   standalone: true,
@@ -44,6 +45,7 @@ export class ProfileComponent {
   constructor(
     private authService: AuthService,
     private memberService: MemberService,
+    private pageService: PageService,
     private formBuilder: FormBuilder
   ) {
     this.authService.userSubject.subscribe((member: MemberResponse) => {
@@ -69,6 +71,7 @@ export class ProfileComponent {
         language: this.profileForm.get('language')?.value,
       })
       .subscribe((response) => {
+        this.pageService.setTheme(response.uiTheme);
         console.log('response', response);
       });
   }

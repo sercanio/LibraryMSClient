@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  Inject,
-  LOCALE_ID,
-} from '@angular/core';
-import { PageService } from '~core/services/page/page.service';
-import { Title, Meta } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '~app/core/services/auth/auth.service';
+import { PageService } from '~app/core/services/page/page.service';
 import { CarouselComponent } from '~core/components/carousel/carousel.component';
 import { AnnouncementContainerComponent } from '~features/announcement/components/announcement-container/announcement-container.component';
 @Component({
@@ -14,8 +10,7 @@ import { AnnouncementContainerComponent } from '~features/announcement/component
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent{
-  pageService!: PageService;
+export class HomeComponent implements OnInit {
   carouselImages = [
     {
       src: 'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
@@ -34,16 +29,7 @@ export class HomeComponent{
       alt: 'person2',
     },
   ];
-  constructor(
-    @Inject(LOCALE_ID) private locale: string,
-    private titleService: Title,
-    private metaService: Meta
-  ) {
-    this.pageService = new PageService(
-      this.locale,
-      this.titleService,
-      this.metaService
-    );
-    this.pageService.setPage();
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 }
