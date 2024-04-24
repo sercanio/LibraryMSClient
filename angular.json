@@ -36,6 +36,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -58,8 +59,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kb",
-                  "maximumError": "6kb"
+                  "maximumWarning": "12kb",
+                  "maximumError": "20kb"
                 }
               ],
               "outputHashing": "all"

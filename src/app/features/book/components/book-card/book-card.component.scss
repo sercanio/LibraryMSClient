@@ -52,6 +52,8 @@
         }
 
         .card-actions {
+            @apply items-center justify-end gap-4;
+
             .btn {
                 @apply text-sm px-1 py-0 rounded-none min-h-10 h-10;
 
@@ -87,6 +89,14 @@
                     &::after {
                         content: none
                     }
+                }
+            }
+
+            .favorite {
+                @apply relative top-0.5 text-primary;
+
+                &.active {
+                    @apply text-primary;
                 }
             }
         }

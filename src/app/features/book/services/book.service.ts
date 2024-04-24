@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Collection } from '~app/core/models/Response/Collection';
 import { BackendService } from '~app/core/services/backend/backend.service';
 import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
@@ -8,6 +8,7 @@ import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
   providedIn: 'root',
 })
 export class BookService {
+  public favoriteBooksSubject = new BehaviorSubject(null);
   constructor(private backendService: BackendService) {}
 
   getAll(
@@ -24,8 +25,19 @@ export class BookService {
     return this.backendService.post(`BookReservations`, {
       bookId: bookId,
       memberId: memberId,
-      nearestAvailableDate : new Date(),
-      requestDate : new Date()
-    })
+      nearestAvailableDate: new Date(),
+      requestDate: new Date(),
+    });
+  }
+
+  favorite(bookId: string, memberId: string): Observable<any> {
+    return this.backendService.post(`FavoriteBooks`, {
+      bookId: bookId,
+      memberId: memberId,
+    });
+  }
+
+  unfavorite(favoriteId: string): Observable<any> {
+    return this.backendService.delete(`FavoriteBooks/${favoriteId}`);
   }
 }

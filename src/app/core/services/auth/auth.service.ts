@@ -168,7 +168,7 @@ export class AuthService {
     );
   }
 
-  private refreshuserSubject(): void {
+  public refreshuserSubject(): void {
     this.getMemberFromAuth().subscribe({
       next: (member) => {
         this.userSubject.next(member);
