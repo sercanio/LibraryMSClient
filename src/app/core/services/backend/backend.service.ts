@@ -31,4 +31,8 @@ export class BackendService {
   put<T, U>(resource: string, data: T): Observable<U> {
     return this.httpClient.put<U>(`${this.baseUrl}/${resource}`, data);
   }
+
+  delete<T>(resource: string): Observable<T> {
+    return this.httpClient.delete<T>(`${this.baseUrl}/${resource}`);
+  }
 }
