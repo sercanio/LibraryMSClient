@@ -9,7 +9,7 @@
     }
 
     .announcement-container {
-      @apply relative bg-primary p-4 pb-10 lg:p-6 w-full lg:h-full lg:w-[500px];
+      @apply relative bg-primary dark:bg-secondary p-4 pb-10 lg:p-6 w-full lg:h-full lg:w-[500px];
     }
   }
 }

@@ -2,20 +2,22 @@
     @apply page;
 
     .announcement-detail-container {
-        @apply relative bg-primary w-full h-full;
+        @apply relative bg-primary dark:bg-secondary w-full h-full;
 
         .announcement-detail-header {
 
             .announcement-detail-title {
-                @apply text-tertiary text-xl md:text-3xl font-title font-bold;
+                @apply text-tertiary dark:text-gray-300 text-xl md:text-3xl font-title font-bold;
             }
 
             .announcement-detail-date {
-                @apply text-tertiary text-xs md:text-base mt-4 mb-8;
+                @apply text-tertiary dark:text-gray-300 text-xs md:text-base mt-4 mb-8;
             }
         }
 
-        .announcement-detail-content {}
+        .announcement-detail-content {
+            @apply text-tertiary dark:text-gray-300;
+        }
 
     }
 }

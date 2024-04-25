@@ -33,7 +33,7 @@
 
             .dropdown {
                 &-content {
-                    @apply z-[1] bg-white border-2;
+                    @apply z-[1] bg-white dark:bg-secondary border-2 dark:border-gray-700;
                 }
             }
 
@@ -72,7 +72,7 @@
     }
 
     .mobile-menu {
-        @apply absolute z-[5] md:invisible bg-primary top-0 left-0 w-full h-screen pt-12;
+        @apply absolute z-[5] md:invisible bg-primary dark:bg-secondary top-0 left-0 w-full h-screen pt-12;
 
         .menu-item {
             .active {

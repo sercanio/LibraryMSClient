@@ -15,7 +15,6 @@ import { BookLoaderService } from '~app/core/services/loading/book-loader/book-l
 import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { ToastrService } from 'ngx-toastr';
 import { BookStatusPipe } from '../../pipes/book-status.pipe';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-book-card',

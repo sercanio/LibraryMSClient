@@ -1,5 +1,5 @@
 .announcement-container-title {
-    @apply inline-block text-xl mb-4 text-black font-bold;
+    @apply inline-block text-xl mb-4 text-black dark:text-gray-300 font-bold;
 }
 
 .announcement-list-container {
@@ -14,7 +14,7 @@
     }
 
     .announcement-title {
-        @apply relative text-base text-black mx-1 inline-block font-title font-semibold;
+        @apply relative text-base text-black dark:text-gray-300 mx-1 inline-block font-title font-semibold;
 
         &::after {
             content: "";
@@ -36,7 +36,7 @@
 }
 
 .announcement-summary {
-    @apply inline-block ml-1 text-sm text-tertiary;
+    @apply inline-block ml-1 text-sm text-tertiary dark:text-gray-300;
 }
 
 .join {

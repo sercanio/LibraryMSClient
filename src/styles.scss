@@ -126,7 +126,7 @@
     .signup-button {}
 
     .breadcrumbs {
-        @apply w-full text-xs md:text-sm bg-primary text-tertiary;
+        @apply w-full text-xs md:text-sm bg-primary dark:bg-secondary text-tertiary;
 
         .breadcrumb-tag-container {
             @apply relative top-[3px];

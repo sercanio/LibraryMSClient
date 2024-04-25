@@ -17,6 +17,8 @@ module.exports = {
         secondary: '#1B1B1B',
         tertiary: '#EEE7E4',
         fourtiery: '#655146',
+        "book-card-dark" : '#323239',
+        "book-card--top-dark" : '#433232',
         "primary-button": '#E23826',
         "secondary-button": '#F3701D',
         "disabled-button": '#D3701D',
