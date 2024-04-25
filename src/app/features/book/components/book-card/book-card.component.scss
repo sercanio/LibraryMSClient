@@ -12,7 +12,8 @@
     }
 
     .card-body {
-        @apply relative rounded-md bg-primary px-4 pb-4 pt-8;
+        @apply relative rounded-md bg-primary dark:bg-fourtiery px-4 pb-4 pt-8;
+
 
         .card-line {
             @apply absolute rounded-t-md top-0 left-0 w-full h-1 bg-secondary-button;

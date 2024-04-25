@@ -13,8 +13,10 @@ export class PageService {
     if (isPlatformBrowser(this.platformId)) {
       if (theme) {
         document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('class', theme);
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('class', 'light');
       }
     }
   }

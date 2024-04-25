@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     "./src/**/*.{html,ts}",
   ],
@@ -15,6 +16,7 @@ module.exports = {
         primary: '#F2F0EE',
         secondary: '#1B1B1B',
         tertiary: '#EEE7E4',
+        fourtiery: '#655146',
         "primary-button": '#E23826',
         "secondary-button": '#F3701D',
         "disabled-button": '#D3701D',
