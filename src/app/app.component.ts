@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     this.authService.userSubject.subscribe((user) => {
       if (user) {
         this.pageService.setTheme(user.memberSetting.uiTheme);
+        this.pageService.setLanguage(user.memberSetting.language);
       } else {
         this.pageService.setTheme();
       }

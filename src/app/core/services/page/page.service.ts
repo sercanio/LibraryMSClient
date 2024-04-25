@@ -1,11 +1,16 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from '~env/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class PageService {
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: any,
+    private router: Router
+  ) {}
 
   setPage(): void {}
 
@@ -17,6 +22,25 @@ export class PageService {
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
         document.documentElement.setAttribute('class', 'light');
+      }
+    }
+  }
+
+  setLanguage(language: string): void {
+    if (isPlatformBrowser(this.platformId) && environment.production) {
+      switch (language) {
+        case 'en':
+          if (!window.location.href.includes('/en-US')) {
+            window.location.href = '/en-US';
+          }
+          break;
+        case 'tr':
+          if (!window.location.href.includes('/tr-TR')) {
+            window.location.href = '/tr-TR';
+          }
+          break;
+        default:
+          break;
       }
     }
   }

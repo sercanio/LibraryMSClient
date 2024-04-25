@@ -72,6 +72,7 @@ export class ProfileComponent {
       })
       .subscribe((response) => {
         this.pageService.setTheme(response.uiTheme);
+        this.pageService.setLanguage(response.language);
       });
   }
 }
