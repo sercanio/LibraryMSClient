@@ -1,4 +1,4 @@
-<h2 class="announcement-container-title" i18n>Duyurular</h2>
+<h2 class="announcement-container-title" i18n>Announcements</h2>
 <br>
 <br>
 <div *ngFor="let announcement of announcements">
@@ -22,8 +22,8 @@
     </div>
     <hr class="announcement-seperator">
     <p class="announcement-summary">{{announcement.content.slice(0, contentLimit)}}...</p>
-    <a [routerLink]="['/announcements', announcement.id]" class="btn btn-link" i18n>Devamını oku <ng-icon class="relative top-[3px]"
-            name="matArrowRightAlt"></ng-icon></a>
+    <a [routerLink]="['/announcements', announcement.id]" class="btn btn-link"><span i18n>Read More... </span><ng-icon
+            class="relative top-[3px]" name="matArrowRightAlt"></ng-icon></a>
 
 </div>
 <div class="join">

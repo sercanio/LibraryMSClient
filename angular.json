@@ -46,6 +46,7 @@
               "entry": "server.ts"
             },
             "localize": [
+              "en-US",
               "tr-TR"
             ]
           },
