@@ -72,7 +72,6 @@ export class ProfileComponent {
       })
       .subscribe((response) => {
         this.pageService.setTheme(response.uiTheme);
-        console.log('response', response);
       });
   }
 }

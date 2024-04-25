@@ -11,7 +11,6 @@ export class PageService {
 
   setTheme(theme?: string): void {
     if (isPlatformBrowser(this.platformId)) {
-      console.log('theme', theme);
       if (theme) {
         document.documentElement.setAttribute('data-theme', theme);
       } else {
