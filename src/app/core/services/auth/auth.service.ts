@@ -45,7 +45,7 @@ export class AuthService {
 
   private deleteAccessToken(): void {
     document.cookie =
-      'accessToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      'accessToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC;';
   }
 
   private async getToken(name: string): Promise<string> {
