@@ -1,4 +1,8 @@
-import { HttpInterceptorFn, HttpRequest, HttpStatusCode } from '@angular/common/http';
+import {
+  HttpInterceptorFn,
+  HttpRequest,
+  HttpStatusCode,
+} from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { catchError, throwError } from 'rxjs';
@@ -21,9 +25,20 @@ export const authInterceptor: HttpInterceptorFn = (
         ?.split('=')[1];
     }
 
+    // function getLanguage(): string {
+    //   let language = 'en';
+    //   authService.userSubject.subscribe((user) => {
+    //     if (user) {
+    //       language = user.memberSetting.language;
+    //     }
+    //   });
+    //   return language;
+    // }
+
     req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${getAccessToken()}`,
+        // 'Accept-Language': `${getLanguage()}`,
       },
       withCredentials: true,
     });
