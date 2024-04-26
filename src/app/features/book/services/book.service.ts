@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Collection } from '~app/core/models/Response/Collection';
 import { BackendService } from '~app/core/services/backend/backend.service';
 import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
+import { BookResponse } from '~app/models/HttpResponse/BookResspone';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,10 @@ export class BookService {
     return this.backendService.getAll<BookListResponse>(
       `Books?PageIndex=${pageIndex}&PageSize=${size}`
     );
+  }
+
+  getById(id: string): Observable<BookResponse> {
+    return this.backendService.get<BookResponse>(`Books/${id}`);
   }
 
   reserve(bookId: string, memberId: string): Observable<any> {

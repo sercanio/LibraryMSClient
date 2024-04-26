@@ -1,6 +1,6 @@
-import { BookStatusEnum } from "../BookStatus";
+import { BookStatus } from "../BookStatus";
 
-export interface BookListLocation {
+export interface BookLocation {
   id: string;
   name: string;
   shelfNo: number;
@@ -8,22 +8,22 @@ export interface BookListLocation {
   shelfName: string;
 }
 
-export interface BookListAuthor {
+export interface BookAuthor {
   id: string;
   firstName: string;
   lastName: string;
 }
 
-export interface BookListResponse {
+export interface BookResponse {
   id: string;
   isbnCode: string;
   bookTitle: string;
   bookEdition: number;
   releaseDate: number;
   pageCount: number;
-  status: BookStatusEnum;
+  status: BookStatus;
   categoryName: string;
   publisherName: string;
-  location: BookListLocation;
-  authors: BookListAuthor[];
+  location: BookLocation;
+  authors: BookAuthor[];
 }
