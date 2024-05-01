@@ -103,10 +103,10 @@ export class AuthService {
       });
   }
 
-  public register(formData: SignupRequest): void {
+  public register(formData: FormData): void {
     this.signUpLoaderService.signupLoading = true;
     this.backendService
-      .post<SignupRequest, SignupResponse>('Members', formData)
+      .postFormData<FormData, SignupResponse>('Members', formData)
       .subscribe({
         next: () => {
           this.httpErrorService.httpError = null;
@@ -116,6 +116,8 @@ export class AuthService {
         error: (error) => {
           this.httpErrorService.httpError = error;
           this.signUpLoaderService.signupLoading = false;
+          console.log('Error', error);
+          
         },
       });
   }

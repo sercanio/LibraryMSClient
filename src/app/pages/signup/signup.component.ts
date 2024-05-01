@@ -29,17 +29,19 @@ import { HttpErrorService } from '~app/core/services/http-error/http-error.servi
   viewProviders: [provideIcons({ radixEyeClosed, radixEyeOpen })],
 })
 export class SignupComponent {
-  signupForm: any = this.formBuilder.group({
+  signupForm = this.formBuilder.group({
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required, Validators.pattern('^\\+[0-9]*$')]],
-    dateOfBirth: ['', [Validators.required, this.ageValidator(7)]],
+    // phoneNumber: ['', [Validators.required, Validators.pattern('^\\+[0-9]*$')]],
+    phoneNumber: ['', [Validators.required]],
+    dateOfBirth: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
+    avatar: [null] // Add avatar field to the form
   });
 
-  passwordVisibility: boolean = false;
-  loadingText!: string;
+  passwordVisibility = false;
+  loadingText: string;
 
   constructor(
     private authService: AuthService,
@@ -94,7 +96,24 @@ export class SignupComponent {
   }
 
   onSubmit(event: Event) {
-    console.log(this.signupForm.value);
-    this.authService.register({ subscribe: true, ...this.signupForm.value });
+    const formData = new FormData();
+    formData.append('firstName', this.signupForm.value.firstName!);
+    formData.append('lastName', this.signupForm.value.lastName!);
+    formData.append('phoneNumber', this.signupForm.value.phoneNumber!);
+    formData.append('dateOfBirth', this.signupForm.value.dateOfBirth!);
+    formData.append('email', this.signupForm.value.email!);
+    formData.append('password', this.signupForm.value.password!);
+    formData.append('avatar', this.signupForm.value.avatar!); // Append avatar
+
+    this.authService.register(formData);
+  }
+
+  onFileChange(event: any): void {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.signupForm.patchValue({
+        avatar: file
+      });
+    }
   }
 }

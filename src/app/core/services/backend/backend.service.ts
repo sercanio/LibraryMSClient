@@ -35,4 +35,14 @@ export class BackendService {
   delete<T>(resource: string): Observable<T> {
     return this.httpClient.delete<T>(`${this.baseUrl}/${resource}`);
   }
+
+  postFormData<T, U>(resource: string, formData: FormData): Observable<U> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+
+    return this.httpClient.post<U>(`${this.baseUrl}/${resource}`, formData, {
+      headers: headers,
+    });
+  }
 }
