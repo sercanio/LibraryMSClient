@@ -8,7 +8,6 @@ import { SignupLoaderService } from '../loading/signup-loader/signup-loader.serv
 import { HttpErrorService } from '../http-error/http-error.service';
 import { LoginLoaderService } from '../loading/login-loader/login-loader.service';
 import { RevokeTokenResponse } from '~app/models/HttpResponse/RevokeTokenResponse';
-import { SignupRequest } from '~app/models/HttpRequest/SignupRequest';
 import { SignupResponse } from '~app/models/HttpResponse/SignupResponse';
 import { RefreshTokenResponse } from '~app/models/HttpResponse/RefreshTokenResponse';
 import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
@@ -176,5 +175,13 @@ export class AuthService {
         this.userSubject.next(member);
       },
     });
+  }
+
+  public isAuthenticated(): Observable<boolean> {
+    return this.userSubject.pipe(
+      switchMap((user) => {
+        return of(user !== null);
+      })
+    );
   }
 }

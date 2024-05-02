@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LibraryComponent } from './pages/library/library.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -17,6 +18,6 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'library', component: LibraryComponent}
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
+  { path: 'library', component: LibraryComponent, canActivate: [authGuard]}
 ];
