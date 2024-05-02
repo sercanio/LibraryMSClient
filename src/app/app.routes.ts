@@ -18,6 +18,6 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
-  { path: 'library', component: LibraryComponent, canActivate: [authGuard]}
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'library', component: LibraryComponent, canActivate: [authGuard] },
 ];
