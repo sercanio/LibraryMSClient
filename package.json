@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:LibraryMSClient": "node dist/library-msclient/server/server.mjs"
+    "serve:ssr:LibraryMSClient": "node dist/library-msclient/server/server.mjs",
+    "preview" : "cross-env NODE_ENV=production npm run build --localize && npx serve ./dist/library-msclient/browser/"
   },
   "private": true,
   "dependencies": {
