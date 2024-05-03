@@ -6,10 +6,10 @@
                     <input class="input input-primary join-item" placeholder="Search" />
                 </div>
             </div>
-            <select class="select select-primary join-item">
-                <option selected i18n>Books</option>
-                <option i18n>Magazines</option>
-                <option i18n>E-Book</option>
+            <select class="select select-primary join-item" (change)="onChange($event)">
+                <option value="books" selected>Books</option>
+                <option value="magazines">Magazines</option>
+                <option value="ebook">E-Book</option>
             </select>
             <div class="indicator">
                 <button class="btn btn-primary join-item">Search</button>
@@ -18,7 +18,14 @@
     </label>
 </form>
 <div class="overflow-x-auto w-full">
-    <div *ngFor="let book of bookListItems">
-        <app-book-card [book]="book"></app-book-card>
+    <div *ngIf="bookListObj">
+        <div *ngFor="let book of bookListItems">
+            <app-book-card [book]="book"></app-book-card>
+        </div>
+    </div>
+    <div *ngIf="magazineListObj">
+        <div *ngFor="let magazine of magazineListItems">
+            <app-magazine-card [magazine]="magazine"></app-magazine-card>
+        </div>
     </div>
 </div>
