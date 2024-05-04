@@ -43,8 +43,7 @@ export class AuthService {
   }
 
   private deleteAccessToken(): void {
-    document.cookie =
-      'accessToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC;';
+    document.cookie = 'accessToken =; expires = Thu, 01 Jan 1970 00:00:00 UTC;';
   }
 
   private async getToken(name: string): Promise<string> {
@@ -86,7 +85,7 @@ export class AuthService {
                 this.userSubject.value;
               },
             });
-            this.router.navigateByUrl('/');
+            window.location.href = '/';
           }
           if (response.requiredAuthenticatorType) {
             console.log(
@@ -116,7 +115,6 @@ export class AuthService {
           this.httpErrorService.httpError = error;
           this.signUpLoaderService.signupLoading = false;
           console.log('Error', error);
-          
         },
       });
   }
