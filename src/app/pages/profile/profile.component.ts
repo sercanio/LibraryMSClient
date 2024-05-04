@@ -72,7 +72,7 @@ export class ProfileComponent {
       })
       .subscribe((response) => {
         this.pageService.setTheme(response.uiTheme);
-        this.pageService.setLanguage(response.language);
+        this.pageService.setLanguage(response.language.split('-')[0]);
       });
   }
 }

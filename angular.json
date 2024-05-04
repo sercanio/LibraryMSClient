@@ -11,9 +11,9 @@
         }
       },
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": "en",
         "locales": {
-          "tr-TR": "src/locale/messages.tr-TR.xlf"
+          "tr": "src/locale/messages.tr.xlf"
         }
       },
       "root": "",
@@ -46,8 +46,8 @@
               "entry": "server.ts"
             },
             "localize": [
-              "en-US",
-              "tr-TR"
+              "en",
+              "tr"
             ]
           },
           "configurations": {

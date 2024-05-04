@@ -30,13 +30,13 @@ export class PageService {
     if (isPlatformBrowser(this.platformId) && environment.production) {
       switch (language) {
         case 'en':
-          if (!window.location.href.includes('/en-US')) {
-            window.location.href = '/en-US';
+          if (!window.location.href.includes('/en')) {
+            window.location.href = '/en';
           }
           break;
         case 'tr':
-          if (!window.location.href.includes('/tr-TR')) {
-            window.location.href = '/tr-TR';
+          if (!window.location.href.includes('/tr')) {
+            window.location.href = '/tr';
           }
           break;
         default:
