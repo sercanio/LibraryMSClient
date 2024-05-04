@@ -14,6 +14,7 @@ export const authInterceptor: HttpInterceptorFn = (
   const authService = inject(AuthService);
 
   if (typeof document !== 'undefined') {
+
     req = req.clone({
       withCredentials: true,
     });
@@ -25,20 +26,9 @@ export const authInterceptor: HttpInterceptorFn = (
         ?.split('=')[1];
     }
 
-    // function getLanguage(): string {
-    //   let language = 'en';
-    //   authService.userSubject.subscribe((user) => {
-    //     if (user) {
-    //       language = user.memberSetting.language;
-    //     }
-    //   });
-    //   return language;
-    // }
-
     req = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${getAccessToken()}`,
-        // 'Accept-Language': `${getLanguage()}`,
+        Authorization: `Bearer ${getAccessToken()}`
       },
       withCredentials: true,
     });

@@ -5,3 +5,7 @@
 .searchbox {
     @apply input input-primary w-full max-w-xs;
 }
+
+.list-pagination {
+    @apply section-container py-1 my-1 mx-1 px-0  mt-8 max-w-3xl flex items-center justify-end;
+}

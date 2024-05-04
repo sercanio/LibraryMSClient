@@ -14,15 +14,26 @@ export class BookService {
 
   getAll(
     pageIndex: number = 0,
-    size: number = 10
+    pageSize: number = 10
   ): Observable<Collection<BookListResponse>> {
     return this.backendService.getAll<BookListResponse>(
-      `Books?PageIndex=${pageIndex}&PageSize=${size}`
+      `Books?PageIndex=${pageIndex}&PageSize=${pageSize}`
     );
   }
 
   getById(id: string): Observable<BookResponse> {
     return this.backendService.get<BookResponse>(`Books/${id}`);
+  }
+
+  searchBooks(
+    query: string,
+    queryParam: string,
+    pageIndex: number = 0,
+    size: number = 10
+  ): Observable<Collection<BookListResponse>> {
+    return this.backendService.getAll<BookListResponse>(
+      `Books/search?${query}=${queryParam}&PageIndex=${pageIndex}&PageSize=${size}`
+    );
   }
 
   reserve(bookId: string, memberId: string): Observable<any> {

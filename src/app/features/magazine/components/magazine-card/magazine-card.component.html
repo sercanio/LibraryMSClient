@@ -17,22 +17,7 @@
             <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
                 (click)="copyText(magazine.issnCode)"></ng-icon>
         </div>
-        <!-- <div class="status">
-            <span i18n>{{book.status| bookStatus }} </span>
-        </div> -->
         <div class="card-actions">
-            <!-- <button *ngIf="checkIfBookFavorited(book.id)" class="" (click)="unfavorite(book.id)" i18n>
-                <ng-icon *ngIf="(book.status | bookStatus) !== 'Reserved'" class="favorite" size="1.85rem"
-                    name="iconoirHeart" i18n-title title="Add To Favorites"></ng-icon>
-            </button>
-            <button *ngIf="!checkIfBookFavorited(book.id)" class="" (click)="favorite(book.id)" i18n>
-                <ng-icon *ngIf="(book.status | bookStatus) !== 'Reserved'" class="favorite" size="1.85rem"
-                    name="ionHeartOutline" i18n-title title="Remove From Favorites"></ng-icon>
-            </button>
-            <button *ngIf="book.status === 3" class="btn btn-primary" (click)="reserve(book.id)" i18n><app-spinner
-                    class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
-                    *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
-            </button> -->
             <button class="btn btn-secondary" i18n>Details</button>
         </div>
     </div>

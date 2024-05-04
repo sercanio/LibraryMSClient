@@ -3,10 +3,11 @@
         <div class="join">
             <div>
                 <div>
-                    <input class="input input-primary join-item" placeholder="Search" />
+                    <input class="input input-primary join-item" placeholder="Search" name="searchInput" [(ngModel)]="searchParam"
+                        (change)="onSearchInputChange($event)" />
                 </div>
             </div>
-            <select class="select select-primary join-item" (change)="onChange($event)">
+            <select class="select select-primary join-item" (input)="onListModeChange($event)">
                 <option value="books" selected>Books</option>
                 <option value="magazines">Magazines</option>
                 <option value="ebook">E-Book</option>
@@ -17,6 +18,14 @@
         </div>
     </label>
 </form>
+<div class="join section-container py-1 my-1 mx-1 px-0  mt-8 max-w-3xl flex items-center justify-end">
+    <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isFirstPage}"
+        (click)="
+        onPreviousPage()">«</button>
+    <button class="join-item btn btn-primary btn-pagination">{{currentPage + 1}}</button>
+    <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isLastPage}"
+        (click)="onNextPage()">»</button>
+</div>
 <div class="overflow-x-auto w-full">
     <div *ngIf="bookListObj">
         <div *ngFor="let book of bookListItems">
@@ -28,4 +37,12 @@
             <app-magazine-card [magazine]="magazine"></app-magazine-card>
         </div>
     </div>
+</div>
+<div class="list-pagination">
+    <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isFirstPage}"
+        (click)="
+        onPreviousPage()">«</button>
+    <button class="join-item btn btn-primary btn-pagination">{{currentPage + 1}}</button>
+    <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isLastPage}"
+        (click)="onNextPage()">»</button>
 </div>

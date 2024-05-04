@@ -4,11 +4,11 @@ import { AuthService } from '../services/auth/auth.service';
 import { map } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService); 
+  const authService = inject(AuthService);
   const router = inject(Router);
-  
+
   return authService.getUserFromAuth().pipe(
-    map(user => {
+    map((user) => {
       if (!user) {
         router.navigateByUrl('/login');
         return false;

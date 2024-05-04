@@ -51,6 +51,7 @@ export class BookCardComponent implements OnInit {
     this.bookReservingLoaderText = '';
     this.authService.userSubject.subscribe((user) => {
       this.bookService.favoriteBooksSubject.next(user?.favoriteBooks);
+      console.log(this.book);
     });
   }
 
