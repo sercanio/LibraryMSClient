@@ -7,6 +7,7 @@
         <div class="card-title">
             <h2>{{book.bookTitle}}</h2>
             <span>{{book.releaseDate}}</span>
+            <div class="material-type" i18n>Book</div>
         </div>
         <div>
             <span *ngFor="let author of book.authors; let last = last">{{ author.firstName }} {{ author.lastName }}{{
@@ -19,7 +20,7 @@
                 (click)="copyText(book.isbnCode)"></ng-icon>
         </div>
         <div class="status">
-            <span i18n>{{book.status| bookStatus }} </span>
+            <span i18n>{{ book.status }} </span>
         </div>
         <div class="card-actions">
             <button *ngIf="checkIfBookFavorited(book.id)" class="" (click)="unfavorite(book.id)" i18n>

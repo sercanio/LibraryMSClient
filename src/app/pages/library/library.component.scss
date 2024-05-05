@@ -7,5 +7,21 @@
 }
 
 .list-pagination {
-    @apply section-container py-1 my-1 mx-1 px-0  mt-8 max-w-3xl flex items-center justify-end;
+    @apply section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end;
+}
+
+.select {
+    @apply outline-none rounded-none;
+
+    option {
+        @apply w-full rounded-none;
+
+        &:hover {
+            @apply bg-primary-button text-white;
+        }
+    }
+
+    .decorated option:hover {
+        @apply bg-black;
+    }
 }

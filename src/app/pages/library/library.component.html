@@ -3,8 +3,8 @@
         <div class="join">
             <div>
                 <div>
-                    <input class="input input-primary join-item" placeholder="Search" name="searchInput" [(ngModel)]="searchParam"
-                        (change)="onSearchInputChange($event)" />
+                    <input class="input input-primary join-item" placeholder="Search" name="searchInput"
+                        [(ngModel)]="searchParam" (change)="onSearchInputChange($event)" />
                 </div>
             </div>
             <select class="select select-primary join-item" (input)="onListModeChange($event)">
@@ -18,11 +18,13 @@
         </div>
     </label>
 </form>
-<div class="join section-container py-1 my-1 mx-1 px-0  mt-8 max-w-3xl flex items-center justify-end">
+<div class="relative join section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end">
     <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isFirstPage}"
-        (click)="
-        onPreviousPage()">«</button>
-    <button class="join-item btn btn-primary btn-pagination">{{currentPage + 1}}</button>
+        (click)="onPreviousPage()">«</button>
+    <select class="join-item select btn btn-primary" (change)="goToPage($event)">
+        <option class="btn btn-primary btn-pagination" *ngFor="let page of totalPages"
+            [selected]="currentPage + 1 === page">{{ page }}</option>
+    </select>
     <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isLastPage}"
         (click)="onNextPage()">»</button>
 </div>
@@ -37,12 +39,19 @@
             <app-magazine-card [magazine]="magazine"></app-magazine-card>
         </div>
     </div>
+    <div *ngIf="EBookListObj">
+        <div *ngFor="let eBook of eBookListItems">
+            <app-ebook-card [eBook]="eBook"></app-ebook-card>
+        </div>
+    </div>
 </div>
-<div class="list-pagination">
+<div class="relative join section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end">
     <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isFirstPage}"
-        (click)="
-        onPreviousPage()">«</button>
-    <button class="join-item btn btn-primary btn-pagination">{{currentPage + 1}}</button>
+        (click)="onPreviousPage()">«</button>
+    <select class="join-item select btn btn-primary" (change)="goToPage($event)">
+        <option class="btn btn-primary btn-pagination" *ngFor="let page of totalPages"
+            [selected]="currentPage + 1 === page">{{ page }}</option>
+    </select>
     <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isLastPage}"
         (click)="onNextPage()">»</button>
 </div>

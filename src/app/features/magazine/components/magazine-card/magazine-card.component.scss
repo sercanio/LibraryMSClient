@@ -40,8 +40,17 @@
             }
         }
 
-        .category {
+        .category,
+        .material-type {
             @apply text-tertiary;
+        }
+
+        .material-type {
+            @apply text-base font-medium;
+
+            &::before {
+                @apply mx-1 italic;
+            }
         }
 
         .isbn {

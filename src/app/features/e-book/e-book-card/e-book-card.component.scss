@@ -67,46 +67,30 @@
             .btn {
                 @apply text-sm px-1 py-0 rounded-none min-h-10 h-10;
 
-                .reserve-spinner {
-                    @apply text-white;
+            }
+        }
 
-                    .spinner {
-                        @apply pl-2;
+        .btn-primary {
+            @apply flex justify-center items-center min-w-16 pr-2;
 
-                    }
+            &:hover,
+            &:focus {
+                @apply relative bg-primary-button border-primary outline-primary text-white rounded-none font-medium opacity-100;
+
+                &::after {
+                    content: none
                 }
             }
+        }
 
-            .btn-primary {
-                @apply flex justify-center items-center min-w-16 pr-2;
+        .btn-secondary {
 
-                &:hover,
-                &:focus {
-                    @apply relative bg-primary-button border-primary outline-primary text-white rounded-none font-medium opacity-100;
+            &:hover,
+            &:focus {
+                @apply relative bg-secondary-button border-secondary outline-secondary text-white rounded-none font-medium opacity-100;
 
-                    &::after {
-                        content: none
-                    }
-                }
-            }
-
-            .btn-secondary {
-
-                &:hover,
-                &:focus {
-                    @apply relative bg-secondary-button border-secondary outline-secondary text-white rounded-none font-medium opacity-100;
-
-                    &::after {
-                        content: none
-                    }
-                }
-            }
-
-            .favorite {
-                @apply relative top-0.5 text-primary;
-
-                &.active {
-                    @apply text-primary;
+                &::after {
+                    content: none
                 }
             }
         }

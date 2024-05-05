@@ -5,18 +5,18 @@
             <ng-icon class="share" name="iconoirShareAndroid" i18n-title title="Share"></ng-icon>
         </div>
         <div class="card-title">
-            <h2>{{magazine.magazineTitle}}</h2>
-            <span>{{magazine.releaseDate | date:'MM/YYYY'}}</span>
-            <div class="material-type" i18n>Magazine</div>
+            <h2>{{eBook.eBookTitle}}</h2>
+            <span>{{eBook.releaseDate}}</span>
+            <div class="material-type" i18n>E-Book</div>
         </div>
         <div>
-            <div><span i18n>Issue : </span>{{ magazine.number }}</div>
+            {{ eBook.authorName }}
         </div>
-        <div class="category">{{ magazine.categoryName }}</div>
+        <div class="category">{{ eBook.categoryName }}</div>
         <div class="isbn">
-            <span class="isbn" title="ISBN">{{ magazine.issnCode }}</span>
+            <span class="isbn" title="ISBN">{{ eBook.isbnCode }}</span>
             <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
-                (click)="copyText(magazine.issnCode)"></ng-icon>
+                (click)="copyText(eBook.isbnCode)"></ng-icon>
         </div>
         <div class="card-actions">
             <button class="btn btn-secondary" i18n>Details</button>

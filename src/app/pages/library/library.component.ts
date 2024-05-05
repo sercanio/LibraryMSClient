@@ -4,14 +4,23 @@ import { FormsModule } from '@angular/forms';
 import { Collection } from '~app/core/models/Response/Collection';
 import { BookCardComponent } from '~app/features/book/components/book-card/book-card.component';
 import { BookService } from '~app/features/book/services/book.service';
+import { EBookCardComponent } from '~app/features/e-book/e-book-card/e-book-card.component';
+import { EBookService } from '~app/features/e-book/services/e-book.service';
 import { MagazineCardComponent } from '~app/features/magazine/components/magazine-card/magazine-card.component';
 import { MagazineService } from '~app/features/magazine/services/magazine.service';
 import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
+import { EBookListResponse } from '~app/models/HttpResponse/EbookListResponse';
 import { MagazineListResponse } from '~app/models/HttpResponse/MagazineListResponse';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, BookCardComponent, MagazineCardComponent, FormsModule],
+  imports: [
+    CommonModule,
+    BookCardComponent,
+    MagazineCardComponent,
+    EBookCardComponent,
+    FormsModule,
+  ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
 })
@@ -20,6 +29,8 @@ export class LibraryComponent implements OnInit {
   protected bookListItems!: BookListResponse[];
   protected magazineListObj!: Collection<MagazineListResponse>;
   protected magazineListItems!: MagazineListResponse[];
+  protected EBookListObj!: Collection<EBookListResponse>;
+  protected eBookListItems!: EBookListResponse[];
 
   searchParam: string = '';
   listMode: string = 'books';
@@ -34,10 +45,13 @@ export class LibraryComponent implements OnInit {
   currentPage: number = this.bookListConfig.initialIndex;
   isLastPage: boolean = false;
   isFirstPage: boolean = false;
+  showPageList: boolean = false;
+  totalPages: number[] = [];
 
   constructor(
     private bookService: BookService,
-    private magazineService: MagazineService
+    private magazineService: MagazineService,
+    private EBookService: EBookService
   ) {}
 
   ngOnInit() {
@@ -55,15 +69,12 @@ export class LibraryComponent implements OnInit {
       this.isLastPage = !response.hasNext;
       this.isFirstPage = !response.hasPrevious;
       this.magazineListItems = [];
+      this.eBookListItems = [];
+      this.totalPages = Array.from(
+        { length: response.count / this.pageSize },
+        (_, i) => i + 1
+      );
     });
-  }
-
-  getBookListObj() {
-    return this.bookListObj;
-  }
-
-  getBookListItemsLength() {
-    return this.bookListItems.length;
   }
 
   getMagazineListItems(
@@ -77,6 +88,30 @@ export class LibraryComponent implements OnInit {
       this.isLastPage = !response.hasNext;
       this.isFirstPage = !response.hasPrevious;
       this.bookListItems = [];
+      this.eBookListItems = [];
+      this.totalPages = Array.from(
+        { length: response.count / this.pageSize },
+        (_, i) => i + 1
+      );
+    });
+  }
+
+  getEBookListItems(
+    pageIndex: number = this.pageIndex,
+    pageSize: number = this.pageSize
+  ) {
+    this.EBookService.getAll(pageIndex, pageSize).subscribe((response) => {
+      this.EBookListObj = response;
+      this.eBookListItems = response.items;
+      this.currentPage = response.index;
+      this.isLastPage = !response.hasNext;
+      this.isFirstPage = !response.hasPrevious;
+      this.bookListItems = [];
+      this.magazineListItems = [];
+      this.totalPages = Array.from(
+        { length: response.count / this.pageSize },
+        (_, i) => i + 1
+      );
     });
   }
 
@@ -89,6 +124,9 @@ export class LibraryComponent implements OnInit {
     }
     if (this.listMode === 'books') {
       this.getBookListItems(this.pageIndex, this.pageSize);
+    }
+    if (this.listMode === 'ebook') {
+      this.getEBookListItems(this.pageIndex, this.pageSize);
     }
   }
 
@@ -109,6 +147,9 @@ export class LibraryComponent implements OnInit {
       if (this.listMode === 'magazines') {
         this.getMagazineListItems(this.pageIndex, this.pageSize);
       }
+      if (this.listMode === 'ebook') {
+        this.getEBookListItems(this.pageIndex, this.pageSize);
+      }
     }
   }
 
@@ -121,7 +162,28 @@ export class LibraryComponent implements OnInit {
       if (this.listMode === 'magazines') {
         this.getMagazineListItems(this.pageIndex, this.pageSize);
       }
+      if (this.listMode === 'ebook') {
+        this.getEBookListItems(this.pageIndex, this.pageSize);
+      }
     }
+  }
+
+  goToPage(event: Event) {
+    const page = +(event.target as HTMLButtonElement).value;
+    if (page !== this.currentPage + 1) {
+      this.pageIndex = page - 1;
+      if (this.listMode === 'books') {
+        this.getBookListItems(this.pageIndex, this.pageSize);
+      } else if (this.listMode === 'magazines') {
+        this.getMagazineListItems(this.pageIndex, this.pageSize);
+      } else if (this.listMode === 'ebook') {
+        this.getEBookListItems(this.pageIndex, this.pageSize);
+      }
+    }
+  }
+
+  togglePageList() {
+    this.showPageList = !this.showPageList;
   }
 
   searchBookListItems(searchTerm: string) {

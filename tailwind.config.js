@@ -17,23 +17,23 @@ module.exports = {
         secondary: '#1B1B1B',
         tertiary: '#EEE7E4',
         fourtiery: '#655146',
-        "book-card-dark" : '#323239',
-        "book-card--top-dark" : '#433232',
+        "book-card-dark": '#323239',
+        "book-card--top-dark": '#433232',
         "primary-button": '#E23826',
         "secondary-button": '#F3701D',
-        "disabled-button": '#D3701D',
+        "disabled-button": '#7E4311',
       },
       borderColor: {
         primary: '#E23826',
         secondary: '#F3701D',
         tertiary: '#091012',
-        disabled: '#D3701D'
+        disabled: '#7E4311'
       },
       outlineColor: {
         primary: '#E23826',
         secondary: '#F3701D',
         tertiary: '#0000FF',
-        disabled: '#D3701D'
+        disabled: '#7E4311'
       },
       fontFamily: {
         sans: ['Arial', 'Helvetica', 'sans-serif', 'system-ui', 'BlinkMacSystemFont', '-apple-system'],
@@ -63,7 +63,13 @@ module.exports = {
   plugins: [require("daisyui")],
   daisyUi: {
     themes: [
-      "light", "dark"
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: "#E23826",
+          secondary: "#F3701D",
+        },
+      }, "dark"
     ],
     darkTheme: "dark",
     base: true,
