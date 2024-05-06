@@ -3,5 +3,12 @@
 
     .card-body {
         @apply p-2;
+
+        .search-item{
+            @apply ml-4 p-2; 
+        }
+            .selected {
+                @apply bg-primary-button text-white;
+        }
     }
 }

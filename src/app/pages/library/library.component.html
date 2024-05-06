@@ -2,10 +2,8 @@
     <label for="search">
         <div class="join">
             <div>
-                <div>
-                    <input class="input input-primary join-item" placeholder="Search" name="searchInput"
-                        [(ngModel)]="searchParam" (change)="onSearchInputChange($event)" />
-                </div>
+                <app-search-result (onSearchInputChange)="onSearchInputChange($event)"
+                    [searchResultCollection]="searchResultCollection"></app-search-result>
             </div>
             <select class="select select-primary join-item" (input)="onListModeChange($event)">
                 <option value="books" selected>Books</option>
@@ -17,7 +15,6 @@
             </div>
         </div>
     </label>
-    <app-search-result [searchResultCollection]="searchResultCollection"></app-search-result>
 </form>
 <div class="relative join section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end">
     <button class="join-item btn btn-primary btn-pagination" [ngClass]="{'btn-pagination-disabled': isFirstPage}"

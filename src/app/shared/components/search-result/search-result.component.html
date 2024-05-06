@@ -1,15 +1,22 @@
-<div class="absolute w-full max-w-[417px] z-50 card">
-    <div class="card-body">
-        <div class="card-actions justify-end">
+<div>
+    <input class="input input-primary join-item" placeholder="Search" name="searchInput" (input)="inputChange($event)"
+        (focus)="isSearchFocused = true" autocomplete=" off" />
+    <div *ngIf="searchResultCollection && showResults" class="absolute w-full max-w-[417px] z-50 card" @fadeIn @fadeOut
+        (focus)="showResults=true" (blur)="showResults=false">
+        <div class="card-body">
+            <div class="card-actions justify-end">
+            </div>
+            <h3>Search results:</h3>
+            <h4>Books</h4>
+            <p class="search-item" *ngFor="let item of searchResultCollection.bookListItems; let i = index"
+                [ngClass]="{'selected': i === selectedItemIndex}">
+                {{item.bookTitle}}
+            </p>
+            <h4>Magazines</h4>
+            <!-- <p>{{searchResultCollection.magazineListItems[0].magazineTitle}}</p> -->
+            <h4>Ebooks</h4>
+            <!-- <p>{{searchResultCollection.eBookListItems[0].eBookTitle}}</p> -->
+            <h4>Other</h4>
         </div>
-        <h3>Search results:</h3>
-        <h4>Books</h4>
-        <p *ngFor="let item of searchResultCollection.bookListItems">
-            {{item.bookTitle}}</p>
-        <h4>Magazines</h4>
-        <!-- <p>{{searchResultCollection.magazineListItems[0].magazineTitle}}</p> -->
-        <h4>Ebooks</h4>
-        <!-- <p>{{searchResultCollection.eBookListItems[0].eBookTitle}}</p> -->
-        <h4>Other</h4>
     </div>
 </div>

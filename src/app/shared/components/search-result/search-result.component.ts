@@ -1,14 +1,76 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostListener,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { SearchResultCollection } from '~app/models/SearchResultCollection';
-
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 @Component({
   selector: 'app-search-result',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './search-result.component.html',
   styleUrl: './search-result.component.scss',
+  animations: [
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void <=> *', animate(75)),
+    ]),
+    trigger('fadeOut', [
+      state('void', style({ opacity: 1 })),
+      transition('* <=> void', animate(75)),
+    ]),
+  ],
 })
 export class SearchResultComponent {
-  @Input() searchResultCollection!: SearchResultCollection;
+  @Input() searchResultCollection: SearchResultCollection | null = null;
+  @Input() searchInput!: HTMLInputElement;
+  @Output() onSearchInputChange = new EventEmitter();
+
+  protected selectedItemIndex: number = 0;
+  protected showResults: boolean = true;
+  protected isSearchFocused = true;
+
+  constructor(private elementRef: ElementRef) {}
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowUp':
+        this.selectedItemIndex = Math.max(this.selectedItemIndex - 1, 0);
+        break;
+      case 'ArrowDown':
+        this.selectedItemIndex = Math.min(
+          this.selectedItemIndex + 1,
+          this.searchResultCollection!.bookListItems.length - 1
+        );
+        break;
+    }
+  }
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: MouseEvent) {
+    if (
+      !this.elementRef.nativeElement.contains(event.target) &&
+      this.searchResultCollection
+    ) {
+      this.showResults = false;
+      this.searchResultCollection = null;
+    } else {
+      this.showResults = true;
+    }
+  }
+  inputChange(event: Event) {
+    this.onSearchInputChange.emit(event);
+  }
 }

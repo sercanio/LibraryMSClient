@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Collection } from '~app/core/models/Response/Collection';
 import { BookCardComponent } from '~app/features/book/components/book-card/book-card.component';
@@ -34,11 +34,9 @@ export class LibraryComponent implements OnInit {
   protected magazineListItems!: MagazineListResponse[];
   protected EBookListObj!: Collection<EBookListResponse>;
   protected eBookListItems!: EBookListResponse[];
-
-  searchParam: string = '';
-  listMode: string = 'books';
-
   searchResultCollection!: SearchResultCollection;
+
+  listMode: string = 'books';
 
   bookListConfig = {
     initialIndex: 0,
@@ -56,7 +54,8 @@ export class LibraryComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private magazineService: MagazineService,
-    private EBookService: EBookService
+    private EBookService: EBookService,
+    private elementRef: ElementRef<HTMLElement>
   ) {}
 
   ngOnInit() {
@@ -183,11 +182,10 @@ export class LibraryComponent implements OnInit {
     this.showPageList = !this.showPageList;
   }
 
-  onSearchInputChange(event: Event) {
+  onSearchInputChange(event: Event) {    
     const target = event.target as HTMLInputElement;
     if (this.listMode === 'books') {
       this.searchBookListItems(target.value);
-      console.log(this.bookListItems);
     }
   }
 
@@ -195,9 +193,10 @@ export class LibraryComponent implements OnInit {
     this.bookService
       .searchBooks('bookTitle', searchTerm)
       .subscribe((response) => {
-        this.bookListObj = response;
-        this.bookListItems = response.items;
-        this.searchResultCollection = { bookListItems: this.bookListItems };
+        this.searchResultCollection = {
+          ...this.searchResultCollection,
+          bookListItems: response.items,
+        };
       });
   }
 }
