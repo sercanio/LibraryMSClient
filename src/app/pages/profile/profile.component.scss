@@ -24,14 +24,52 @@
             @apply flex justify-start items-center gap-2;
         }
 
+        .avatar {
+            .avatar-img {
+                @apply relative w-36 rounded-full overflow-clip z-10;
+            }
+
+            .avatar-actions {
+                @apply absolute -bottom-1 w-full;
+
+                .btn {
+                    @apply w-full text-xs;
+                }
+
+                input[type="file"] {
+                    display: none;
+                }
+
+
+                .btn-primary {
+                    @apply opacity-60;
+
+                    &:hover {
+                        @apply opacity-100;
+                    }
+
+                    &::after {
+                        @apply content-none;
+                    }
+                }
+            }
+        }
+
         form {
             @apply w-full flex flex-col items-center justify-start;
-
-
 
             .btn {
                 @apply mt-8;
             }
+            .save-spinner {
+                @apply text-white;
+
+                .spinner {
+                    @apply pl-2;
+
+                }
+            }
+
         }
     }
 }

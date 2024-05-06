@@ -42,5 +42,6 @@ export interface MemberResponse {
 	dateOfBirth: string;
 	subscribe: boolean;
 	memberSetting: MemberSetting;
+	imageUrl: string;
 	books: MemberBook[];
 }

@@ -23,9 +23,13 @@ export class MemberService {
 
   updateMemberSettings(settings: any): Observable<MemberSetting> {
     settings = { ...settings, id: this.getMemberSettingsId() };
-    return this.backendService.put<MemberSetting, MemberSetting>(
+    return this.backendService.put<FormData, MemberSetting>(
       'MemberSettings',
       settings
     );
+  }
+
+  changeAvatar(formData: FormData): Observable<any> {
+    return this.backendService.updateAvatar<any, any>('Members', formData);
   }
 }

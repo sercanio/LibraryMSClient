@@ -45,4 +45,10 @@ export class BackendService {
       headers: headers,
     });
   }
+
+  updateAvatar<T, U>(resource: string, data: any): Observable<U> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.httpClient.put<U>(`${this.baseUrl}/${resource}`, data);
+  }
 }

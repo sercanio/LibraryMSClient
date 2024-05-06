@@ -20,16 +20,30 @@
         </li>
     </ul>
 </section>
-
 <section class="profile-section">
     <div class="profile">
-        <h2 class="heading">{{firstName }} {{lastName}}</h2>
-        <p class="email"><ng-icon name="iconoirMail"></ng-icon><span>{{email}}</span></p>
-        <p class="phone"><ng-icon name="iconoirPhone"></ng-icon><span>{{phone}}</span></p>
-        <br>
-        <h2 class="heading" i18n>Settings</h2>
-        <!-- <p class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon> Theme : {{memberSettings.uiTheme}} </p> -->
         <form [formGroup]="profileForm" (ngSubmit)="saveProfile($event)">
+            <div class="avatar">
+                <div class="avatar-img">
+                    <img src={{avatar}} />
+                    <div class="avatar-actions">
+                        <app-spinner [spinnerTypes]="['avatar']" loadingText=""></app-spinner>
+                        <label for="file" class="btn btn-primary" i18n>
+                            Change Avatar
+                        </label>
+                        <input formControlName="file" id="file" type="file" class="btn btn-primary"
+                            (change)="onFileSelected($event)" i18n />
+                        <div *ngIf="f['file'].touched && f['file'].invalid" class="alert alert-danger">
+                            <div *ngIf="f['file'].errors && f['file'].errors['required']">File is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="heading">{{firstName }} {{lastName}}</h2>
+            <p class="email"><ng-icon name="iconoirMail"></ng-icon><span>{{email}}</span></p>
+            <p class="phone"><ng-icon name="iconoirPhone"></ng-icon><span>{{phone}}</span></p>
+            <br>
+            <h2 class="heading" i18n>Settings</h2>
             <label class="form-control w-full max-w-xs mb-8">
                 <div class="label">
                     <span class="theme" i18n> <ng-icon name="iconoirSunLight"></ng-icon>Theme</span>
@@ -48,7 +62,8 @@
                     <option [selected]='memberSettings.language === "tr"' value="tr">Turkish</option>
                 </select>
             </label>
-            <div class="flex justify-between">
+            <div class="flex flex-col mt-2">
+                <app-spinner [spinnerTypes]="['profile']" loadingText="Profile being updated"></app-spinner>
                 <button type="submit" class="btn btn-primary" i18n>Save Changes</button>
             </div>
         </form>
