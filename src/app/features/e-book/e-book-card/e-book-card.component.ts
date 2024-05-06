@@ -49,7 +49,6 @@ export class EBookCardComponent implements OnInit {
     });
   }
 
-
   copyText(isbn: string): void {
     if (isPlatformBrowser(this.platformId)) {
       navigator.clipboard

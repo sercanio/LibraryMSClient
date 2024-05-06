@@ -24,6 +24,7 @@ export interface BookListResponse {
   status: BookStatusEnum;
   categoryName: string;
   publisherName: string;
-  location: BookListLocation;
+  locations: BookListLocation;
+  imageUrl: string;
   authors: BookListAuthor[];
 }

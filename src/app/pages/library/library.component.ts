@@ -11,6 +11,8 @@ import { MagazineService } from '~app/features/magazine/services/magazine.servic
 import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
 import { EBookListResponse } from '~app/models/HttpResponse/EbookListResponse';
 import { MagazineListResponse } from '~app/models/HttpResponse/MagazineListResponse';
+import { SearchResultCollection } from '~app/models/SearchResultCollection';
+import { SearchResultComponent } from '~app/shared/components/search-result/search-result.component';
 
 @Component({
   standalone: true,
@@ -19,6 +21,7 @@ import { MagazineListResponse } from '~app/models/HttpResponse/MagazineListRespo
     BookCardComponent,
     MagazineCardComponent,
     EBookCardComponent,
+    SearchResultComponent,
     FormsModule,
   ],
   templateUrl: './library.component.html',
@@ -34,6 +37,8 @@ export class LibraryComponent implements OnInit {
 
   searchParam: string = '';
   listMode: string = 'books';
+
+  searchResultCollection!: SearchResultCollection;
 
   bookListConfig = {
     initialIndex: 0,
@@ -130,14 +135,6 @@ export class LibraryComponent implements OnInit {
     }
   }
 
-  onSearchInputChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (this.listMode === 'books') {
-      this.searchBookListItems(target.value);
-      console.log(this.bookListItems);
-    }
-  }
-
   onNextPage(): void {
     if (!this.isLastPage) {
       this.pageIndex++;
@@ -186,12 +183,21 @@ export class LibraryComponent implements OnInit {
     this.showPageList = !this.showPageList;
   }
 
+  onSearchInputChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (this.listMode === 'books') {
+      this.searchBookListItems(target.value);
+      console.log(this.bookListItems);
+    }
+  }
+
   searchBookListItems(searchTerm: string) {
     this.bookService
       .searchBooks('bookTitle', searchTerm)
       .subscribe((response) => {
         this.bookListObj = response;
         this.bookListItems = response.items;
+        this.searchResultCollection = { bookListItems: this.bookListItems };
       });
   }
 }

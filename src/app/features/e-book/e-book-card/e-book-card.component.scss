@@ -28,15 +28,28 @@
             }
         }
 
-        .card-title {
-            @apply flex flex-row items-center justify-start gap-2;
+        .card-header {
+            @apply flex flex-row items-center gap-6 p-4;
 
-            h2 {
-                @apply font-title text-2xl text-primary font-bold;
+            .card-image {
+                img {
+                    @apply w-20 h-20 object-fill;
+
+                }
             }
 
-            span {
-                @apply badge badge-md badge-secondary text-sm;
+            .card-title-container {
+                .card-title {
+                    @apply flex flex-row items-center justify-start gap-2;
+
+                    h2 {
+                        @apply font-title text-2xl text-primary font-bold;
+                    }
+
+                    span {
+                        @apply badge badge-md badge-secondary text-sm;
+                    }
+                }
             }
         }
 
@@ -54,7 +67,7 @@
         }
 
         .isbn {
-            @apply flex flex-row justify-start items-center gap-2;
+            @apply flex flex-row justify-start items-center gap-2 text-secondary;
 
             .copy {
                 @apply cursor-pointer;
