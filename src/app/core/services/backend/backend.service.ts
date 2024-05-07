@@ -33,6 +33,8 @@ export class BackendService {
   }
 
   delete<T>(resource: string): Observable<T> {
+    console.log(`${this.baseUrl}/${resource}`);
+    
     return this.httpClient.delete<T>(`${this.baseUrl}/${resource}`);
   }
 

@@ -10,6 +10,7 @@ import { BookResponse } from '~app/models/HttpResponse/BookResspone';
 })
 export class BookService {
   public favoriteBooksSubject = new BehaviorSubject(null);
+  public reservedBookSubject = new BehaviorSubject(null);
   constructor(private backendService: BackendService) {}
 
   getAll(
@@ -44,6 +45,10 @@ export class BookService {
       nearestAvailableDate: new Date(),
       requestDate: new Date(),
     });
+  }
+
+  unreserve(reservationId: string): Observable<any> {
+    return this.backendService.delete(`BookReservations/${reservationId}`);
   }
 
   favorite(bookId: string, memberId: string): Observable<any> {

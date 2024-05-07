@@ -50,7 +50,7 @@
     <!-- status -->
     <div *ngIf="status" class="book-detail-status">
         <span class="fieldname" i18n>Status: </span>
-        <span>{{ status | bookStatus}}</span>
+        <span>{{ status }}</span>
     </div>
     <div *ngIf="categoryName" class="book-detail-author">
         <span>Category Id :</span>
@@ -78,16 +78,15 @@
     </div>
     <div class="card-actions">
         <button *ngIf="checkIfBookFavorited(bookId)" class="" (click)="unfavorite(bookId)" i18n>
-            <ng-icon  class="favorite" size="1.85rem" name="iconoirHeart"
-            i18n-title title="Add To Favorites"></ng-icon>
+            <ng-icon class="favorite" size="1.85rem" name="iconoirHeart" i18n-title title="Add To Favorites"></ng-icon>
         </button>
         <button *ngIf="!checkIfBookFavorited(bookId)" class="" (click)="favorite(bookId)" i18n>
-            <ng-icon  class="favorite" size="1.85rem" name="ionHeartOutline"
-            i18n-title title="Remove From Favorites"></ng-icon>
+            <ng-icon class="favorite" size="1.85rem" name="ionHeartOutline" i18n-title
+                title="Remove From Favorites"></ng-icon>
         </button>
-        <button *ngIf="status === 2" class="btn btn-primary reserve" (click)="reserve(bookId)" i18n><app-spinner
-            class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
-            *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
+        <button *ngIf="status === 'Borrowed'" class="btn btn-primary reserve" (click)="reserve(bookId)"
+            i18n><app-spinner class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
+                *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
         </button>
     </div>
 </section>

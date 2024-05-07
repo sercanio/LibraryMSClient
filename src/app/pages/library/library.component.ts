@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { Collection } from '~app/core/models/Response/Collection';
+import { AuthService } from '~app/core/services/auth/auth.service';
 import { SearchLoaderService } from '~app/core/services/loading/search-loader/search-loader.service';
 import { BookCardComponent } from '~app/features/book/components/book-card/book-card.component';
 import { BookService } from '~app/features/book/services/book.service';
@@ -13,6 +15,7 @@ import { MagazineService } from '~app/features/magazine/services/magazine.servic
 import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
 import { EBookListResponse } from '~app/models/HttpResponse/EbookListResponse';
 import { MagazineListResponse } from '~app/models/HttpResponse/MagazineListResponse';
+import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
 import { SearchResultCollection } from '~app/models/SearchResultCollection';
 import { SearchResultComponent } from '~app/shared/components/search-result/search-result.component';
 
@@ -26,6 +29,7 @@ import { SearchResultComponent } from '~app/shared/components/search-result/sear
     SearchResultComponent,
     FormsModule,
     SpinnerComponent,
+    RouterModule
   ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
@@ -53,16 +57,22 @@ export class LibraryComponent implements OnInit {
   isFirstPage: boolean = false;
   showPageList: boolean = false;
   totalPages: number[] = [];
+  member!: MemberResponse;
+  pages!: number;
 
   constructor(
     private bookService: BookService,
     private magazineService: MagazineService,
     private EBookService: EBookService,
-    private searchLoaderService: SearchLoaderService
+    private searchLoaderService: SearchLoaderService,
+    protected authService: AuthService
   ) {}
 
   ngOnInit() {
     this.getBookListItems();
+    this.authService.userSubject.subscribe((member) => {
+      this.member = member;
+    });
   }
 
   getBookListItems(
@@ -77,10 +87,9 @@ export class LibraryComponent implements OnInit {
       this.isFirstPage = !response.hasPrevious;
       this.magazineListItems = [];
       this.eBookListItems = [];
-      this.totalPages = Array.from(
-        { length: response.count / this.pageSize },
-        (_, i) => i + 1
-      );
+      console.log(response.items);
+      
+      this.totalPages = Array.from({ length: response.pages }, (_, i) => i + 1);
     });
   }
 
@@ -96,10 +105,7 @@ export class LibraryComponent implements OnInit {
       this.isFirstPage = !response.hasPrevious;
       this.bookListItems = [];
       this.eBookListItems = [];
-      this.totalPages = Array.from(
-        { length: response.count / this.pageSize },
-        (_, i) => i + 1
-      );
+      this.totalPages = Array.from({ length: response.pages }, (_, i) => i + 1);
     });
   }
 
@@ -115,10 +121,7 @@ export class LibraryComponent implements OnInit {
       this.isFirstPage = !response.hasPrevious;
       this.bookListItems = [];
       this.magazineListItems = [];
-      this.totalPages = Array.from(
-        { length: response.count / this.pageSize },
-        (_, i) => i + 1
-      );
+      this.totalPages = Array.from({ length: response.pages }, (_, i) => i + 1);
     });
   }
 
@@ -199,6 +202,7 @@ export class LibraryComponent implements OnInit {
           this.bookListItems = response.items;
           this.magazineListItems = [];
           this.eBookListItems = [];
+          this.pages = response.pages;
         }
         this.searchLoaderService.searchBeingUpdated = false;
       });
@@ -218,6 +222,7 @@ export class LibraryComponent implements OnInit {
           this.magazineListItems = response.items;
           this.bookListItems = [];
           this.eBookListItems = [];
+          this.pages = response.pages;
         }
         this.searchLoaderService.searchBeingUpdated = false;
       });
@@ -236,6 +241,7 @@ export class LibraryComponent implements OnInit {
           this.eBookListItems = response.items;
           this.bookListItems = [];
           this.magazineListItems = [];
+          this.pages = response.pages;
         }
         this.searchLoaderService.searchBeingUpdated = false;
       }
@@ -261,5 +267,12 @@ export class LibraryComponent implements OnInit {
     } else if (listMode === 'ebook') {
       this.searchEBookListItems(searchTerm, true);
     }
+  }
+
+  isCollapseOpen(collapseId: string): boolean {
+    const collapseCheckbox = document.getElementById(
+      collapseId
+    ) as HTMLInputElement;
+    return collapseCheckbox ? collapseCheckbox.checked : false;
   }
 }

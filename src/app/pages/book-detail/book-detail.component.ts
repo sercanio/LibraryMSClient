@@ -11,7 +11,7 @@ import {
 } from '~app/models/HttpResponse/BookResspone';
 import { BookService } from '~app/features/book/services/book.service';
 import { BookStatusPipe } from '~app/features/book/pipes/book-status.pipe';
-import { BookStatusEnum } from '~app/models/BookStatus';
+import { BookStatus, BookStatusEnum } from '~app/models/BookStatus';
 import { AuthService } from '~app/core/services/auth/auth.service';
 import { BookLoaderService } from '~app/core/services/loading/book-loader/book-loader.service';
 import { ToastrService } from 'ngx-toastr';
@@ -47,7 +47,7 @@ export class BookDetailComponent implements OnInit {
   bookEdition!: number;
   releaseDate!: number;
   pageCount!: number;
-  status!: BookStatusEnum;
+  status!: BookStatus;
   categoryName!: string;
   publisherName!: string;
   location!: BookLocation;

@@ -83,6 +83,7 @@ export class ProfileComponent {
         });
       }
     });
+    avatarLoaderService.avatarBeingUpdated = false;
   }
 
   get f() {

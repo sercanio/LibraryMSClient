@@ -21,7 +21,7 @@ export interface BookResponse {
   bookEdition: number;
   releaseDate: number;
   pageCount: number;
-  status: BookStatusEnum;
+  status: BookStatus;
   categoryName: string;
   publisherName: string;
   location: BookLocation;

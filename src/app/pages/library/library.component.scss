@@ -1,9 +1,9 @@
 :host {
-    @apply w-full flex flex-col justify-start items-center section-container;
+    @apply flex flex-col justify-start items-center section-container;
 }
 
 .searchbox {
-    @apply input input-primary w-full max-w-xs;
+    @apply input input-primary max-w-xs;
 }
 
 .list-pagination {
@@ -14,7 +14,7 @@
     @apply outline-none rounded-none;
 
     option {
-        @apply w-full rounded-none;
+        @apply rounded-none;
 
         &:hover {
             @apply bg-primary-button text-white;
@@ -24,4 +24,98 @@
     .decorated option:hover {
         @apply bg-black;
     }
+}
+
+.drawer {
+    .drawer-side {
+        .menu {
+            @apply flex flex-col justify-start items-center p-4 w-80 min-h-full bg-base-200 text-base-content;
+
+            .drawer-header {
+                @apply flex flex-row justify-start items-start p-0 mb-8;
+
+                .avatar-img {
+                    @apply w-20 h-20 rounded-full p-0 m-0;
+                }
+
+                .head-info {
+                    @apply flex flex-col items-start justify-start pl-2 pr-1;
+
+                    .name {
+                        @apply text-sm font-bold;
+                    }
+
+                    .email {
+                        @apply text-xs;
+                    }
+
+                    .phone {
+                        @apply text-xs;
+                    }
+                }
+            }
+
+            li {
+                @apply p-0 mb-4 w-full;
+
+                .collapse {
+                    @apply p-1 w-full bg-inherit;
+
+                    &:hover {
+                        @apply rounded-none;
+                    }
+
+                    .checkbox {
+                        @apply p-1 w-full;
+                    }
+
+                    .collapse-title,
+                    :where(.collapse > input[type=checkbox]),
+                    :where(.collapse > input[type=radio]) {
+                        @apply font-title text-primary p-1 min-h-1 w-full;
+                    }
+
+                    .collapse-title {
+                        @apply relative;
+
+                        .collapse-indicator {
+                            @apply absolute text-primary text-sm bottom-1.5 ml-2;
+                        }
+                    }
+
+                    .collapse-content {
+                        @apply pb-0 max-h-48 overflow-y-scroll overflow-x-hidden;
+
+                        a {
+                            @apply btn btn-link py-2 px-1 w-full text-left text-gray-500;
+
+                            &:hover {
+                                @apply text-primary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    @apply w-1;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-base-200;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-primary-button;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

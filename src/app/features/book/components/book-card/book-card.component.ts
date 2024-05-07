@@ -16,11 +16,18 @@ import { SpinnerComponent } from '~app/core/components/spinner/spinner.component
 import { ToastrService } from 'ngx-toastr';
 import { BookStatusPipe } from '../../pipes/book-status.pipe';
 import { RouterModule } from '@angular/router';
+import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
 
 @Component({
   selector: 'app-book-card',
   standalone: true,
-  imports: [CommonModule, NgIconComponent, SpinnerComponent, BookStatusPipe, RouterModule],
+  imports: [
+    CommonModule,
+    NgIconComponent,
+    SpinnerComponent,
+    BookStatusPipe,
+    RouterModule,
+  ],
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.scss',
   viewProviders: [
@@ -38,7 +45,7 @@ import { RouterModule } from '@angular/router';
 export class BookCardComponent implements OnInit {
   @Input() book!: BookListResponse;
   protected bookReservingLoaderText!: string;
-
+  protected member!: MemberResponse;
   constructor(
     private authService: AuthService,
     private bookService: BookService,
@@ -52,7 +59,23 @@ export class BookCardComponent implements OnInit {
     this.bookReservingLoaderText = '';
     this.authService.userSubject.subscribe((user) => {
       this.bookService.favoriteBooksSubject.next(user?.favoriteBooks);
+      this.bookService.reservedBookSubject.next(user?.reservations);
     });
+    this.authService.userSubject.subscribe((member) => {
+      this.member = member;
+    });
+  }
+
+  checkIfBookReserved(bookId: string): boolean {
+    let isBookReserved = false;
+    this.bookService.reservedBookSubject.subscribe((reservedBook) => {
+      if (reservedBook) {
+        isBookReserved = (reservedBook as any[]).some(
+          (book: any) => book.bookId === bookId
+        );
+      }
+    });
+    return isBookReserved;
   }
 
   reserve(bookId: string): void {
@@ -61,6 +84,7 @@ export class BookCardComponent implements OnInit {
       .reserve(bookId, this.authService.userSubject.value.id)
       .subscribe({
         next: () => {
+          this.authService.refreshuserSubject();
           this.bookLoaderService.bookBeingReserved = false;
           this.toasterService.success(
             'Book reserved successfully',
@@ -72,6 +96,28 @@ export class BookCardComponent implements OnInit {
           this.toasterService.error('Error reserving book', error);
         },
       });
+  }
+
+  unreserve(bookId: string): void {
+    const reservation = this.authService.userSubject.value?.reservations.filter(
+      (reservation: any) => reservation.bookId === bookId
+    )[0];
+    
+    this.bookLoaderService.bookBeingReserved = true;
+    this.bookService.unreserve(reservation.id).subscribe({
+      next: () => {
+        this.authService.refreshuserSubject();
+        this.bookLoaderService.bookBeingReserved = false;
+        this.toasterService.success(
+          'Book unreserved successfully',
+          this.book.bookTitle
+        );
+      },
+      error: (error) => {
+        this.bookLoaderService.bookBeingReserved = false;
+        this.toasterService.error('Error unreserving book', error);
+      },
+    });
   }
 
   favorite(bookId: string): void {

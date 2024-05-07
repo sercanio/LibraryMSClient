@@ -36,16 +36,21 @@
         </div>
         <div class="card-actions">
             <button *ngIf="checkIfBookFavorited(book.id)" class="" (click)="unfavorite(book.id)" i18n>
-                <ng-icon *ngIf="(book.status | bookStatus) !== 'Reserved'" class="favorite" size="1.85rem"
-                    name="iconoirHeart" i18n-title title="Add To Favorites"></ng-icon>
+                <ng-icon *ngIf="(book.status ) !== 'Reserved'" class="favorite" size="1.85rem" name="iconoirHeart"
+                    i18n-title title="Add To Favorites"></ng-icon>
             </button>
             <button *ngIf="!checkIfBookFavorited(book.id)" class="" (click)="favorite(book.id)" i18n>
-                <ng-icon *ngIf="(book.status | bookStatus) !== 'Reserved'" class="favorite" size="1.85rem"
-                    name="ionHeartOutline" i18n-title title="Remove From Favorites"></ng-icon>
+                <ng-icon *ngIf="(book.status ) !== 'Reserved'" class="favorite" size="1.85rem" name="ionHeartOutline"
+                    i18n-title title="Remove From Favorites"></ng-icon>
             </button>
-            <button *ngIf="book.status === 3" class="btn btn-primary" (click)="reserve(book.id)" i18n><app-spinner
-                    class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
+            <button *ngIf="book.status === 'Borrowed' && !checkIfBookReserved(book.id)" class="btn btn-primary" (click)="reserve(book.id)"
+                i18n><app-spinner class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
                     *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
+            </button>
+            <!-- unreserve -->
+            <button *ngIf="checkIfBookReserved(book.id)" class="btn btn-primary" (click)="unreserve(book.id)"
+                i18n><app-spinner class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
+                    *ngIf="!this.bookLoaderService.bookBeingReserved">Unreserve</span>
             </button>
             <a [routerLink]="['/book', book.id]" class="btn btn-secondary" i18n>Details</a>
         </div>
