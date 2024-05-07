@@ -18,6 +18,15 @@ export interface MemberBookAuthor {
 	lastName: string;
 }
 
+export interface FavoriteBook {
+	id: string;
+	bookId: string;
+	bookBookTitle: string;
+	memberId: string;
+	memberFirstName: string;
+	memberLastName: string;
+}
+
 export interface MemberBook {
 	id: string;
 	isbnCode: string;
@@ -44,4 +53,5 @@ export interface MemberResponse {
 	memberSetting: MemberSetting;
 	imageUrl: string;
 	books: MemberBook[];
+	favoriteBooks: FavoriteBook[];
 }
