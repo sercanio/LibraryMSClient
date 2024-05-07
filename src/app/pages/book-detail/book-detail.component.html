@@ -1,0 +1,93 @@
+<section class="section-container breadcrumbs">
+    <ul>
+        <li>
+            <a [routerLink]="['/']" class="btn btn-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block  w-4 h-4 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>&nbsp;<span i18n>Home</span>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm">
+            <a [routerLink]="['/library']" class="btn btn-link">
+                <div class="inline-flex items-center gap-2">
+                    Library
+                </div>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm cursor-default">
+            <div class="inline-flex items-center gap-2">
+                {{ bookTitle }}
+            </div>
+        </li>
+    </ul>
+</section>
+<section class="section-container book-detail-container text-center">
+    <div class="book-detail-header">
+        <h3 class="book-detail-title prose">{{ bookTitle }}</h3>
+        <div class="book-detail-cover">
+            <img [src]="imageUrl" [alt]="bookTitle" class="book-cover" />
+        </div>
+        <div *ngIf="authors" class="book-detail-author">
+            <span class="fieldname" i18n>Author: </span>
+            <!-- loop throug authors array -->
+            <span *ngFor="let author of book.authors; let last = last">{{ author.firstName }} {{ author.lastName
+                }}{{
+                !last ? ', ' : '' }}</span>
+        </div>
+    </div>
+    <!-- publisher -->
+    <div *ngIf="publisherName" class="book-detail-publisher">
+        <span class="fieldname" i18n>Publisher: </span>
+        <span>{{ publisherName }}</span>
+    </div>
+    <!-- book edition -->
+    <div *ngIf="bookEdition" class="book-detail-edition">
+        <span class="fieldname" i18n>Edition: </span>
+        <span>{{ bookEdition }}</span>
+    </div>
+    <!-- status -->
+    <div *ngIf="status" class="book-detail-status">
+        <span class="fieldname" i18n>Status: </span>
+        <span>{{ status | bookStatus}}</span>
+    </div>
+    <div *ngIf="categoryName" class="book-detail-author">
+        <span>Category Id :</span>
+        <span>{{ categoryName}}</span>
+    </div>
+    <div *ngIf="pageCount" class="book-detail-pagecount">
+        <span class="fieldname" i18n>Pages: </span>
+        <span>{{pageCount}} </span>
+    </div>
+    <div *ngIf="releaseDate" class="book-detail-releasedate">
+        <span class="fieldname" i18n>Released Date</span> : {{ releaseDate | date: 'YYYY'}}
+    </div>
+    <div *ngIf="isbnCode" class="book-detail-isbn">
+        <span class="fieldname" i18n>ISBN:&nbsp;</span>
+        <div class="isbn-container">
+            <span class="isbn" title="ISBN Code" i18n-alt>{{ isbnCode }}</span>
+            <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
+                appCopyToClipboard="{{isbnCode}}"></ng-icon>
+        </div>
+    </div>
+    <div class="book-detail-location">
+        <span class="fieldname" i18n>Location: </span>
+        <p i18n>{{ book.location.name }}, Kat: {{ location.floorNo }}, Raf: {{ book.location.shelfNo }} -
+            {{book.location.shelfName}} </p>
+    </div>
+    <div class="card-actions">
+        <button *ngIf="checkIfBookFavorited(bookId)" class="" (click)="unfavorite(bookId)" i18n>
+            <ng-icon  class="favorite" size="1.85rem" name="iconoirHeart"
+            i18n-title title="Add To Favorites"></ng-icon>
+        </button>
+        <button *ngIf="!checkIfBookFavorited(bookId)" class="" (click)="favorite(bookId)" i18n>
+            <ng-icon  class="favorite" size="1.85rem" name="ionHeartOutline"
+            i18n-title title="Remove From Favorites"></ng-icon>
+        </button>
+        <button *ngIf="status === 2" class="btn btn-primary reserve" (click)="reserve(bookId)" i18n><app-spinner
+            class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
+            *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
+        </button>
+    </div>
+</section>

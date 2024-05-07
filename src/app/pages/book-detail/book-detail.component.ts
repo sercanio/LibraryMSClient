@@ -1,57 +1,102 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
-import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
-import { BookService } from '../../services/book.service';
-import { AuthService } from '~app/core/services/auth/auth.service';
-import {
-  iconoirFavouriteBook,
-  iconoirShareAndroid,
-  iconoirCopy,
-  iconoirHeart,
-} from '@ng-icons/iconoir';
-import { ionHeart, ionHeartOutline } from '@ng-icons/ionicons';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CopyToClipboardDirective } from '~app/shared/directives/copy/copy-to-clipboard';
+import { iconoirCopy } from '@ng-icons/iconoir';
+import {
+  BookAuthor,
+  BookLocation,
+  BookResponse,
+} from '~app/models/HttpResponse/BookResspone';
+import { BookService } from '~app/features/book/services/book.service';
+import { BookStatusPipe } from '~app/features/book/pipes/book-status.pipe';
+import { BookStatusEnum } from '~app/models/BookStatus';
+import { AuthService } from '~app/core/services/auth/auth.service';
 import { BookLoaderService } from '~app/core/services/loading/book-loader/book-loader.service';
-import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { ToastrService } from 'ngx-toastr';
-import { BookStatusPipe } from '../../pipes/book-status.pipe';
-import { RouterModule } from '@angular/router';
+import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
+import { iconoirHeart } from '@ng-icons/iconoir';
+import { ionHeartOutline } from '@ng-icons/ionicons';
 
 @Component({
-  selector: 'app-book-card',
   standalone: true,
-  imports: [CommonModule, NgIconComponent, SpinnerComponent, BookStatusPipe, RouterModule],
-  templateUrl: './book-card.component.html',
-  styleUrl: './book-card.component.scss',
+  templateUrl: './book-detail.component.html',
+  styleUrls: ['./book-detail.component.scss'],
+  imports: [
+    CommonModule,
+    NgIconComponent,
+    RouterModule,
+    CopyToClipboardDirective,
+    BookStatusPipe,
+    SpinnerComponent,
+  ],
   viewProviders: [
     provideIcons({
-      iconoirShareAndroid,
-      iconoirFavouriteBook,
       iconoirCopy,
       iconoirHeart,
-      ionHeart,
       ionHeartOutline,
     }),
   ],
   providers: [BookStatusPipe],
 })
-export class BookCardComponent implements OnInit {
-  @Input() book!: BookListResponse;
-  protected bookReservingLoaderText!: string;
+export class BookDetailComponent implements OnInit {
+  book!: BookResponse;
+  bookId!: string;
+  bookTitle!: string;
+  bookEdition!: number;
+  releaseDate!: number;
+  pageCount!: number;
+  status!: BookStatusEnum;
+  categoryName!: string;
+  publisherName!: string;
+  location!: BookLocation;
+  authors!: BookAuthor[];
+  isbnCode!: string;
+  imageUrl!: string;
+
+  bookReservingLoaderText = '';
 
   constructor(
-    private authService: AuthService,
+    private route: ActivatedRoute,
     private bookService: BookService,
-    protected bookLoaderService: BookLoaderService,
+    @Inject(PLATFORM_ID) private platformId: Object,
     protected bookStatusPipe: BookStatusPipe,
-    private toasterService: ToastrService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private authService: AuthService,
+    protected bookLoaderService: BookLoaderService,
+    private toasterService: ToastrService
   ) {}
 
   ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.route.params.subscribe((params) => {
+        this.bookId = params['id'];
+        this.loadbookDetails(this.bookId);
+      });
+    }
     this.bookReservingLoaderText = '';
     this.authService.userSubject.subscribe((user) => {
       this.bookService.favoriteBooksSubject.next(user?.favoriteBooks);
+    });
+  }
+
+  loadbookDetails(ebookId: string) {
+    this.bookService.getById(ebookId).subscribe((response: BookResponse) => {
+      if (response) {
+        this.book = response;
+        this.bookId = response.id;
+        this.bookTitle = response.bookTitle;
+        this.bookEdition = response.bookEdition;
+        this.releaseDate = response.releaseDate;
+        this.pageCount = response.pageCount;
+        this.status = response.status;
+        this.categoryName = response.categoryName;
+        this.publisherName = response.publisherName;
+        this.location = response.location;
+        this.authors = response.authors;
+        this.isbnCode = response.isbnCode;
+        this.imageUrl = response.imageUrl;
+      }
     });
   }
 
@@ -120,18 +165,5 @@ export class BookCardComponent implements OnInit {
       }
     });
     return isBookFavorited;
-  }
-
-  copyText(isbn: string): void {
-    if (isPlatformBrowser(this.platformId)) {
-      navigator.clipboard
-        .writeText(isbn)
-        .then(() => {
-          this.toasterService.success('Copied to clipboard', isbn);
-        })
-        .catch((error) => {
-          this.toasterService.error('Error copying to clipboard', error);
-        });
-    }
   }
 }

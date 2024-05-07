@@ -47,7 +47,7 @@
                     class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
                     *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
             </button>
-            <button class="btn btn-secondary" i18n>Details</button>
+            <a [routerLink]="['/book', book.id]" class="btn btn-secondary" i18n>Details</a>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { BookStatus } from "../BookStatus";
+import { BookStatus, BookStatusEnum } from "../BookStatus";
 
 export interface BookLocation {
   id: string;
@@ -21,9 +21,10 @@ export interface BookResponse {
   bookEdition: number;
   releaseDate: number;
   pageCount: number;
-  status: BookStatus;
+  status: BookStatusEnum;
   categoryName: string;
   publisherName: string;
   location: BookLocation;
+  imageUrl : string;
   authors: BookAuthor[];
 }

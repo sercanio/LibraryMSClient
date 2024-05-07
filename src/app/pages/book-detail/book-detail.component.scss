@@ -1,0 +1,100 @@
+:host {
+    @apply page;
+
+    .book-detail-container {
+        @apply relative bg-primary dark:bg-secondary w-full h-full;
+
+
+        .book-detail-cover {
+            @apply flex justify-center items-center my-6;
+
+            .book-cover {
+                @apply w-32 h-32;
+            }
+        }
+
+        .book-detail-title {
+            @apply text-tertiary dark:text-gray-300 text-xl md:text-3xl font-title font-bold;
+        }
+
+        .book-detail-publisher,
+        .book-detail-edition,
+        .book-detail-status,
+        .book-detail-pagecount,
+        .book-detail-releasedate,
+        .book-detail-author,
+        .book-detail-location,
+        .book-detail-isbn {
+            @apply text-primary dark:text-gray-300 text-sm md:text-base my-2 font-bold;
+
+            // first span element
+            .fieldname {
+                @apply text-tertiary;
+            }
+        }
+
+        .book-detail-isbn {
+            @apply flex flex-row items-center justify-center;
+
+            .isbn-container {
+                @apply flex flex-row items-center justify-center gap-2;
+
+                .copy {
+                    @apply cursor-pointer;
+                }
+            }
+        }
+
+        .card-actions {
+            @apply flex flex-row justify-center items-center gap-4 mt-4;
+
+            .favorite {
+                @apply relative top-0.5 text-primary flex justify-center items-center;
+
+                &.active {
+                    @apply text-primary;
+                }
+            }
+
+            .reserve {
+                @apply relative top-0.5 text-white px-0.5 py-1;
+
+                &.active {
+                    @apply text-primary;
+                }
+
+                span {
+                    @apply mr-2;
+                }
+
+            }
+        }
+    }
+
+    // .book-detail-edition {
+    //     @apply text-tertiary dark:text-gray-300 text-sm md:text-base mt-2;
+    // }
+
+    // .book-detail-status {
+    //     @apply text-tertiary dark:text-gray-300 text-sm md:text-base mt-2;
+    // }
+
+    // .book-detail-pagecount {
+    //     @apply text-tertiary dark:text-gray-300 text-sm md:text-base mt-2;
+    // }
+
+    // .book-detail-releasedate {
+    //     @apply text-tertiary dark:text-gray-300 text-sm md:text-base mt-2;
+    // }
+
+    // .book-detail-content {
+    //     @apply text-tertiary dark:text-gray-300 mt-4;
+}
+
+.book-detail-download {
+    @apply mt-4;
+}
+
+// .btn-primary {
+//     @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded;
+// }
