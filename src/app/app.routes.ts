@@ -9,6 +9,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { authGuard } from './core/guards/auth.guard';
+import { EBookDetailComponent } from './pages/ebook-detail/ebook-detail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -20,4 +21,5 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'library', component: LibraryComponent, canActivate: [authGuard] },
+  { path: 'ebook/:id', component: EBookDetailComponent},
 ];

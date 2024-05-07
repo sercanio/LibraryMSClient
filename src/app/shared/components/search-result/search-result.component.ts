@@ -74,7 +74,7 @@ export class SearchResultComponent {
     }
   }
   inputChange(event: Event) {
-    this.searchParam = (event.target as HTMLInputElement).value;    
+    this.searchParam = (event.target as HTMLInputElement).value;
     this.onSearchInputChange.emit(event);
   }
 }

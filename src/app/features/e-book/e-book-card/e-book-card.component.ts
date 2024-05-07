@@ -14,11 +14,13 @@ import { BookLoaderService } from '~app/core/services/loading/book-loader/book-l
 import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { ToastrService } from 'ngx-toastr';
 import { EBookListResponse } from '~app/models/HttpResponse/EbookListResponse';
+import { CopyToClipboardDirective } from '~app/shared/directives/copy/copy-to-clipboard';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-ebook-card',
   standalone: true,
-  imports: [CommonModule, NgIconComponent, SpinnerComponent],
+  imports: [CommonModule, NgIconComponent, SpinnerComponent, CopyToClipboardDirective, RouterModule],
   templateUrl: './e-book-card.component.html',
   styleUrl: './e-book-card.component.scss',
   viewProviders: [

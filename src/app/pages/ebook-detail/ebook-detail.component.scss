@@ -1,0 +1,39 @@
+:host {
+    @apply page;
+
+    .ebook-detail-container {
+        @apply relative bg-primary dark:bg-secondary w-full h-full;
+
+        .ebook-detail-header {
+
+            .ebook-detail-title {
+                @apply text-tertiary dark:text-gray-300 text-xl md:text-3xl font-title font-bold;
+            }
+
+            .ebook-detail-author {
+                @apply text-tertiary dark:text-gray-300 text-sm md:text-base mt-2;
+            }
+
+        }
+
+        .ebook-detail-isbn {
+            @apply flex flex-row items-center justify-center gap-2 text-primary text-sm md:text-base mt-2;
+
+            .copy {
+                @apply cursor-pointer;
+            }
+        }
+
+        .ebook-detail-content {
+            @apply text-tertiary dark:text-gray-300 mt-4;
+        }
+
+        .ebook-detail-download {
+            @apply mt-4;
+        }
+
+        // .btn-primary {
+        //     @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded;
+        // }
+    }
+}

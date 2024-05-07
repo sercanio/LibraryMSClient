@@ -23,11 +23,12 @@
         <div class="isbn">
             <span class="isbn" title="ISBN">{{ eBook.isbnCode }}</span>
             <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
-                (click)="copyText(eBook.isbnCode)"></ng-icon>
+                appCopyToClipboard="{{eBook.isbnCode}}"></ng-icon>
         </div>
+
         <div class="card-actions">
-            <button class="btn btn-secondary" i18n>Details</button>
-            <a href={{eBook.fileUrl}} target="_blank" class="btn btn-secondary" i18n>Read</a>
+            <a [routerLink]="['/ebook', eBook.id]" class="btn btn-secondary" i18n>Details</a>
+            <a href={{eBook.fileUrl}} target="_blank" class="btn btn-primary" i18n>Read</a>
         </div>
     </div>
 </div>

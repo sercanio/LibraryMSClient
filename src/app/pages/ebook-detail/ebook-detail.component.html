@@ -1,0 +1,53 @@
+<section class="section-container breadcrumbs">
+    <ul>
+        <li>
+            <a [routerLink]="['/']" class="btn btn-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block  w-4 h-4 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>&nbsp;<span i18n>Home</span>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm">
+            <a [routerLink]="['/library']" class="btn btn-link">
+                <div class="inline-flex items-center gap-2">
+                    Library
+                </div>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm cursor-default">
+            <div class="inline-flex items-center gap-2">
+                {{ ebook.eBookTitle }}
+            </div>
+        </li>
+    </ul>
+</section>
+<section class="section-container ebook-detail-container text-center">
+    <div class="ebook-detail-header">
+        <h3 class="ebook-detail-title prose">{{ ebook.eBookTitle }}</h3>
+        <div class="ebook-detail-author">
+            <span i18n>Yazar: </span>
+            <span>{{ ebook.authorName }}</span>
+        </div>
+    </div>
+    <div *ngIf="ebook.categoryId" class="ebook-detail-author">
+        <span>Category Id :</span>
+        <span>{{ ebook.categoryId }}</span>
+    </div>
+    <div *ngIf="ebook.pageCount" class="ebook-detail-pagecount">
+        <span i18n>Pages: </span>
+        <span>{{ebook.pageCount}} </span>
+    </div>
+    <div *ngIf="ebook.releaseDate" class="ebook-detail-releasedate">
+        <span i18n>Released Date</span> : {{ ebook.releaseDate | date: 'YYYY'}}
+    </div>
+    <div *ngIf="ebook.isbnCode" class="ebook-detail-isbn">
+        <span class="isbn" title="Copy ISBN" i18n-alt>{{ ebook.isbnCode }}</span>
+        <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
+            appCopyToClipboard="{{ebook.isbnCode}}"></ng-icon>
+    </div>
+    <div *ngIf="ebookId" class="ebook-detail-download">
+        <a href="{{ ebook.fileUrl }}" class="btn btn-primary">Download</a>
+    </div>
+</section>
