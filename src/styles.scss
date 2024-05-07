@@ -199,8 +199,10 @@
     .badge-secondary {
         @apply bg-secondary-button border-secondary outline-none text-white font-normal;
     }
-
 }
 
-
-@layer utilities {}
+@layer utilities {
+    .highlight {
+        @apply bg-primary-button text-white opacity-80 underline;
+    }
+}

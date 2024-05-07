@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { Collection } from '~app/core/models/Response/Collection';
+import { SearchLoaderService } from '~app/core/services/loading/search-loader/search-loader.service';
 import { BookCardComponent } from '~app/features/book/components/book-card/book-card.component';
 import { BookService } from '~app/features/book/services/book.service';
 import { EBookCardComponent } from '~app/features/e-book/e-book-card/e-book-card.component';
@@ -23,6 +25,7 @@ import { SearchResultComponent } from '~app/shared/components/search-result/sear
     EBookCardComponent,
     SearchResultComponent,
     FormsModule,
+    SpinnerComponent,
   ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
@@ -34,7 +37,7 @@ export class LibraryComponent implements OnInit {
   protected magazineListItems!: MagazineListResponse[];
   protected EBookListObj!: Collection<EBookListResponse>;
   protected eBookListItems!: EBookListResponse[];
-  searchResultCollection!: SearchResultCollection;
+  protected searchResultCollection!: SearchResultCollection;
 
   listMode: string = 'books';
 
@@ -55,7 +58,7 @@ export class LibraryComponent implements OnInit {
     private bookService: BookService,
     private magazineService: MagazineService,
     private EBookService: EBookService,
-    private elementRef: ElementRef<HTMLElement>
+    private searchLoaderService: SearchLoaderService
   ) {}
 
   ngOnInit() {
@@ -182,21 +185,81 @@ export class LibraryComponent implements OnInit {
     this.showPageList = !this.showPageList;
   }
 
-  onSearchInputChange(event: Event) {    
-    const target = event.target as HTMLInputElement;
-    if (this.listMode === 'books') {
-      this.searchBookListItems(target.value);
-    }
-  }
-
-  searchBookListItems(searchTerm: string) {
+  searchBookListItems(searchTerm: string, changeList: boolean = false) {
+    this.searchLoaderService.searchBeingUpdated = true;
     this.bookService
       .searchBooks('bookTitle', searchTerm)
       .subscribe((response) => {
-        this.searchResultCollection = {
-          ...this.searchResultCollection,
-          bookListItems: response.items,
-        };
+        if (!changeList) {
+          this.searchResultCollection = {
+            ...this.searchResultCollection,
+            bookListItems: response.items,
+          };
+        } else {
+          this.bookListItems = response.items;
+          this.magazineListItems = [];
+          this.eBookListItems = [];
+        }
+        this.searchLoaderService.searchBeingUpdated = false;
       });
+  }
+
+  searchMagazineListItems(searchTerm: string, changeList: boolean = false) {
+    this.searchLoaderService.searchBeingUpdated = true;
+    this.magazineService
+      .searchMagazines('magazineTitle', searchTerm)
+      .subscribe((response) => {
+        if (!changeList) {
+          this.searchResultCollection = {
+            ...this.searchResultCollection,
+            magazineListItems: response.items,
+          };
+        } else {
+          this.magazineListItems = response.items;
+          this.bookListItems = [];
+          this.eBookListItems = [];
+        }
+        this.searchLoaderService.searchBeingUpdated = false;
+      });
+  }
+
+  searchEBookListItems(searchTerm: string, changeList: boolean = false) {
+    this.searchLoaderService.searchBeingUpdated = true;
+    this.EBookService.searchEBooks('eBookTitle', searchTerm).subscribe(
+      (response) => {
+        if (!changeList) {
+          this.searchResultCollection = {
+            ...this.searchResultCollection,
+            eBookListItems: response.items,
+          };
+        } else {
+          this.eBookListItems = response.items;
+          this.bookListItems = [];
+          this.magazineListItems = [];
+        }
+        this.searchLoaderService.searchBeingUpdated = false;
+      }
+    );
+  }
+
+  onSearchInputChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.searchBookListItems(target.value, false);
+    this.searchMagazineListItems(target.value, false);
+    this.searchEBookListItems(target.value, false);
+  }
+
+  onSearchSubmit(event: any) {
+    event.preventDefault();
+    const selectElement = event.target.querySelector('select');
+    const listMode = selectElement.value;
+    const searchTerm = event.target.querySelector('input').value;
+    if (listMode === 'books') {
+      this.searchBookListItems(searchTerm, true);
+    } else if (listMode === 'magazines') {
+      this.searchMagazineListItems(searchTerm, true);
+    } else if (listMode === 'ebook') {
+      this.searchEBookListItems(searchTerm, true);
+    }
   }
 }

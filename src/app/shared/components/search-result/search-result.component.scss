@@ -1,14 +1,16 @@
 .card {
-    @apply rounded-none bg-base-100 shadow-md border-secondary border-b border-r border-l p-2;
+    @apply rounded-none bg-base-100 shadow-md border-secondary border-b border-r border-l p-2 max-h-[500px] overflow-y-auto;
+    ;
 
     .card-body {
         @apply p-2;
 
-        .search-item{
-            @apply ml-4 p-2; 
+        .search-item {
+            @apply ml-4 p-2 btn btn-link text-left;
         }
-            .selected {
-                @apply bg-primary-button text-white;
-        }
+    }
+
+    .highlight {
+        background-color: yellow;
     }
 }

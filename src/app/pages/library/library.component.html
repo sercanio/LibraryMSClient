@@ -1,15 +1,20 @@
-<form>
+<form (submit)="onSearchSubmit($event)">
     <label for="search">
         <div class="join">
             <div>
                 <app-search-result (onSearchInputChange)="onSearchInputChange($event)"
                     [searchResultCollection]="searchResultCollection"></app-search-result>
             </div>
-            <select class="select select-primary join-item" (input)="onListModeChange($event)">
-                <option value="books" selected>Books</option>
-                <option value="magazines">Magazines</option>
-                <option value="ebook">E-Book</option>
-            </select>
+            <label class="relative form-control w-full max-w-xs">
+                <div class="absolute bottom-12 left-1/2 -translate-x-1/2">
+                    <span class="label-text-alt" i18n>List Mode</span>
+                </div>
+                <select class="select select-primary join-item" (input)="onListModeChange($event)">
+                    <option value="books" selected>Books</option>
+                    <option value="magazines">Magazines</option>
+                    <option value="ebook">E-Book</option>
+                </select>
+            </label>
             <div class="indicator">
                 <button class="btn btn-primary join-item">Search</button>
             </div>

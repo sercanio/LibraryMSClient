@@ -3,7 +3,6 @@ import {
   Component,
   Input,
   HostListener,
-  ViewChild,
   ElementRef,
   Output,
   EventEmitter,
@@ -16,10 +15,12 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { HighlightPipe } from '~app/shared/pipes/highlight/highlight.pipe';
+
 @Component({
   selector: 'app-search-result',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HighlightPipe],
   templateUrl: './search-result.component.html',
   styleUrl: './search-result.component.scss',
   animations: [
@@ -39,8 +40,9 @@ export class SearchResultComponent {
   @Output() onSearchInputChange = new EventEmitter();
 
   protected selectedItemIndex: number = 0;
-  protected showResults: boolean = true;
+  protected showResults: boolean = false;
   protected isSearchFocused = true;
+  protected searchParam = '';
 
   constructor(private elementRef: ElementRef) {}
 
@@ -58,6 +60,7 @@ export class SearchResultComponent {
         break;
     }
   }
+
   @HostListener('document:click', ['$event'])
   clickOutside(event: MouseEvent) {
     if (
@@ -71,6 +74,7 @@ export class SearchResultComponent {
     }
   }
   inputChange(event: Event) {
+    this.searchParam = (event.target as HTMLInputElement).value;    
     this.onSearchInputChange.emit(event);
   }
 }

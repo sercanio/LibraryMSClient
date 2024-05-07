@@ -24,4 +24,15 @@ export class MagazineService {
   getById(id: string): Observable<MagazineResponse> {
     return this.backendService.get<MagazineResponse>(`Magazines/${id}`);
   }
+
+  searchMagazines(
+    query: string,
+    queryParam: string,
+    pageIndex: number = 0,
+    size: number = 10
+  ): Observable<Collection<MagazineListResponse>> {
+    return this.backendService.getAll<MagazineListResponse>(
+      `Magazines/search?${query}=${queryParam}&PageIndex=${pageIndex}&PageSize=${size}`
+    );
+  }
 }
