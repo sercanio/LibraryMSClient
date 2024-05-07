@@ -13,12 +13,12 @@ import { BookLoaderService } from '~app/core/services/loading/book-loader/book-l
 import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { ToastrService } from 'ngx-toastr';
 import { MagazineListResponse } from '~app/models/HttpResponse/MagazineListResponse';
-import { MagazineService } from '../../services/magazine.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-magazine-card',
   standalone: true,
-  imports: [CommonModule, NgIconComponent, SpinnerComponent],
+  imports: [CommonModule, NgIconComponent, SpinnerComponent, RouterModule],
   templateUrl: './magazine-card.component.html',
   styleUrl: './magazine-card.component.scss',
   viewProviders: [
@@ -41,7 +41,6 @@ export class MagazineCardComponent implements OnInit {
     private authService: AuthService,
     protected bookLoaderService: BookLoaderService,
     private toasterService: ToastrService,
-    private magazineService: MagazineService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 

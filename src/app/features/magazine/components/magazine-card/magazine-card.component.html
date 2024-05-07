@@ -18,5 +18,8 @@
             <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
                 (click)="copyText(magazine.issnCode)"></ng-icon>
         </div>
+        <div class="card-actions">
+            <a [routerLink]="['/magazine', magazine.id]" class="btn btn-secondary" routerLinkActive="router-link-active" i18n>Details</a>
+        </div>
     </div>
 </div>

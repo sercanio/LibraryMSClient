@@ -16,11 +16,12 @@ import {
   animate,
 } from '@angular/animations';
 import { HighlightPipe } from '~app/shared/pipes/highlight/highlight.pipe';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
   standalone: true,
-  imports: [CommonModule, HighlightPipe],
+  imports: [CommonModule, HighlightPipe, RouterModule],
   templateUrl: './search-result.component.html',
   styleUrl: './search-result.component.scss',
   animations: [

@@ -1,0 +1,45 @@
+<section class="section-container breadcrumbs">
+    <ul>
+        <li>
+            <a [routerLink]="['/']" class="btn btn-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block  w-4 h-4 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>&nbsp;<span i18n>Home</span>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm">
+            <a [routerLink]="['/library']" class="btn btn-link">
+                <div class="inline-flex items-center gap-2">
+                    Library
+                </div>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm cursor-default">
+            <div class="inline-flex items-center gap-2">
+                {{ magazine.magazineTitle }}
+            </div>
+        </li>
+    </ul>
+</section>
+<section class="section-container magazine-detail-container text-center">
+    <div class="magazine-detail-header">
+        <h3 class="magazine-detail-title prose">{{ magazine.magazineTitle }}</h3>
+    </div>
+    <div *ngIf="magazine.categoryId" class="magazine-detail-category">
+        <span>Category Id :</span>
+        <span>{{ magazine.categoryId }}</span>
+    </div>
+    <div *ngIf="magazine.releaseDate" class="magazine-detail-releasedate">
+        <span i18n>Released Date</span> : {{ magazine.releaseDate | date: 'YYYY/MM'}}
+    </div>
+    <div *ngIf="magazine.number" class="magazine-detail-releasedate">
+        <span i18n>Issue</span> : {{ magazine.number }}
+    </div>
+    <div *ngIf="magazine.issnCode" class="magazine-detail-issn">
+        <span class="isbn" title="Copy ISBN" i18n-alt>{{ magazine.issnCode }}</span>
+        <ng-icon name="iconoirCopy" class="copy" i18n-title title="Copy ISBN"
+            appCopyToClipboard="{{magazine.issnCode}}"></ng-icon>
+    </div>
+</section>

@@ -9,15 +9,19 @@
             <h3 class="text-center">Search Results</h3>
             <h4>Books</h4>
             <p class="search-item" *ngFor="let item of searchResultCollection.bookListItems">
-                <span [innerHTML]="item.bookTitle | highlight: searchParam"></span>
+                <a [routerLink]="['/book', item.id]" routerLinkActive="router-link-active"
+                    [innerHTML]="item.bookTitle | highlight: searchParam"></a>
             </p>
             <h4>Magazines</h4>
             <p class="search-item" *ngFor="let item of searchResultCollection.magazineListItems">
                 <span [innerHTML]="item.magazineTitle | highlight: searchParam"></span>
+                <a [routerLink]="['/magazine', item.id]" routerLinkActive="router-link-active"
+                    [innerHTML]="item.magazineTitle | highlight: searchParam"></a>
             </p>
             <h4>E-Books</h4>
             <p class="search-item" *ngFor="let item of searchResultCollection.eBookListItems">
-                <span [innerHTML]="item.eBookTitle | highlight: searchParam"></span>
+                <a [routerLink]="['/ebook', item.id]" routerLinkActive="router-link-active"
+                    [innerHTML]="item.eBookTitle | highlight: searchParam"></a>
             </p>
         </div>
     </div>

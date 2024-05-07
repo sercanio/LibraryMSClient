@@ -11,6 +11,7 @@ import { LibraryComponent } from './pages/library/library.component';
 import { authGuard } from './core/guards/auth.guard';
 import { EBookDetailComponent } from './pages/ebook-detail/ebook-detail.component';
 import { BookDetailComponent } from './pages/book-detail/book-detail.component';
+import { MagazineetailComponent } from './pages/magazine-detail/magazine-detail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'library', component: LibraryComponent, canActivate: [authGuard] },
-  { path: 'ebook/:id', component: EBookDetailComponent},
-  { path: 'book/:id', component: BookDetailComponent},
+  { path: 'ebook/:id', component: EBookDetailComponent },
+  { path: 'book/:id', component: BookDetailComponent },
+  { path: 'magazine/:id', component: MagazineetailComponent },
 ];
