@@ -9,7 +9,7 @@
                             <app-search-result (onSearchInputChange)="onSearchInputChange($event)"
                                 [searchResultCollection]="searchResultCollection"></app-search-result>
                         </div>
-                        <label class="relative form-control w-full max-w-xs">
+                        <label class="relative form-control w-full max-w-[100px] md:max-w-xs">
                             <div class="absolute bottom-12 left-1/2 -translate-x-1/2">
                                 <span class="label-text-alt" i18n>List Mode</span>
                             </div>
@@ -26,7 +26,7 @@
                 </label>
             </form>
             <div
-                class="relative join section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end">
+                class="relative join section-container py-1 my-1 mr-5 px-0 mt-8 sm:right-2 max-w-3xl flex items-center justify-end">
                 <button class="join-item btn btn-primary btn-pagination"
                     [ngClass]="{'btn-pagination-disabled': isFirstPage}" (click)="onPreviousPage()">«</button>
                 <select class="join-item select btn btn-primary" (change)="goToPage($event)">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div
-                class="relative join section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end">
+                class="relative join section-container py-1 my-1 mr-5 px-0 mt-8 sm:right-2 max-w-3xl flex items-center justify-end">
                 <button class="join-item btn btn-primary btn-pagination"
                     [ngClass]="{'btn-pagination-disabled': isFirstPage}" (click)="onPreviousPage()">«</button>
                 <select class="join-item select btn btn-primary" (change)="goToPage($event)">
