@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '~app/core/services/auth/auth.service';
-import { PageService } from '~app/core/services/page/page.service';
+import { CatalogComponent } from '~app/features/catalog/components/catalog.component';
 import { CarouselComponent } from '~core/components/carousel/carousel.component';
 import { AnnouncementContainerComponent } from '~features/announcement/components/announcement-container/announcement-container.component';
 @Component({
   standalone: true,
-  imports: [CommonModule, CarouselComponent, AnnouncementContainerComponent],
+  imports: [CommonModule, CarouselComponent, AnnouncementContainerComponent, CatalogComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

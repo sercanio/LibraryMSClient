@@ -1,0 +1,19 @@
+.catalog-header {
+    @apply font-title font-bold text-5xl text-tertiary my-16 text-center;
+}
+
+.card-container {
+    @apply flex items-start justify-center flex-wrap gap-16 p-4;
+
+    .card {
+        @apply rounded-none h-64 m-2 basis-1/5;
+
+        .card-body {
+            @apply text-lg font-bold text-white bg-primary-button opacity-60 cursor-pointer;
+
+            &:hover {
+                @apply bg-primary-button opacity-100 transition-opacity duration-100;
+            }
+        }
+    }
+}

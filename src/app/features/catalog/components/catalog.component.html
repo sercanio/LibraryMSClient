@@ -1,0 +1,11 @@
+<h2 class="catalog-header" i18n>Our Catalogs</h2>
+<div class="card-container">
+    <div class="card" *ngFor="let catalog of catalogs">
+        <figure>
+            <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
+        </figure>
+        <div class="card-body">
+            <h2 class="card-title">{{ catalog.name }}</h2>
+        </div>
+    </div>
+</div>
