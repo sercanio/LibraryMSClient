@@ -94,6 +94,7 @@ export class BookCardComponent implements OnInit {
         error: (error) => {
           this.bookLoaderService.bookBeingReserved = false;
           this.toasterService.error('Error reserving book', error);
+          
         },
       });
   }

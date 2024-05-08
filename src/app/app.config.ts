@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -16,13 +16,16 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor, l10nInterceptor])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([authInterceptor, l10nInterceptor])
+    ),
     provideAnimations(),
     provideToastr({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
-      tapToDismiss : false,
-      progressBar: true
-    }), 
+      tapToDismiss: false,
+      progressBar: true,
+    }),
   ],
 };

@@ -53,6 +53,21 @@ export interface MemberBook {
   authors: MemberBookAuthor[];
 }
 
+export interface BookIssue {
+  id: string;
+  bookId: string;
+  bookBookTitle: string;
+  bookStatus: string;
+  memberId: string;
+  memberFirstName: string;
+  memberLastName: string;
+  libraryStaffId: string;
+  libraryStaffFirstName?: any;
+  libraryStaffLastName?: any;
+  returnDate: string;
+  fineDues?: any;
+}
+
 export interface MemberResponse {
   id: string;
   userId: string;
@@ -61,10 +76,13 @@ export interface MemberResponse {
   phoneNumber: string;
   email: string;
   dateOfBirth: string;
+  imageUrl: string;
   subscribe: boolean;
   memberSetting: MemberSetting;
-  imageUrl: string;
   books: MemberBook[];
   favoriteBooks: FavoriteBook[];
+  bookIssues: BookIssue[];
   reservations: Reservation[];
+  fineDues: any[];
+  finePayments: any[];
 }

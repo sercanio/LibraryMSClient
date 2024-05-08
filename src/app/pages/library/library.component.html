@@ -123,8 +123,13 @@
                         </span>
                     </div>
                     <div class="collapse-content">
-                        <a [routerLink]="['/book', borrowed.id]" routerLinkActive="router-link-active"
-                            *ngFor="let borrowed of member.books">{{borrowed.bookTitle}}</a>
+                        <h4 class="heading"><span>Book Name</span><span>Return Date</span></h4>
+                        <hr>
+                        <a [routerLink]="['/book', bookIssue.bookId]" routerLinkActive="router-link-active" class="book"
+                            *ngFor="let bookIssue of member.bookIssues"><span
+                                class="book-title">{{bookIssue.bookBookTitle}}</span>
+                            <span class="returndate" i18n-title title="Return Date">{{
+                                bookIssue.returnDate | date:"dd/MM/YYYY"}}</span></a>
                         <p *ngIf="member.books.length === 0" i18n>No books borrowed yet.</p>
                     </div>
                 </div>
@@ -149,9 +154,8 @@
                             </div>
                             <!-- <label for="description" i18n>Description</label> -->
                             <textarea id="description" name="description"
-                                class="textarea textarea-bordered w-full max-w-xs my-2"
-                                formControlName="description" placeholder="Description" required
-                                rows="8"></textarea>
+                                class="textarea textarea-bordered w-full max-w-xs my-2" formControlName="description"
+                                placeholder="Description" required rows="8"></textarea>
                             <div *ngIf="feedBackDescription!.invalid && (feedBackDescription!.dirty || feedBackDescription!.touched)"
                                 class="login-alert">
                                 <div *ngIf="feedBackDescription!.errors?.['required']" i18n>Description is required.

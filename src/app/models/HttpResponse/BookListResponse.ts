@@ -1,4 +1,4 @@
-import { BookStatus, BookStatusEnum } from "../BookStatus";
+import { BookStatus } from "../BookStatus";
 
 export interface BookListLocation {
   id: string;

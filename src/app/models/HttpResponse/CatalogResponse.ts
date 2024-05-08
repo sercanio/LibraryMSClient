@@ -9,4 +9,5 @@ export interface CatalogResponse {
 	magazines: MagazineResponse[];
 	materials: any[];
 	eBooks: EbookResponse[];
+    imageUrl: string;
 }
