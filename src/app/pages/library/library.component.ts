@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SpinnerComponent } from '~app/core/components/spinner/spinner.component';
 import { Collection } from '~app/core/models/Response/Collection';
 import { AuthService } from '~app/core/services/auth/auth.service';
@@ -10,6 +17,7 @@ import { BookCardComponent } from '~app/features/book/components/book-card/book-
 import { BookService } from '~app/features/book/services/book.service';
 import { EBookCardComponent } from '~app/features/e-book/e-book-card/e-book-card.component';
 import { EBookService } from '~app/features/e-book/services/e-book.service';
+import { FeedBackService } from '~app/features/feedback/feedback.service';
 import { MagazineCardComponent } from '~app/features/magazine/components/magazine-card/magazine-card.component';
 import { MagazineService } from '~app/features/magazine/services/magazine.service';
 import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
@@ -29,7 +37,8 @@ import { SearchResultComponent } from '~app/shared/components/search-result/sear
     SearchResultComponent,
     FormsModule,
     SpinnerComponent,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
@@ -60,12 +69,25 @@ export class LibraryComponent implements OnInit {
   member!: MemberResponse;
   pages!: number;
 
+  feedBackForm = this.formBuilder.group({
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    title: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+  });
+
   constructor(
     private bookService: BookService,
     private magazineService: MagazineService,
     private EBookService: EBookService,
     private searchLoaderService: SearchLoaderService,
-    protected authService: AuthService
+    private formBuilder: FormBuilder,
+    protected authService: AuthService,
+    protected feedBackService: FeedBackService,
+    private toasterService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -88,7 +110,7 @@ export class LibraryComponent implements OnInit {
       this.magazineListItems = [];
       this.eBookListItems = [];
       console.log(response.items);
-      
+
       this.totalPages = Array.from({ length: response.pages }, (_, i) => i + 1);
     });
   }
@@ -274,5 +296,47 @@ export class LibraryComponent implements OnInit {
       collapseId
     ) as HTMLInputElement;
     return collapseCheckbox ? collapseCheckbox.checked : false;
+  }
+
+  onFeedBackSubmit(event: Event) {
+    // append user id, email, phone, firstName, lastName to feedback
+    const formData = new FormData();
+    const title = this.feedBackForm.get('title')?.value;
+    const description = this.feedBackForm.get('description')?.value;
+    if (title && description) {
+      console.log(title, description);
+
+      formData.append('memberid', this.authService.userSubject.value.id);
+      formData.append('email', this.authService.userSubject.value.email);
+      formData.append(
+        'phonenumber',
+        this.authService.userSubject.value.phoneNumber
+      );
+      formData.append(
+        'firstName',
+        this.authService.userSubject.value.firstName
+      );
+      formData.append('lastName', this.authService.userSubject.value.lastName);
+      formData.append('title', title);
+      formData.append('description', description);
+      console.log(formData);
+
+      this.feedBackService.sendFeedBack(formData).subscribe({
+        next: (response) => {
+          this.toasterService.success('Feedback sent successfully');
+        },
+        error: (error) => {
+          this.toasterService.error('Failed to send feedback');
+        },
+      });
+    }
+  }
+
+  get feedbackTitle(): AbstractControl<string | null> | null {
+    return this.feedBackForm.get('title');
+  }
+
+  get feedBackDescription(): AbstractControl<string | null> | null {
+    return this.feedBackForm.get('description');
   }
 }

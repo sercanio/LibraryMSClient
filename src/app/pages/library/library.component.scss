@@ -94,6 +94,15 @@
                             }
                         }
                     }
+
+                    .feedback-collapse {
+                        @apply max-h-96;
+
+                        .input,
+                        .textarea {
+                            @apply rounded-none outline-primary;
+                        }
+                    }
                 }
             }
         }
