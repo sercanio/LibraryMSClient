@@ -109,8 +109,6 @@ export class LibraryComponent implements OnInit {
       this.isFirstPage = !response.hasPrevious;
       this.magazineListItems = [];
       this.eBookListItems = [];
-      console.log(response.items);
-
       this.totalPages = Array.from({ length: response.pages }, (_, i) => i + 1);
     });
   }

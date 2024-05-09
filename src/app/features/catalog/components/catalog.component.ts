@@ -17,7 +17,6 @@ export class CatalogComponent {
 
   ngOnInit(): void {
     this.catalogService.getAll().subscribe((response) => {
-      console.log(response);
       this.catalogs = response.items;
     });
   }

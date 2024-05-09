@@ -19,7 +19,6 @@ export const l10nInterceptor: HttpInterceptorFn = (
           document.querySelector('html')?.getAttribute('lang')?.split('-')[0] ||
           'en';
       });
-      console.log(language);
       return language;
     }
 
