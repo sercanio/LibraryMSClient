@@ -16,7 +16,7 @@ import { SpinnerComponent } from '~app/core/components/spinner/spinner.component
 import { ToastrService } from 'ngx-toastr';
 import { BookStatusPipe } from '../../pipes/book-status.pipe';
 import { RouterModule } from '@angular/router';
-import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
+import { FavoriteBook, MemberResponse } from '~app/models/HttpResponse/MemberResponse';
 
 @Component({
   selector: 'app-book-card',
@@ -67,9 +67,9 @@ export class BookCardComponent implements OnInit {
   }
 
   checkIfBookReserved(bookId: string): boolean {
-    return (this.bookService.reservedBookSubject.value as unknown as any[]).some(
-      (book: any) => book.bookId === bookId
-    );
+    return (
+      this.bookService.reservedBookSubject.value as unknown as any[]
+    ).some((book: any) => book.bookId === bookId);
   }
 
   reserve(bookId: string): void {
@@ -152,15 +152,9 @@ export class BookCardComponent implements OnInit {
   }
 
   checkIfBookFavorited(bookId: string): boolean {
-    let isBookFavorited = false;
-    this.bookService.favoriteBooksSubject.subscribe((favoriteBooks) => {
-      if (favoriteBooks) {
-        isBookFavorited = (favoriteBooks as any[]).some(
-          (book: any) => book.bookId === bookId
-        );
-      }
-    });
-    return isBookFavorited;
+    return (
+      this.bookService.favoriteBooksSubject.value as unknown as FavoriteBook[]
+    ).some((book: any) => book.bookId === bookId);
   }
 
   copyText(isbn: string): void {

@@ -1,130 +1,143 @@
 :host {
+
     @apply flex flex-col justify-start items-center section-container;
-}
 
-.searchbox {
-    @apply input input-primary max-w-xs;
-}
 
-.list-pagination {
-    @apply section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end;
-}
+    .searchbox {
+        @apply input input-primary max-w-xs;
+    }
 
-.select {
-    @apply outline-none rounded-none;
+    .list-pagination {
+        @apply section-container py-1 my-1 mx-1 px-0 mt-8 max-w-3xl flex items-center justify-end;
+    }
 
-    option {
-        @apply rounded-none;
+    .select {
+        @apply outline-none rounded-none;
 
-        &:hover {
-            @apply bg-primary-button text-white;
+        option {
+            @apply rounded-none;
+
+            &:hover {
+                @apply bg-primary-button text-white;
+            }
+        }
+
+        .decorated option:hover {
+            @apply bg-black;
         }
     }
 
-    .decorated option:hover {
-        @apply bg-black;
-    }
-}
+    .drawer {
 
-.drawer {
-    .drawer-side {
-        .menu {
-            @apply flex flex-col justify-start items-center p-4 w-80 min-h-full bg-base-200 text-base-content;
+        .drawer-side {
+            .menu {
+                @apply flex flex-col justify-start items-center p-4 w-80 min-h-full bg-base-200 text-base-content;
 
-            .drawer-header {
-                @apply flex flex-row justify-start items-start p-0 mb-8;
+                .drawer-header {
+                    @apply flex flex-row justify-start items-start p-0 mb-8;
 
-                .avatar-img {
-                    @apply w-20 h-20 rounded-full p-0 m-0;
-                }
-
-                .head-info {
-                    @apply flex flex-col items-start justify-start pl-2 pr-1;
-
-                    .name {
-                        @apply text-sm font-bold;
+                    .avatar-img {
+                        @apply w-20 h-20 rounded-full p-0 m-0;
                     }
 
-                    .email {
-                        @apply text-xs;
-                    }
+                    .head-info {
+                        @apply flex flex-col items-start justify-start pl-2 pr-1;
 
-                    .phone {
-                        @apply text-xs;
-                    }
-                }
-            }
+                        .name {
+                            @apply text-sm font-bold;
+                        }
 
-            li {
-                @apply p-0 mb-4 w-full;
+                        .email {
+                            @apply text-xs;
+                        }
 
-                .collapse {
-                    @apply p-1 w-full bg-inherit;
-
-                    &:hover {
-                        @apply rounded-none;
-                    }
-
-                    .checkbox {
-                        @apply p-1 w-full;
-                    }
-
-                    .collapse-title,
-                    :where(.collapse > input[type=checkbox]),
-                    :where(.collapse > input[type=radio]) {
-                        @apply font-title text-primary p-1 min-h-1 w-full;
-                    }
-
-                    .collapse-title {
-                        @apply relative;
-
-                        .collapse-indicator {
-                            @apply absolute text-primary text-sm bottom-1.5 ml-2;
+                        .phone {
+                            @apply text-xs;
                         }
                     }
+                }
 
-                    .collapse-content {
-                        @apply pb-0 max-h-48 overflow-y-scroll overflow-x-hidden;
+                li {
+                    @apply p-0 mb-4 w-full;
 
-                        a {
-                            @apply btn btn-link py-2 px-1 w-full text-left text-gray-500;
+                    .collapse {
+                        @apply p-1 w-full bg-inherit;
 
-                            &:hover {
-                                @apply text-primary;
+                        &:hover {
+                            @apply rounded-none;
+                        }
+
+                        .checkbox {
+                            @apply p-1 w-full;
+                        }
+
+                        .collapse-title,
+                        :where(.collapse > input[type=checkbox]),
+                        :where(.collapse > input[type=radio]) {
+                            @apply font-title text-primary p-1 min-h-1 w-full;
+                        }
+
+                        .collapse-title {
+                            @apply relative;
+
+                            .collapse-indicator {
+                                @apply absolute text-primary text-sm bottom-1.5 ml-2;
+                            }
+                        }
+
+                        .collapse-content {
+                            @apply pb-0 max-h-48 overflow-y-scroll overflow-x-hidden;
+
+                            a, .book {
+                                @apply btn btn-link py-2 px-1 w-full text-left text-gray-500;
+
+                                &:hover {
+                                    @apply text-primary;
+                                }
+
                             }
 
+                            .heading {
+                                @apply font-bold text-gray-500 flex flex-row items-center justify-around gap-4;
+                            }
+
+                            .book {
+                                @apply flex flex-row items-center justify-start gap-4 flex-wrap;
+                            }
+
+                            hr {
+                                @apply border border-dashed border-gray-500 my-2;
+                            }
+
+                            .total {
+                                @apply float-end font-bold text-primary mr-2;
+                            }
                         }
 
-                        .heading{
-                            @apply font-bold text-gray-500 flex flex-row items-center justify-around gap-4;
-                        }
+                        .feedback-collapse {
+                            @apply max-h-96;
 
-                        .book {
-                            @apply flex flex-row items-center justify-start gap-4 flex-wrap;
-                        }
-
-                        hr{
-                            @apply border border-dashed border-gray-500 my-2;
-                        }
-
-                        .total{
-                            @apply float-end font-bold text-primary mr-2;
-                        }
-                    }
-
-                    .feedback-collapse {
-                        @apply max-h-96;
-
-                        .input,
-                        .textarea {
-                            @apply rounded-none outline-primary;
+                            .input,
+                            .textarea {
+                                @apply rounded-none outline-primary;
+                            }
                         }
                     }
                 }
             }
         }
+
+        .drawer-content{
+            // @apply relative;
+        }
+        .drawer-button {
+            @apply  p-4 btn btn-primary lg:hidden;
+
+        }
+        
     }
 }
+
 
 /* width */
 ::-webkit-scrollbar {

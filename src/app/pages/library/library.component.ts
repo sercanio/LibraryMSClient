@@ -309,8 +309,6 @@ export class LibraryComponent implements OnInit {
     const title = this.feedBackForm.get('title')?.value;
     const description = this.feedBackForm.get('description')?.value;
     if (title && description) {
-      console.log(title, description);
-
       formData.append('memberid', this.authService.userSubject.value.id);
       formData.append('email', this.authService.userSubject.value.email);
       formData.append(
@@ -324,11 +322,10 @@ export class LibraryComponent implements OnInit {
       formData.append('lastName', this.authService.userSubject.value.lastName);
       formData.append('title', title);
       formData.append('description', description);
-      console.log(formData);
-
       this.feedBackService.sendFeedBack(formData).subscribe({
         next: (response) => {
           this.toasterService.success('Feedback sent successfully');
+          this.feedBackForm.reset();
         },
         error: (error) => {
           this.toasterService.error('Failed to send feedback');

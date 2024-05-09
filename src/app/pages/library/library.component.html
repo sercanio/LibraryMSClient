@@ -27,7 +27,10 @@
                 </label>
             </form>
             <div
-                class="relative join section-container py-1 my-1 mr-5 px-0 mt-8 sm:right-2 max-w-3xl flex items-center justify-end">
+                class="relative join section-container py-1 my-1 mr-5 px-0 mt-8 sm:right-2 w-full max-w-3xl flex items-center justify-end">
+                <label for="my-drawer-2" class="drawer-button mr-auto">
+                    Panel
+                </label>
                 <button class="join-item btn btn-primary btn-pagination"
                     [ngClass]="{'btn-pagination-disabled': isFirstPage}" (click)="onPreviousPage()">«</button>
                 <select class="join-item select btn btn-primary" (change)="goToPage($event)">
@@ -66,7 +69,6 @@
                     [ngClass]="{'btn-pagination-disabled': isLastPage}" (click)="onNextPage()">»</button>
             </div>
         </div>
-        <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
     </div>
     <div class="drawer-side">
         <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
@@ -148,12 +150,12 @@
                     <div class="collapse-content">
                         <h4 class="heading"><span>Book Name</span><span>Fine</span></h4>
                         <hr>
-                        <a [routerLink]="['/book', fineDue.id]" routerLinkActive="router-link-active" class="book"
+                        <div routerLinkActive="router-link-active" class="book"
                             *ngFor="let fineDue of member.fineDues"><span
                                 class="book-title">{{fineDue.bookIssueBookBookTitle}}</span>
                             <span class="returndate" i18n-title title="Return Date">{{
                                 fineDue.fineTotal| currency:"₺"}}</span>
-                        </a>
+                        </div>
                         <!-- total finaTotal -->
                         <hr>
                         <div class="total">
@@ -174,7 +176,6 @@
                     </div>
                     <div class="collapse-content feedback-collapse">
                         <form [formGroup]="feedBackForm" (ngSubmit)="onFeedBackSubmit($event)" class="form-group">
-                            <!-- <label for="feedbackTitle" i18n></label> -->
                             <input type="text" id="title" name="title" formControlName="title"
                                 class="input input-bordered w-full max-w-xs my-2" placeholder="Title" i18n-placeholder
                                 required>
@@ -182,7 +183,6 @@
                                 class="login-alert">
                                 <div *ngIf="feedbackTitle!.errors?.['required']" i18n>Title is required.</div>
                             </div>
-                            <!-- <label for="description" i18n>Description</label> -->
                             <textarea id="description" name="description"
                                 class="textarea textarea-bordered w-full max-w-xs my-2" formControlName="description"
                                 placeholder="Description" i18n-placeholder required rows="8"></textarea>
@@ -198,5 +198,4 @@
                 </div>
             </li>
         </ul>
-
     </div>

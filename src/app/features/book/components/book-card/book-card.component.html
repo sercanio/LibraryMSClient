@@ -35,11 +35,11 @@
                 {{book.locations.shelfName}} </p>
         </div>
         <div class="card-actions">
-            <button *ngIf="checkIfBookFavorited(book.id)" class="" (click)="unfavorite(book.id)" i18n>
+            <button *ngIf="checkIfBookFavorited(book.id)" class="" (click)="unfavorite(book.id)">
                 <ng-icon *ngIf="(book.status ) !== 'Reserved'" class="favorite" size="1.85rem" name="iconoirHeart"
                     i18n-title title="Add To Favorites"></ng-icon>
             </button>
-            <button *ngIf="!checkIfBookFavorited(book.id)" class="" (click)="favorite(book.id)" i18n>
+            <button *ngIf="!checkIfBookFavorited(book.id)" class="" (click)="favorite(book.id)">
                 <ng-icon *ngIf="(book.status ) !== 'Reserved'" class="favorite" size="1.85rem" name="ionHeartOutline"
                     i18n-title title="Remove From Favorites"></ng-icon>
             </button>
