@@ -1,3 +1,5 @@
+import { FineDueResponse } from "./FineDueResponse";
+
 export interface MemberSetting {
   id: number;
   uiTheme: string;
@@ -83,6 +85,6 @@ export interface MemberResponse {
   favoriteBooks: FavoriteBook[];
   bookIssues: BookIssue[];
   reservations: Reservation[];
-  fineDues: any[];
+  fineDues: FineDueResponse[];
   finePayments: any[];
 }
