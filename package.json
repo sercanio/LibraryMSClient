@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:LibraryMSClient": "node dist/library-msclient/server/server.mjs",
+    "extract-i18n": "ng extract-i18n --output-path src/locale",
     "preview": "cross-env NODE_ENV=production npm run build --localize && npx serve ./dist/library-msclient/browser/"
   },
   "private": true,
@@ -30,6 +31,7 @@
     "@ng-icons/material-icons": "^27.2.0",
     "@ng-icons/radix-icons": "^27.3.1",
     "@ngx-translate/core": "^15.0.0",
+    "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",
