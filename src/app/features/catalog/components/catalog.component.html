@@ -2,10 +2,10 @@
 <div class="card-container">
     <div class="card" *ngFor="let catalog of catalogs">
         <figure>
-            <img src="https://source.unsplash.com/featured/300x201" alt="Shoes" />
+            <img src={{catalog.imageUrl}} alt="Shoes" />
         </figure>
         <div class="card-body">
-            <h2 class="card-title">{{ catalog.name }}</h2>
+            <a [routerLink]="['/catalog', catalog.id]" routerLinkActive="router-link-active"  class="card-title">{{ catalog.name }}</a>
         </div>
     </div>
 </div>

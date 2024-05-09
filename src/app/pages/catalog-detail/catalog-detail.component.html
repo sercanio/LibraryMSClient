@@ -1,0 +1,57 @@
+<section class="section-container breadcrumbs">
+    <ul>
+        <li>
+            <a [routerLink]="['/']" class="btn btn-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="hidden md:inline-block  w-4 h-4 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>&nbsp;<span i18n>Home</span>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm">
+            <a [routerLink]="['/catalogs']" class="btn btn-link">
+                <div class="inline-flex items-center gap-2" i18n>
+                    Catalogs
+                </div>
+            </a>
+        </li>
+        <li class="btn btn-link text-xs md:text-sm cursor-default">
+            <div class="inline-flex items-center gap-2">
+                {{ name }}
+            </div>
+        </li>
+    </ul>
+</section>
+<section class="section-container catalog-detail-container">
+    <div class="catalog-detail-header">
+        <h3 class="catalog-detail-title">{{ name }}</h3>
+        <div class="catalog-detail-cover">
+            <img [src]="imageUrl" [alt]="name" class="catalog-cover" />
+        </div>
+    </div>
+    <div *ngIf="books.length > 0" class="catalog-detail-books">
+        <h4 class="catalog-section-title" i18n>Books</h4>
+        <div *ngFor="let book of books" class="catalog-item">
+            <a [routerLink]="['/book', book.id]">{{book.bookTitle}}</a>
+        </div>
+    </div>
+    <div *ngIf="magazines.length > 0" class="catalog-detail-magazines">
+        <h4 class="catalog-section-title" i18n>Magazines</h4>
+        <div *ngFor="let magazine of magazines" class="catalog-item">
+            <a [routerLink]="['/magazine', magazine.id]">{{magazine.magazineTitle}}</a>
+        </div>
+    </div>
+    <div *ngIf="materials.length > 0" class="catalog-detail-materials">
+        <h4 class="catalog-section-title" i18n>Other Materials</h4>
+        <div *ngFor="let material of materials" class="catalog-item">
+            <a [routerLink]="['/material', material.id]">{{material.magazineTitle}}</a>
+        </div>
+    </div>
+    <div *ngIf="eBooks.length > 0" class="catalog-detail-ebooks">
+        <h4 class="catalog-section-title" i18n>E-Books</h4>
+        <div *ngFor="let eBook of eBooks" class="catalog-item">
+            <a [routerLink]="['/ebook', eBook.id]">{{eBook.eBookTitle}}</a>
+        </div>
+    </div>
+</section>

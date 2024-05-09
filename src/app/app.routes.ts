@@ -12,6 +12,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { EBookDetailComponent } from './pages/ebook-detail/ebook-detail.component';
 import { BookDetailComponent } from './pages/book-detail/book-detail.component';
 import { MagazineetailComponent } from './pages/magazine-detail/magazine-detail.component';
+import { CatalogDetailComponent } from './pages/catalog-detail/catalog-detail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -26,4 +27,5 @@ export const routes: Routes = [
   { path: 'ebook/:id', component: EBookDetailComponent },
   { path: 'book/:id', component: BookDetailComponent },
   { path: 'magazine/:id', component: MagazineetailComponent },
+  { path: 'catalog/:id', component: CatalogDetailComponent },
 ];

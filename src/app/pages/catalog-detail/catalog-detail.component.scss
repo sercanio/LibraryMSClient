@@ -1,0 +1,78 @@
+:host {
+    @apply page;
+
+    .catalog-detail-container {
+        @apply relative bg-primary dark:bg-secondary w-full h-full;
+
+
+        .catalog-detail-cover {
+            @apply flex justify-center items-center my-6;
+
+            .catalog-cover {
+                @apply w-32 h-32;
+            }
+        }
+
+        .catalog-detail-title {
+            @apply text-primary dark:text-gray-300 text-xl md:text-3xl font-title font-bold text-center;
+        }
+
+        .catalog-detail-publisher,
+        .catalog-detail-edition,
+        .catalog-detail-status,
+        .catalog-detail-pagecount,
+        .catalog-detail-releasedate,
+        .catalog-detail-author,
+        .catalog-detail-location,
+        .catalog-detail-isbn {
+            @apply text-primary dark:text-gray-300 text-sm md:text-base my-2 font-bold;
+
+            // first span element
+            .fieldname {
+                @apply text-tertiary;
+            }
+        }
+
+        .catalog-detail-isbn {
+            @apply flex flex-row items-center justify-center;
+
+            .isbn-container {
+                @apply flex flex-row items-center justify-center gap-2;
+
+                .copy {
+                    @apply cursor-pointer;
+                }
+            }
+        }
+
+        .card-actions {
+            @apply flex flex-row justify-center items-center gap-4 mt-4;
+
+            .favorite {
+                @apply relative top-0.5 text-primary flex justify-center items-center;
+
+                &.active {
+                    @apply text-primary;
+                }
+            }
+
+            .reserve {
+                @apply relative top-0.5 text-white px-0.5 py-1;
+
+                &.active {
+                    @apply text-primary;
+                }
+
+                span {
+                    @apply mr-2;
+                }
+
+            }
+        }
+    }
+}
+
+.catalog-detail-download {
+    @apply mt-4;
+}
+
