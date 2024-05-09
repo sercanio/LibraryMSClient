@@ -43,8 +43,9 @@
                 <ng-icon *ngIf="(book.status ) !== 'Reserved'" class="favorite" size="1.85rem" name="ionHeartOutline"
                     i18n-title title="Remove From Favorites"></ng-icon>
             </button>
-            <button *ngIf="book.status === 'Borrowed' && !checkIfBookReserved(book.id)" class="btn btn-primary" (click)="reserve(book.id)"
-                i18n><app-spinner class="reserve-spinner" [spinnerTypes]="['book']" loadingText=""></app-spinner><span
+            <button *ngIf="book.status === 'Available' && !checkIfBookReserved(book.id)"
+                class="btn btn-primary" (click)="reserve(book.id)" i18n><app-spinner class="reserve-spinner"
+                    [spinnerTypes]="['book']" loadingText=""></app-spinner><span
                     *ngIf="!this.bookLoaderService.bookBeingReserved">Reserve</span>
             </button>
             <!-- unreserve -->

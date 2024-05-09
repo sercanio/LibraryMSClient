@@ -67,15 +67,9 @@ export class BookCardComponent implements OnInit {
   }
 
   checkIfBookReserved(bookId: string): boolean {
-    let isBookReserved = false;
-    this.bookService.reservedBookSubject.subscribe((reservedBook) => {
-      if (reservedBook) {
-        isBookReserved = (reservedBook as any[]).some(
-          (book: any) => book.bookId === bookId
-        );
-      }
-    });
-    return isBookReserved;
+    return (this.bookService.reservedBookSubject.value as unknown as any[]).some(
+      (book: any) => book.bookId === bookId
+    );
   }
 
   reserve(bookId: string): void {
@@ -94,7 +88,6 @@ export class BookCardComponent implements OnInit {
         error: (error) => {
           this.bookLoaderService.bookBeingReserved = false;
           this.toasterService.error('Error reserving book', error);
-          
         },
       });
   }
@@ -103,7 +96,8 @@ export class BookCardComponent implements OnInit {
     const reservation = this.authService.userSubject.value?.reservations.filter(
       (reservation: any) => reservation.bookId === bookId
     )[0];
-    
+    console.log(reservation);
+
     this.bookLoaderService.bookBeingReserved = true;
     this.bookService.unreserve(reservation.id).subscribe({
       next: () => {
