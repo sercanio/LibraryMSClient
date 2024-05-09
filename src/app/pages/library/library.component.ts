@@ -22,6 +22,7 @@ import { MagazineCardComponent } from '~app/features/magazine/components/magazin
 import { MagazineService } from '~app/features/magazine/services/magazine.service';
 import { BookListResponse } from '~app/models/HttpResponse/BookListResponse';
 import { EBookListResponse } from '~app/models/HttpResponse/EbookListResponse';
+import { FineDueResponse } from '~app/models/HttpResponse/FineDueResponse';
 import { MagazineListResponse } from '~app/models/HttpResponse/MagazineListResponse';
 import { MemberResponse } from '~app/models/HttpResponse/MemberResponse';
 import { SearchResultCollection } from '~app/models/SearchResultCollection';
@@ -69,6 +70,7 @@ export class LibraryComponent implements OnInit {
   member!: MemberResponse;
   pages!: number;
 
+  totalFineDue: number = 0;
   feedBackForm = this.formBuilder.group({
     id: '',
     firstName: '',
@@ -94,6 +96,11 @@ export class LibraryComponent implements OnInit {
     this.getBookListItems();
     this.authService.userSubject.subscribe((member) => {
       this.member = member;
+      this.totalFineDue = member.fineDues.reduce(
+        (total: number, due: any) => total + due.fineTotal,
+        0
+      );
+      console.log(this.totalFineDue);
     });
   }
 
@@ -277,7 +284,7 @@ export class LibraryComponent implements OnInit {
 
   onSearchSubmit(event: any) {
     event.preventDefault();
-    const selectElement = event.target.querySelector('select');
+    const selectElement = event.target.querySelector('#listmode');
     const listMode = selectElement.value;
     const searchTerm = event.target.querySelector('input').value;
     if (listMode === 'books') {

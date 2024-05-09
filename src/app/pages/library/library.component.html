@@ -13,14 +13,15 @@
                             <div class="absolute bottom-12 left-1/2 -translate-x-1/2">
                                 <span class="label-text-alt" i18n>List Mode</span>
                             </div>
-                            <select class="select select-primary join-item" (input)="onListModeChange($event)">
-                                <option value="books" selected>Books</option>
-                                <option value="magazines">Magazines</option>
-                                <option value="ebook">E-Book</option>
+                            <select id="listmode" class="select select-primary join-item"
+                                (input)="onListModeChange($event)">
+                                <option value="books" selected i18n>Books</option>
+                                <option value="magazines" i18n>Magazines</option>
+                                <option value="ebook" i18n>E-Books</option>
                             </select>
                         </label>
                         <div class="indicator">
-                            <button class="btn btn-primary join-item">Search</button>
+                            <button class="btn btn-primary join-item" i18n>Search</button>
                         </div>
                     </div>
                 </label>
@@ -76,13 +77,15 @@
                     <span class="name">{{member.firstName}} {{member.lastName}}</span>
                     <div class="email">{{member.email}}</div>
                     <div class="phone">{{member.phoneNumber}}</div>
+                    <div class="phone"><span i18n>Total Fines</span> : <span>{{totalFineDue | currency:"₺"}}</span>
+                    </div>
                 </div>
             </li>
             <li>
                 <div class="collapse bg-base-200">
                     <input type="checkbox" class="checkbox" id="reservationsCollapse" />
                     <div class="collapse-title text-xl font-medium">
-                        Reservations <span class="collapse-indicator"
+                        <span i18n>Reservations</span> <span class="collapse-indicator"
                             [class.collapsed]="!isCollapseOpen('reservationsCollapse')">
                             {{ isCollapseOpen('reservationsCollapse') ? '▼' : '►' }}
                         </span>
@@ -100,7 +103,7 @@
                 <div class="collapse bg-base-200">
                     <input type="checkbox" class="checkbox" id="favoritesCollapse" />
                     <div class="collapse-title text-xl font-medium">
-                        Favorites <span class="collapse-indicator"
+                        <span i18n>Favorites</span> <span class="collapse-indicator"
                             [class.collapsed]="!isCollapseOpen('favoritesCollapse')">
                             {{ isCollapseOpen('favoritesCollapse') ? '▼' : '►' }}
                         </span>
@@ -111,13 +114,12 @@
                         <p *ngIf="member.favoriteBooks.length === 0" i18n>No books favorited yet.</p>
                     </div>
                 </div>
-
             </li>
             <li>
                 <div class="collapse bg-base-200">
                     <input type="checkbox" class="checkbox" id="borrowedCollapse" />
                     <div class="collapse-title text-xl font-medium">
-                        Borrowed <span class="collapse-indicator"
+                        <span i18n>Borrowed</span> <span class="collapse-indicator"
                             [class.collapsed]="!isCollapseOpen('borrowedCollapse')">
                             {{ isCollapseOpen('borrowedCollapse') ? '▼' : '►' }}
                         </span>
@@ -136,6 +138,33 @@
             </li>
             <li>
                 <div class="collapse bg-base-200">
+                    <input type="checkbox" class="checkbox" id="borrowedCollapse" />
+                    <div class="collapse-title text-xl font-medium">
+                        <span i18n>Fine Dues</span> <span class="collapse-indicator"
+                            [class.collapsed]="!isCollapseOpen('borrowedCollapse')">
+                            {{ isCollapseOpen('borrowedCollapse') ? '▼' : '►' }}
+                        </span>
+                    </div>
+                    <div class="collapse-content">
+                        <h4 class="heading"><span>Book Name</span><span>Fine</span></h4>
+                        <hr>
+                        <a [routerLink]="['/book', fineDue.id]" routerLinkActive="router-link-active" class="book"
+                            *ngFor="let fineDue of member.fineDues"><span
+                                class="book-title">{{fineDue.bookIssueBookBookTitle}}</span>
+                            <span class="returndate" i18n-title title="Return Date">{{
+                                fineDue.fineTotal| currency:"₺"}}</span>
+                        </a>
+                        <!-- total finaTotal -->
+                        <hr>
+                        <div class="total">
+                            <span i18n>Total: </span><span>{{totalFineDue| currency:"₺"}}</span>
+                        </div>
+                        <p *ngIf="member.books.length === 0" i18n>There are no fines.</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="collapse bg-base-200">
                     <input type="checkbox" class="checkbox" id="feedbackCollapse" />
                     <div class="collapse-title text-xl font-medium">
                         <span i18n>Send Feedback</span> <span class="collapse-indicator"
@@ -147,7 +176,8 @@
                         <form [formGroup]="feedBackForm" (ngSubmit)="onFeedBackSubmit($event)" class="form-group">
                             <!-- <label for="feedbackTitle" i18n></label> -->
                             <input type="text" id="title" name="title" formControlName="title"
-                                class="input input-bordered w-full max-w-xs my-2" placeholder="Title" required>
+                                class="input input-bordered w-full max-w-xs my-2" placeholder="Title" i18n-placeholder
+                                required>
                             <div *ngIf="feedbackTitle!.invalid && (feedbackTitle!.dirty || feedbackTitle!.touched)"
                                 class="login-alert">
                                 <div *ngIf="feedbackTitle!.errors?.['required']" i18n>Title is required.</div>
@@ -155,7 +185,7 @@
                             <!-- <label for="description" i18n>Description</label> -->
                             <textarea id="description" name="description"
                                 class="textarea textarea-bordered w-full max-w-xs my-2" formControlName="description"
-                                placeholder="Description" required rows="8"></textarea>
+                                placeholder="Description" i18n-placeholder required rows="8"></textarea>
                             <div *ngIf="feedBackDescription!.invalid && (feedBackDescription!.dirty || feedBackDescription!.touched)"
                                 class="login-alert">
                                 <div *ngIf="feedBackDescription!.errors?.['required']" i18n>Description is required.

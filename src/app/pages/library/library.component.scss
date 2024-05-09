@@ -96,7 +96,7 @@
                         }
 
                         .heading{
-                            @apply font-bold text-gray-500 flex flex-row items-center justify-center gap-4;
+                            @apply font-bold text-gray-500 flex flex-row items-center justify-around gap-4;
                         }
 
                         .book {
@@ -105,6 +105,10 @@
 
                         hr{
                             @apply border border-dashed border-gray-500 my-2;
+                        }
+
+                        .total{
+                            @apply float-end font-bold text-primary mr-2;
                         }
                     }
 
