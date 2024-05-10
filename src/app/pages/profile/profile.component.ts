@@ -120,7 +120,7 @@ export class ProfileComponent {
         this.authService.userSubject.value.firstName
       );
       formData.append('lastName', this.authService.userSubject.value.lastName);
-      formData.append('phoneNumber', '+5305376212');
+      formData.append('phoneNumber', this.authService.userSubject.value.phoneNumber);
     }
     this.memberService
       .updateMemberSettings({

@@ -83,9 +83,9 @@ export class AuthService {
               next: (member) => {
                 this.userSubject.next(member);
                 this.userSubject.value;
+                window.location.href = `/${member?.memberSetting.language}`;
               },
             });
-            window.location.href = '/';
           }
           if (response.requiredAuthenticatorType) {
             console.log(
