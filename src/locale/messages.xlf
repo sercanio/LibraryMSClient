@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="7708270344948043036" datatype="html">
         <source> <x id="INTERPOLATION" equiv-text="{{ loadingText }}"/> </source>
@@ -39,12 +39,12 @@
           <context context-type="linenumber">18,19</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
-          <context context-type="linenumber">26,28</context>
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">81,83</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
-          <context context-type="linenumber">30,32</context>
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">84,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6282064796969577230" datatype="html">
@@ -60,59 +60,184 @@
           <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/e-book/e-book-card/e-book-card.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/magazine/components/magazine-card/magazine-card.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4335548177977692221" datatype="html">
+        <source>Book</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="2664187462214869251" datatype="html">
         <source>Copy ISBN</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/e-book/e-book-card/e-book-card.component.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/magazine/components/magazine-card/magazine-card.component.html</context>
           <context context-type="linenumber">18,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ebook-detail/ebook-detail.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/magazine-detail/magazine-detail.component.html</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8323422358213440128" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{book.status | bookStatus }}"/> </source>
+        <source><x id="INTERPOLATION" equiv-text="{{ book.status }}"/> </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
-          <context context-type="linenumber">22,23</context>
+          <context context-type="linenumber">31,32</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
           <context context-type="linenumber">91,92</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8035294366338532262" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ book.locations.name }}"/>, Kat: <x id="INTERPOLATION_1" equiv-text="{{ book.locations.floorNo }}"/>, Raf: <x id="INTERPOLATION_2" equiv-text="{{ book.locations.shelfNo }}"/> - <x id="INTERPOLATION_3" equiv-text="{{book.locations.shelfName}}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">76,79</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3005886191202231162" datatype="html">
         <source>Add To Favorites</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5180167793869339067" datatype="html">
         <source>Remove From Favorites</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4986858714997932529" datatype="html">
-        <source><x id="START_TAG_APP_SPINNER" ctype="x-app_spinner" equiv-text="&lt;app-spinner
-                    class=&quot;reserve-spinner&quot; [spinnerTypes]=&quot;[&apos;book&apos;]&quot; loadingText=&quot;&quot;&gt;"/><x id="CLOSE_TAG_APP_SPINNER" ctype="x-app_spinner" equiv-text="&lt;/app-spinner&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span
+        <source><x id="START_TAG_APP_SPINNER" ctype="x-app_spinner" equiv-text="&lt;app-spinner class=&quot;reserve-spinner&quot;
+                    [spinnerTypes]=&quot;[&apos;book&apos;]&quot; loadingText=&quot;&quot;&gt;"/><x id="CLOSE_TAG_APP_SPINNER" ctype="x-app_spinner" equiv-text="&lt;/app-spinner&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span
                     *ngIf=&quot;!this.bookLoaderService.bookBeingReserved&quot;&gt;"/>Reserve<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
-          <context context-type="linenumber">33,36</context>
+          <context context-type="linenumber">47,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">88,90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8084589832550449303" datatype="html">
+        <source><x id="START_TAG_APP_SPINNER" ctype="x-app_spinner" equiv-text="&lt;app-spinner class=&quot;reserve-spinner&quot; [spinnerTypes]=&quot;[&apos;book&apos;]&quot; loadingText=&quot;&quot;&gt;"/><x id="CLOSE_TAG_APP_SPINNER" ctype="x-app_spinner" equiv-text="&lt;/app-spinner&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span
+                    *ngIf=&quot;!this.bookLoaderService.bookBeingReserved&quot;&gt;"/>Unreserve<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
+          <context context-type="linenumber">53,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5028777105388019087" datatype="html">
         <source>Details</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/features/book/components/book-card/book-card.component.html</context>
-          <context context-type="linenumber">37,38</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/e-book/e-book-card/e-book-card.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/magazine/components/magazine-card/magazine-card.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1892882773300716576" datatype="html">
+        <source>Our Catalogs</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/catalog/components/catalog.component.html</context>
+          <context context-type="linenumber">1,2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8114758500119607343" datatype="html">
+        <source>E-Book</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/e-book/e-book-card/e-book-card.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2327592562693301723" datatype="html">
+        <source>Read</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/e-book/e-book-card/e-book-card.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4571852537390343612" datatype="html">
+        <source>Magazine</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/magazine/components/magazine-card/magazine-card.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7106463647614909643" datatype="html">
+        <source>Issue : </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/magazine/components/magazine-card/magazine-card.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2821179408673282599" datatype="html">
         <source>Home</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/announcement-detail/announcement-detail.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/catalog-detail/catalog-detail.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ebook-detail/ebook-detail.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/magazine-detail/magazine-detail.component.html</context>
           <context context-type="linenumber">9,10</context>
         </context-group>
         <context-group purpose="location">
@@ -140,25 +265,279 @@
           <context context-type="linenumber">14,19</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="9204999595398374370" datatype="html">
+        <source>Author: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4060679693171440670" datatype="html">
+        <source>Publisher: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7176643147008044154" datatype="html">
+        <source>Edition: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3236902958995987413" datatype="html">
+        <source>Status: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="634150728411508756" datatype="html">
+        <source>Pages: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ebook-detail/ebook-detail.component.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="314639026722529162" datatype="html">
+        <source>Released Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ebook-detail/ebook-detail.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/magazine-detail/magazine-detail.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7591258598513011960" datatype="html">
+        <source>ISBN: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4071222469431073252" datatype="html">
+        <source>Location: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/book-detail/book-detail.component.html</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3449170974162363063" datatype="html">
+        <source> Catalogs </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/catalog-detail/catalog-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5224604665222373201" datatype="html">
         <source>Books</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/catalog-detail/catalog-detail.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/search-result/search-result.component.html</context>
           <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9151989925513041616" datatype="html">
         <source>Magazines</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
-          <context context-type="linenumber">11,12</context>
+          <context context-type="sourcefile">src/app/pages/catalog-detail/catalog-detail.component.html</context>
+          <context context-type="linenumber">40,41</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="8114758500119607343" datatype="html">
-        <source>E-Book</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/search-result/search-result.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8262640044715452067" datatype="html">
+        <source>Other Materials</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/catalog-detail/catalog-detail.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1805182528609400654" datatype="html">
+        <source>E-Books</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/catalog-detail/catalog-detail.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/search-result/search-result.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3332804011769882062" datatype="html">
+        <source>Yazar: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ebook-detail/ebook-detail.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1254060908642225626" datatype="html">
+        <source>List Mode</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4580988005648117665" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/search-result/search-result.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5899233569148974226" datatype="html">
+        <source>Total Fines</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6009275794209052356" datatype="html">
+        <source>Reservations</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7598960686723642054" datatype="html">
+        <source>No books reserved yet. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">98,99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4085930761302974863" datatype="html">
+        <source>Favorites</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5801149741407944279" datatype="html">
+        <source>No books favorited yet.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">116,117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4022817053621001675" datatype="html">
+        <source>Borrowed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2924912316484492734" datatype="html">
+        <source>Return Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">135,136</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">156,157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4351109477632741580" datatype="html">
+        <source>No books borrowed yet.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">137,138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7546546372393615186" datatype="html">
+        <source>Fine Dues</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7646624924970625487" datatype="html">
+        <source>Total: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">162</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8546867251476011765" datatype="html">
+        <source>There are no fines.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">164,165</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9059560719840598868" datatype="html">
+        <source>Send Feedback</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">172</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5701618810648052610" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6952242034697821025" datatype="html">
+        <source>Title is required.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">184,185</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="226458712679028021" datatype="html">
+        <source>Description is required. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">191,192</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6490688569532630280" datatype="html">
+        <source>Send</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/library/library.component.html</context>
+          <context context-type="linenumber">195,196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2454050363478003966" datatype="html">
@@ -230,7 +609,14 @@
         <source> Don&apos;t have an account? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/signup&quot;&gt;"/>Signup<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/login/login.component.html</context>
-          <context context-type="linenumber">40,42</context>
+          <context context-type="linenumber">38,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5833626790712999947" datatype="html">
+        <source>Issue</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/magazine-detail/magazine-detail.component.html</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2100261705275226717" datatype="html">
@@ -251,32 +637,39 @@
           <context context-type="linenumber">14,19</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2059300840048819382" datatype="html">
+        <source> Change Avatar </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/profile/profile.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4930506384627295710" datatype="html">
         <source>Settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/profile/profile.component.html</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5635200965418389518" datatype="html">
         <source><x id="START_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;ng-icon name=&quot;iconoirSunLight&quot;&gt;"/><x id="CLOSE_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;/ng-icon&gt;"/>Theme</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/profile/profile.component.html</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="linenumber">49,50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1283807676191023685" datatype="html">
         <source><x id="START_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;ng-icon name=&quot;iconoirLanguage&quot;&gt;"/><x id="CLOSE_TAG_NG_ICON" ctype="x-ng_icon" equiv-text="&lt;/ng-icon&gt;"/>Language</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/profile/profile.component.html</context>
-          <context context-type="linenumber">44,45</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4319441956121197474" datatype="html">
         <source>Save Changes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/profile/profile.component.html</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="linenumber">67,68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5018804994794983050" datatype="html">
@@ -454,17 +847,6 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1726363342938046830" datatype="html">
-        <source>About</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">10,11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">63,64</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3817498941817715969" datatype="html">
         <source>Pages</source>
         <context-group purpose="location">
@@ -517,7 +899,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">105,106</context>
+          <context context-type="linenumber">104,105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8520023152129279437" datatype="html">
@@ -528,7 +910,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">108,109</context>
+          <context context-type="linenumber">107,108</context>
         </context-group>
       </trans-unit>
       <trans-unit id="187187500641108332" datatype="html">
@@ -557,7 +939,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
-          <context context-type="linenumber">99,100</context>
+          <context context-type="linenumber">98,99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2244580992928641018" datatype="html">
@@ -565,6 +947,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/header/header.component.html</context>
           <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3581390655099769115" datatype="html">
+        <source>Search Results</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/search-result/search-result.component.html</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
     </body>
